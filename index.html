@@ -102,6 +102,19 @@ section{
   aspect-ratio:3/4;
   object-fit:cover;
   border-radius:10px;
+
+  opacity:0;
+  transform:scale(0.95);
+  transition:all 0.6s ease;
+}
+
+.photo img.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+.photo:hover img{
+  transform:scale(1.05);
 }
 .photo::after{
   content:"© Simarpreet Singh";
@@ -183,6 +196,13 @@ footer{
   max-width:90%;
   max-height:90%;
   border-radius:12px;
+
+  transform:scale(0.8);
+  transition:all 0.3s ease;
+}
+
+#lightbox.show img{
+  transform:scale(1);
 }
 #lightbox .close{
   position:absolute;
@@ -329,17 +349,17 @@ html{
   <div class="home-photos">
 
   <div class="photo-card">
-    <img src="me/me4.jpg" alt="Simarpreet Singh shooting live moments">
+    <img loading="lazy" decoding="async" src="me/me4.jpg" alt="Simarpreet Singh shooting live moments">
     <span>In The Moment Shooting</span>
   </div>
 
   <div class="photo-card">
-    <img src="me/me3.jpg" alt="Simarpreet Singh on ground with camera gear">
+    <img loading="lazy" decoding="async" src="me/me3.jpg" alt="Simarpreet Singh on ground with camera gear">
     <span>On Ground. In Action.</span>
   </div>
 
   <div class="photo-card">
-    <img src="me/me2.jpg" alt="Simarpreet Singh wrapping up a shoot">
+    <img loading="lazy" decoding="async" src="me/me2.jpg" alt="Simarpreet Singh wrapping up a shoot">
     <span>After The Shot Counts</span>
   </div>
 
@@ -365,13 +385,13 @@ html{
 <div id="concerts" class="category-section">
 <h2 class="section-title">Concert Photography <span>Live energy</span></h2>
 <div class="gallery">
-<div class="photo"><img src="Concerts/simar(1).jpg"></div>
-<div class="photo"><img src="Concerts/simar(3).jpg"></div>
-<div class="photo"><img src="Concerts/simar(4).jpg"></div>
-<div class="photo"><img src="Concerts/simar(6).jpg"></div>
-<div class="photo"><img src="Concerts/simar(7).jpg"></div>
-<div class="photo"><img src="Concerts/simar(8).jpg"></div>
-<div class="photo"><img src="Concerts/simar(9).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(1).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(3).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(4).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(6).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(7).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/simar(8).jpg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Concerts/Simar(9).jpeg"></div>
 </div>
 </div>
 
@@ -379,19 +399,19 @@ html{
 <div id="dance" class="category-section">
 <h2 class="section-title">Dance Photography <span>Movement & expressions</span></h2>
 <div class="gallery">
-<div class="photo"><img src="Dance/DSC05520.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_2988.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_4503.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_5197.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_5222.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_5223.jpeg"></div>
-<div class="photo"><img src="Dance/DSC_5344.jpeg"></div>
-<div class="photo"><img src="Dance/IMG_5721.jpeg"></div>
-<div class="photo"><img src="Dance/IMG_5831.jpeg"></div>
-<div class="photo"><img src="Dance/IMG_5904.jpeg"></div>
-<div class="photo"><img src="Dance/IMG_5981.jpeg"></div>
-<div class="photo"><img src="Dance/NU_03480.jpeg"></div>
-<div class="photo"><img src="Dance/NU_04650.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC05520.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_2988.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_4503.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_5197.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_5222.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_5223.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/DSC_5344.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/IMG_5721.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/IMG_5831.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/IMG_5904.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/IMG_5981.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/NU_03480.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Dance/NU_04650.jpeg"></div>
 </div>
 </div>
 
@@ -399,8 +419,8 @@ html{
 <div id="dj" class="category-section">
 <h2 class="section-title">DJ Photography <span>Nightlife</span></h2>
 <div class="gallery">
-<div class="photo"><img src="DJ/IMG_5126.jpeg"></div>
-<div class="photo"><img src="DJ/NU_02768.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="DJ/IMG_5126.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="DJ/NU_02768.jpeg"></div>
 </div>
 </div>
 
@@ -408,11 +428,11 @@ html{
 <div id="photoshoot" class="category-section">
 <h2 class="section-title">Photoshoots <span>Creative work</span></h2>
 <div class="gallery">
-<div class="photo"><img src="Photoshoot/DSC_0198.jpeg"></div>
-<div class="photo"><img src="Photoshoot/IMG_9004.jpeg"></div>
-<div class="photo"><img src="Photoshoot/IMG_9167.jpeg"></div>
-<div class="photo"><img src="Photoshoot/IMG_9170.jpeg"></div>
-<div class="photo"><img src="Photoshoot/IMG_9964.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Photoshoot/DSC_0198.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Photoshoot/IMG_9004.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Photoshoot/IMG_9167.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Photoshoot/IMG_9170.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Photoshoot/IMG_9964.jpeg"></div>
 </div>
 </div>
 
@@ -420,19 +440,19 @@ html{
 <div id="music" class="category-section">
 <h2 class="section-title">Music Photography <span>Artists</span></h2>
 <div class="gallery">
-<div class="photo"><img src="Music/DSC_0008.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0050.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0102.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0116.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0177.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0481.jpeg"></div>
-<div class="photo"><img src="Music/DSC_0808.jpeg"></div>
-<div class="photo"><img src="Music/NU_09497.jpeg"></div>
-<div class="photo"><img src="Music/NU_09831.jpeg"></div>
-<div class="photo"><img src="Music/NU_09832.jpeg"></div>
-<div class="photo"><img src="Music/_DSC0604.jpeg"></div>
-<div class="photo"><img src="Music/_DSC0627.jpeg"></div>
-<div class="photo"><img src="Music/_DSC0767.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0008.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0050.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0102.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0116.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0177.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0481.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/DSC_0808.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/NU_09497.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/NU_09831.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/NU_09832.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/_DSC0604.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/_DSC0627.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Music/_DSC0767.jpeg"></div>
 </div>
 </div>
 
@@ -440,13 +460,13 @@ html{
 <div id="sports" class="category-section">
 <h2 class="section-title">Sports Photography <span>Action</span></h2>
 <div class="gallery">
-<div class="photo"><img src="Sports/DSC_0959.jpeg"></div>
-<div class="photo"><img src="Sports/DSC_0996.jpeg"></div>
-<div class="photo"><img src="Sports/IMG_0315.jpeg"></div>
-<div class="photo"><img src="Sports/IMG_0489.jpeg"></div>
-<div class="photo"><img src="Sports/IMG_0491.jpeg"></div>
-<div class="photo"><img src="Sports/IMG_0519.jpeg"></div>
-<div class="photo"><img src="Sports/IMG_2867.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/DSC_0959.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/DSC_0996.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/IMG_0315.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/IMG_0489.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/IMG_0491.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/IMG_0519.jpeg"></div>
+<div class="photo"><img loading="lazy" decoding="async" src="Sports/IMG_2867.jpeg"></div>
 </div>
 </div>
 
@@ -504,27 +524,32 @@ html{
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="closeLightbox()">
   <span class="close">&times;</span>
-  <img id="lightbox-img">
+  <img loading="lazy" decoding="async" id="lightbox-img">
 </div>
 
 <script>
-function openLightbox(src){
-  document.getElementById("lightbox-img").src = src;
-  document.getElementById("lightbox").style.display = "flex";
-}
-function closeLightbox(){
-  document.getElementById("lightbox").style.display = "none";
-}
-</script>
-<script data-cfasync="false">
 document.querySelectorAll('.photo img').forEach(img=>{
   img.addEventListener('click', ()=>{
-    document.getElementById('lightbox-img').src = img.src;
-    document.getElementById('lightbox').style.display = 'flex';
+    const lightbox = document.getElementById('lightbox');
+    const lightImg = document.getElementById('lightbox-img');
+
+    lightImg.src = img.src;
+    lightbox.style.display = 'flex';
+
+    setTimeout(()=>{
+      lightbox.classList.add('show');
+    },10);
   });
 });
+
 function closeLightbox(){
-  document.getElementById('lightbox').style.display = 'none';
+  const lightbox = document.getElementById('lightbox');
+
+  lightbox.classList.remove('show');
+
+  setTimeout(()=>{
+    lightbox.style.display = 'none';
+  },200);
 }
 </script>
 
