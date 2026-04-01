@@ -139,42 +139,23 @@ section{
   transition:all 0.3s ease;
 }
 
-.photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.3);
-  opacity:0;
-  transition:0.3s;
-  pointer-events:none; /* 🔥 MOST IMPORTANT FIX */
-}
-.photo:hover::after{
-  opacity:1;
-}
-.photo::before{
-  content:"View";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:18px;
-  opacity:0;
-  transition:0.3s;
-
-  pointer-events:none; /* 🔥 ADD THIS */
+.photo:hover{
+  transform:translateY(-6px);
 }
 
-.photo:hover::before{
-  opacity:1;
-}
 .photo img{
-  transition:0.4s;
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+  cursor:pointer;
+  transition:0.4s ease;
 }
 
 .photo:hover img{
-  transform:scale(1.1);
+  transform:scale(1.05);
+}
 }
 .photo img{
   width:100%;
@@ -205,11 +186,6 @@ section{
   padding:3px 6px;
   border-radius:4px;
 }
-.gallery:hover .photo{
-  opacity:0.3;
-  filter:blur(1px);
-}
-
 .gallery .photo:hover{
   opacity:1;
   filter:blur(0);
