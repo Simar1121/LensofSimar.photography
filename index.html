@@ -98,12 +98,14 @@ section{
   inset:0;
 
   background:
-    radial-gradient(circle at 20% 30%, rgba(0,150,255,0.12), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,0,150,0.1), transparent 40%);
+    radial-gradient(circle at 20% 30%, rgba(0,150,255,0.35), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255,0,150,0.3), transparent 45%);
 
-  filter:blur(60px);
+  filter:blur(80px);
   z-index:0;
   pointer-events:none;
+
+  animation:moveGlow 20s ease-in-out infinite alternate;
 }
 
 #portfolio > *{
@@ -386,6 +388,17 @@ html{
   50%{ transform:translate(-80px, -50px) scale(1.15); }
   100%{ transform:translate(50px, -70px) scale(0.9); }
 }
+}
+@keyframes moveGlow{
+  0%{
+    transform:translate(0px, 0px) scale(1);
+  }
+  50%{
+    transform:translate(40px, 30px) scale(1.05);
+  }
+  100%{
+    transform:translate(-30px, 20px) scale(0.95);
+  }
 }
 
 </style>
