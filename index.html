@@ -12,12 +12,19 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:Poppins,sans-serif;
-  background:#0b0b0b;
-  color:#fff;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
   line-height:1.6;
 }
-
+#themeToggle{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:18px;
+  cursor:pointer;
+  margin-left:10px;
+}
 /* NAV */
 nav{
   position:sticky;
@@ -35,7 +42,7 @@ nav a{
   margin-left:14px;
   font-size:14px;
 }
-.nav{
+.{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
@@ -461,11 +468,15 @@ html{
 <body>
 
 <nav>
-  <strong>Simarpreet Singh</strong>
+  <h1>Simarpreet Singh</h1>
+
   <div>
-    <a href="#home">About</a>
+    <a href="#about">About</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
+
+    <!-- ADD THIS LINE -->
+    <button id="themeToggle">🌙</button>
   </div>
 </nav>
 
@@ -765,6 +776,17 @@ document.addEventListener("keydown", function(e){
     e.ctrlKey && (e.key === "s" || e.key === "u" || e.key === "c")
   ){
     e.preventDefault();
+  }
+});
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click", ()=>{
+  document.body.classList.toggle("light-mode");
+
+  if(document.body.classList.contains("light-mode")){
+    toggle.textContent = "☀️";
+  }else{
+    toggle.textContent = "🌙";
   }
 });
 </script>
