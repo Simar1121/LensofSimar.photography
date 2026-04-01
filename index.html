@@ -315,9 +315,17 @@ footer{
 /* HOME / ABOUT */
 .home{
   padding:80px 16px;
-  background:var(--bg); /* 🔥 FIX */
   position:relative;
   overflow:hidden;
+}
+/* DARK MODE HERO */
+body:not(.light-mode) .home{
+  background: linear-gradient(135deg,#0b0b0b,#0a1f2f,#2b0a1f);
+}
+
+/* LIGHT MODE HERO */
+body.light-mode .home{
+  background: linear-gradient(135deg,#f8fbff,#eaf3ff,#fceef7);
 }
 .home::before{
   content:"";
