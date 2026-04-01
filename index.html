@@ -754,6 +754,19 @@ function showOnly(id){
   });
 }
 }
+document.addEventListener("contextmenu", function(e){
+  e.preventDefault();
+});
+document.querySelectorAll("img").forEach(img=>{
+  img.setAttribute("draggable", false);
+});
+document.addEventListener("keydown", function(e){
+  if(
+    e.ctrlKey && (e.key === "s" || e.key === "u" || e.key === "c")
+  ){
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>
