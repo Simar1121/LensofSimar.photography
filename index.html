@@ -351,13 +351,14 @@ body.light-mode section{
   position:absolute;
   width:600px;
   height:600px;
-  background:radial-gradient(circle, rgba(0,150,255,0.35), transparent);
+ background: var(--hero-gradient);
   
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
   
-  filter:blur(120px);
+  filter: blur(80px);
+  opacity:0.6;
   pointer-events:none;
   z-index:0;
 
