@@ -457,20 +457,30 @@ body.light-mode section{
 }
 /* TESTIMONIALS */
 .testimonials{
+  padding:60px 20px;
+  background:var(--section);
   display:grid;
   gap:16px;
   margin-top:20px;
 }
 .testimonial{
-  background:#111;
-  border:1px solid #222;
+  background:var(--card);
+  color:var(--text);
   padding:20px;
-  border-radius:14px;
-  font-size:14px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  transition:0.3s;
+}
+.testimonial:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 .testimonial p{
-  opacity:.85;
-  margin-bottom:10px;
+  opacity:1;
+  color:var(--text);
+}
+.testimonial{
+  backdrop-filter: blur(10px);
 }
 html{
   scroll-behavior: smooth;
