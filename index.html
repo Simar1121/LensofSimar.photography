@@ -135,10 +135,8 @@ section{
 }
 .photo{
   position:relative;
-}
-.photo{
-  position:relative;
   overflow:hidden;
+  transition:all 0.3s ease;
 }
 
 .photo::after{
@@ -148,12 +146,29 @@ section{
   background:rgba(0,0,0,0.3);
   opacity:0;
   transition:0.3s;
+  pointer-events:none; /* 🔥 MOST IMPORTANT FIX */
 }
-
 .photo:hover::after{
   opacity:1;
 }
+.photo::before{
+  content:"View";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  opacity:0;
+  transition:0.3s;
 
+  pointer-events:none; /* 🔥 ADD THIS */
+}
+
+.photo:hover::before{
+  opacity:1;
+}
 .photo img{
   transition:0.4s;
 }
