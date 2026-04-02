@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoodinPixels | Simarpreet Singh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   /* ── DARK MODE (default) ── */
   :root {
@@ -152,11 +153,21 @@
     box-shadow: 0 1px 40px rgba(0,0,0,0.4), inset 0 1px 0 var(--glass-shine);
   }
   .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; letter-spacing: 0.1em;
-    color: var(--text); text-decoration: none;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
   }
-  .logo span { color: var(--accent); }
+  .logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .footer-logo-img {
+    height: 30px;
+    opacity: 0.7;
+  }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -232,10 +243,11 @@
     opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards;
   }
 .hero-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.85;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3.8rem, 9.5vw, 8rem);
+  letter-spacing: -0.01em;
+  line-height: 0.88;
   text-transform: uppercase;
   opacity: 0.95;
   transform: translateY(10px);
@@ -243,15 +255,16 @@
 }
 
 .hero-title em {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 300;
   color: var(--accent);
-  font-size: 0.55em;
-  letter-spacing: 0.02em;
+  font-size: 0.62em;
+  letter-spacing: 0.04em;
   display: block;
-  margin-top: 0.2em;
+  margin-top: 0.15em;
   opacity: 0.85;
+  text-transform: none;
 }
   .hero-sub {
     max-width: 420px; margin-top: 1.5rem;
@@ -673,6 +686,7 @@
     font-family: 'Syne', sans-serif; font-weight: 700;
     font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
     transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
   }
   .form-submit:hover { background: var(--accent2); transform: translateY(-2px); }
 
@@ -687,10 +701,17 @@
     box-shadow: inset 0 1px 0 var(--glass-shine);
   }
   .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem; letter-spacing: 0.1em; color: var(--muted);
+    display: flex;
+    align-items: center;
   }
-  .footer-logo span { color: var(--accent); }
+  .footer-logo-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .footer-logo-img:hover { opacity: 1; }
   .footer-copy {
     font-size: 0.65rem; letter-spacing: 0.15em; color: var(--muted);
     font-family: 'Inter', sans-serif;
@@ -880,7 +901,7 @@
     /* Hero */
     .hero { padding: 0 1.5rem 3rem; min-height: 100svh; }
     .hi1, .hi2, .hi3 { display: none; }
-    .hero-title { font-size: clamp(3.8rem, 16vw, 7rem); }
+    .hero-title { font-size: clamp(3.5rem, 14vw, 6.5rem); }
     .hero-sub { font-size: 0.85rem; max-width: 100%; }
     .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .btn-primary { width: 100%; text-align: center; padding: 1rem 2rem; }
@@ -946,7 +967,7 @@
 
   /* ── SMALL MOBILE (max 500px) ── */
   @media (max-width: 500px) {
-    .hero-title { font-size: clamp(3.2rem, 18vw, 5.5rem); }
+    .hero-title { font-size: clamp(3rem, 15vw, 4.5rem); }
     .hero-tag { font-size: 0.58rem; letter-spacing: 0.2em; }
     .hero-sub { font-size: 0.82rem; }
     .cat-showcase { grid-template-columns: repeat(2, 1fr); }
@@ -989,7 +1010,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo">Mood<span>in</span>Pixels</a>
+  <a href="#" class="logo"><img src="logo/Moodinpixels_Photography__1_.png" alt="MoodinPixels" class="logo-img"></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Work</a></li>
@@ -997,8 +1018,8 @@
   </ul>
   <a href="#contact" class="nav-cta">Book Now</a>
   <button id="mode-toggle" aria-label="Toggle light/dark mode">
-    <svg id="mode-icon-dark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-    <svg id="mode-icon-light" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg id="mode-icon-dark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="none" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+    <svg id="mode-icon-light" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     <span id="mode-label">Light</span>
   </button>
   <button id="hamburger" aria-label="Open menu">
@@ -1322,10 +1343,10 @@
           </div>
           <span class="contact-link-arrow">↗</span>
         </a>
-        <a href="/cdn-cgi/l/email-protection#264b4949424f48564f5e434a5566414b474f4a0845494b" class="contact-link">
+        <a href="mailto:moodinpixels@gmail.com" class="contact-link">
           <div>
             Email
-            <span class="contact-link-sub"><span class="__cf_email__" data-cfemail="b1dcdeded5d8dfc1d8c9d4ddc2f1d6dcd0d8dd9fd2dedc">[email&#160;protected]</span></span>
+            <span class="contact-link-sub">moodinpixels@gmail.com</span>
           </div>
           <span class="contact-link-arrow">↗</span>
         </a>
@@ -1371,7 +1392,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Mood<span>in</span>Pixels</div>
+  <div class="footer-logo"><img src="logo/Moodinpixels_Photography__1_.png" alt="MoodinPixels" class="logo-img footer-logo-img"></div>
   <span class="footer-copy">© 2025 Simarpreet Singh · All rights reserved</span>
   <span class="footer-copy">Jaipur, Rajasthan</span>
 </footer>
@@ -1384,7 +1405,7 @@
   <button class="lb-nav lb-next" id="lbNext">›</button>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Nav scroll
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -1540,24 +1561,31 @@
   const iconDark = document.getElementById('mode-icon-dark');
   const iconLight = document.getElementById('mode-icon-light');
 
+  function saveMode(val) {
+    try { localStorage.setItem('mip-mode', val); } catch(e) {}
+  }
+  function loadMode() {
+    try { return localStorage.getItem('mip-mode'); } catch(e) { return null; }
+  }
+
   function setMode(isLight) {
     if (isLight) {
       root.classList.add('light');
-      label.textContent = 'Dark';
-      iconDark.style.display = '';
-      iconLight.style.display = 'none';
-      localStorage.setItem('mip-mode', 'light');
+      if (label) label.textContent = 'Dark';
+      if (iconDark) iconDark.style.display = '';
+      if (iconLight) iconLight.style.display = 'none';
+      saveMode('light');
     } else {
       root.classList.remove('light');
-      label.textContent = 'Light';
-      iconDark.style.display = 'none';
-      iconLight.style.display = '';
-      localStorage.setItem('mip-mode', 'dark');
+      if (label) label.textContent = 'Light';
+      if (iconDark) iconDark.style.display = 'none';
+      if (iconLight) iconLight.style.display = '';
+      saveMode('dark');
     }
   }
 
   // Load saved preference
-  const saved = localStorage.getItem('mip-mode');
+  const saved = loadMode();
   setMode(saved === 'light');
 
   toggle.addEventListener('click', () => {
