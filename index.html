@@ -3,9 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoodinPixels | Simarpreet Singh</title>
+
+<!-- ── PRIMARY SEO ── -->
+<title>Simarpreet Singh | MoodinPixels — Concert, Wildlife & Event Photographer in Jaipur</title>
+<meta name="description" content="Simarpreet Singh is a professional photographer based in Jaipur, Rajasthan specialising in concert, dance, DJ, sports, music, wildlife and creative photoshoots. Book your session today.">
+<meta name="keywords" content="photographer jaipur, concert photographer jaipur, wildlife photographer rajasthan, dance photographer, event photographer jaipur, simarpreet singh, moodinpixels, sports photographer jaipur, music photographer">
+<meta name="author" content="Simarpreet Singh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lensofsimar.photography/">
+
+<!-- ── OPEN GRAPH (Facebook / WhatsApp / LinkedIn) ── -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lensofsimar.photography/">
+<meta property="og:title" content="Simarpreet Singh | MoodinPixels — Photographer in Jaipur">
+<meta property="og:description" content="Concert, Dance, Wildlife & Event Photography by Simarpreet Singh, Jaipur. Raw energy. Real moments.">
+<meta property="og:image" content="https://lensofsimar.photography/Concerts/simar(1).jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="MoodinPixels">
+
+<!-- ── TWITTER CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://lensofsimar.photography/">
+<meta name="twitter:title" content="Simarpreet Singh | MoodinPixels — Photographer in Jaipur">
+<meta name="twitter:description" content="Concert, Dance, Wildlife & Event Photography by Simarpreet Singh, Jaipur.">
+<meta name="twitter:image" content="https://lensofsimar.photography/Concerts/simar(1).jpg">
+
+<!-- ── STRUCTURED DATA (JSON-LD) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "MoodinPixels — Simarpreet Singh Photography",
+  "url": "https://lensofsimar.photography/",
+  "logo": "https://lensofsimar.photography/Concerts/simar(1).jpg",
+  "image": "https://lensofsimar.photography/Concerts/simar(1).jpg",
+  "description": "Professional photographer based in Jaipur specialising in concerts, dance, DJ events, sports, music, wildlife and creative photoshoots.",
+  "founder": {
+    "@type": "Person",
+    "name": "Simarpreet Singh",
+    "jobTitle": "Professional Photographer",
+    "sameAs": ["https://instagram.com/moodinpixels__"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Jaipur",
+    "addressRegion": "Rajasthan",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-96901-51550",
+    "contactType": "customer service",
+    "availableLanguage": ["English", "Hindi"]
+  },
+  "sameAs": ["https://instagram.com/moodinpixels__"],
+  "priceRange": "₹₹"
+}
+</script>
+
+<!-- ── PERFORMANCE: DNS prefetch & preconnect ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+<!-- ── FONTS: swap for faster render ── -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet"></noscript>
+
+<!-- ── PRELOAD above-the-fold hero images ── -->
+<link rel="preload" as="image" href="Concerts/simar(1).jpg" fetchpriority="high">
+<link rel="preload" as="image" href="Dance/DSC_5197.jpeg">
+<link rel="preload" as="image" href="Music/NU_09831.jpeg">
+
+<!-- ── MOBILE / BROWSER CHROME ── -->
+<meta name="theme-color" content="#080808">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
   /* ── DARK MODE (default) ── */
   :root {
@@ -82,6 +157,8 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
     animation: grainShift 0.8s steps(1) infinite;
+    will-change: transform;
+    transform: translateZ(0);
   }
   :root.light body::before { opacity: 0.025; }
   @keyframes grainShift {
@@ -92,10 +169,12 @@
   }
 
   /* Floating orbs */
-  #bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  #bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; isolation: isolate; }
   .orb {
     position: absolute; border-radius: 50%; filter: blur(80px);
     opacity: 0; animation: orbFloat linear infinite; will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   :root:not(.light) .orb-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(220,220,220,0.07) 0%,transparent 70%);top:-10%;left:-5%;animation-duration:28s;animation-delay:0s; }
   :root:not(.light) .orb-2 { width:380px;height:380px;background:radial-gradient(circle,rgba(180,180,180,0.055) 0%,transparent 70%);top:40%;right:-8%;animation-duration:35s;animation-delay:-10s; }
@@ -123,6 +202,9 @@
     animation: gridDrift 60s linear infinite;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   :root.light #bg-grid { background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px); }
   @keyframes gridDrift {
@@ -655,7 +737,42 @@
     box-shadow: inset 0 1px 0 rgba(200,200,200,0.1), 0 0 0 3px rgba(200,200,200,0.05);
   }
   .form-textarea { min-height: 120px; resize: vertical; }
-  .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a7570' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+  /* Custom select dropdown */
+  .form-select-wrap { position: relative; }
+  .form-select-wrap .form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .custom-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: #1a1a1a;
+    border: 1px solid rgba(200,200,200,0.2);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
+    z-index: 999;
+    max-height: 260px; overflow-y: auto;
+  }
+  .custom-dropdown.open { display: block; }
+  .custom-dropdown-item {
+    padding: 0.8rem 1.2rem;
+    font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 300;
+    color: #c8c8c8;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .custom-dropdown-item:last-child { border-bottom: none; }
+  .custom-dropdown-item:hover, .custom-dropdown-item.selected {
+    background: rgba(200,200,200,0.1);
+    color: #ffffff;
+  }
+  .custom-dropdown-item.placeholder { color: #666; }
+  :root.light .custom-dropdown { background: #ffffff; border-color: rgba(0,0,0,0.15); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+  :root.light .custom-dropdown-item { color: #333; border-bottom-color: rgba(0,0,0,0.05); }
+  :root.light .custom-dropdown-item:hover, :root.light .custom-dropdown-item.selected { background: rgba(0,0,0,0.06); color: #111; }
+  :root.light .custom-dropdown-item.placeholder { color: #999; }
   .form-submit {
     width: 100%; background: var(--accent); color: var(--bg);
     border: none; padding: 1rem;
@@ -715,6 +832,12 @@
   .lb-nav:hover { color: var(--accent); }
   .lb-prev { left: 1rem; }
   .lb-next { right: 1rem; }
+
+  /* ── PERFORMANCE: content-visibility for off-screen sections ── */
+  .testimonials, footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
+  }
 
   /* HIDDEN CATEGORIES */
   .cat-section { display: none; }
@@ -1147,71 +1270,71 @@
   <div class="portfolio-grid" id="grid-all">
 
     <!-- Concerts: 7 -->
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(1).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(1).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(3).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(3).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(4).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(4).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(6).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(6).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(7).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(7).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(8).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(8).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concerts/Simar(9).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/Simar(9).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(1).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(1).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(3).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(3).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(4).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(4).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(6).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(6).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(7).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(7).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/simar(8).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(8).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concerts/Simar(9).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/Simar(9).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
 
     <!-- Dance: 13 -->
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC05520.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC05520.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_2988.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_2988.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_4503.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_4503.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5197.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5197.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5222.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5222.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5223.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5223.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5344.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5344.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5721.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5721.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5831.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5831.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5904.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5904.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5981.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5981.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_03480.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_03480.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04650.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_04650.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC05520.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC05520.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_2988.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_2988.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_4503.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_4503.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5197.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_5197.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5222.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_5222.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5223.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_5223.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5344.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_5344.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5721.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/IMG_5721.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5831.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/IMG_5831.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5904.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/IMG_5904.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5981.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/IMG_5981.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_03480.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/NU_03480.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04650.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/NU_04650.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
 
     <!-- DJ: 2 -->
-    <div class="grid-item" data-cat="dj" data-src="DJ/IMG_5126.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
-    <div class="grid-item" data-cat="dj" data-src="DJ/NU_02768.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="DJ/NU_02768.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
+    <div class="grid-item" data-cat="dj" data-src="DJ/IMG_5126.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
+    <div class="grid-item" data-cat="dj" data-src="DJ/NU_02768.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="DJ/NU_02768.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
 
     <!-- Photoshoot: 5 -->
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC_0198.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/DSC_0198.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9004.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9004.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9167.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9167.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9170.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9170.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9964.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9964.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC_0198.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/DSC_0198.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9004.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/IMG_9004.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9167.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/IMG_9167.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9170.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/IMG_9170.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9964.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/IMG_9964.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
 
     <!-- Music: 13 -->
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0008.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0008.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0050.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0050.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0102.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0102.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0116.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0116.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0177.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0177.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0481.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0481.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0808.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0808.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09497.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09497.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09831.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09831.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09832.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09832.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0604.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0604.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0627.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0627.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0767.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0767.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0008.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0008.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0050.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0050.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0102.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0102.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0116.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0116.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0177.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0177.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0481.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0481.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0808.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/DSC_0808.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09497.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/NU_09497.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09831.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/NU_09831.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09832.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/NU_09832.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0604.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/_DSC0604.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0627.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/_DSC0627.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0767.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/_DSC0767.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
 
     <!-- Sports: 7 -->
-    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0959.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/DSC_0959.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0996.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/DSC_0996.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0315.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0315.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0489.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0489.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0491.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0491.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0519.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0519.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_2867.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_2867.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0959.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/DSC_0959.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0996.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/DSC_0996.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0315.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/IMG_0315.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0489.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/IMG_0489.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0491.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/IMG_0491.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0519.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/IMG_0519.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_2867.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/IMG_2867.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
 
     <!-- Wildlife: 6 -->
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar1.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar1.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar2.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar2.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar3.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar3.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar4.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar4.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar5.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar5.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
-    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar6.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar6.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar1.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar1.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar2.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar2.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar3.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar3.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar4.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar4.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar5.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar5.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="wildlife/simar6.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar6.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
 
   </div>
 </section>
@@ -1226,7 +1349,7 @@
   </div>
   <div class="cat-showcase">
     <a class="cat-card" href="#portfolio" data-filter="concerts">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concerts/simar(1).jpg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Concerts/simar(1).jpg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">01</div>
         <div class="cat-card-title">Concert<br>Photography</div>
@@ -1234,7 +1357,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dance">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5197.jpeg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Dance/DSC_5197.jpeg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">02</div>
         <div class="cat-card-title">Dance<br>Photography</div>
@@ -1242,7 +1365,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="sports">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/DSC_0959.jpeg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Sports/DSC_0959.jpeg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">03</div>
         <div class="cat-card-title">Sports<br>Photography</div>
@@ -1250,7 +1373,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dj">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">04</div>
         <div class="cat-card-title">DJ<br>Photography</div>
@@ -1258,7 +1381,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="music">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09831.jpeg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Music/NU_09831.jpeg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">05</div>
         <div class="cat-card-title">Music<br>Photography</div>
@@ -1266,7 +1389,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="photoshoot">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9004.jpeg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="Photoshoot/IMG_9004.jpeg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">06</div>
         <div class="cat-card-title">Creative<br>Photoshoots</div>
@@ -1274,7 +1397,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="wildlife">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="wildlife/simar1.jpg" decoding="async" alt="">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" data-lazy="wildlife/simar1.jpg" decoding="async" alt="">
       <div class="cat-card-content">
         <div class="cat-card-num">07</div>
         <div class="cat-card-title">Wildlife<br>Photography</div>
@@ -1364,16 +1487,20 @@
       </div>
       <div class="form-group">
         <label class="form-label">Photography Type</label>
-        <select id="enq-type" class="form-select form-input">
-          <option value="">Select category</option>
-          <option>Concert / Live Event</option>
-          <option>Dance Performance</option>
-          <option>DJ / Nightlife</option>
-          <option>Sports</option>
-          <option>Music / Artists</option>
-          <option>Creative Photoshoot</option>
-          <option>Wildlife Photography</option>
-        </select>
+        <div class="form-select-wrap">
+          <div id="enq-type-display" class="form-input form-select" onclick="toggleDropdown()" style="color:var(--muted);cursor:pointer;">Select category</div>
+          <input type="hidden" id="enq-type" value="">
+          <div class="custom-dropdown" id="enq-type-dropdown">
+            <div class="custom-dropdown-item placeholder" data-value="" onclick="selectCategory(this)">Select category</div>
+            <div class="custom-dropdown-item" data-value="Concert / Live Event" onclick="selectCategory(this)">Concert / Live Event</div>
+            <div class="custom-dropdown-item" data-value="Dance Performance" onclick="selectCategory(this)">Dance Performance</div>
+            <div class="custom-dropdown-item" data-value="DJ / Nightlife" onclick="selectCategory(this)">DJ / Nightlife</div>
+            <div class="custom-dropdown-item" data-value="Sports" onclick="selectCategory(this)">Sports</div>
+            <div class="custom-dropdown-item" data-value="Music / Artists" onclick="selectCategory(this)">Music / Artists</div>
+            <div class="custom-dropdown-item" data-value="Creative Photoshoot" onclick="selectCategory(this)">Creative Photoshoot</div>
+            <div class="custom-dropdown-item" data-value="Wildlife Photography" onclick="selectCategory(this)">Wildlife Photography</div>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label class="form-label">Tell me about your project</label>
@@ -1505,17 +1632,23 @@
 
   // ── LAZY LOAD images with IntersectionObserver ──
   const lazyImgs = document.querySelectorAll('img[data-lazy]');
-  const imgObs = new IntersectionObserver((entries, obs) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const img = e.target;
-        img.src = img.dataset.lazy;
-        img.removeAttribute('data-lazy');
-        obs.unobserve(img);
-      }
-    });
-  }, { rootMargin: '200px' });
-  lazyImgs.forEach(img => imgObs.observe(img));
+  if ('IntersectionObserver' in window) {
+    const imgObs = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const img = e.target;
+          // Start loading early — swap src before fully in viewport
+          img.src = img.dataset.lazy;
+          img.removeAttribute('data-lazy');
+          obs.unobserve(img);
+        }
+      });
+    }, { rootMargin: '400px 0px' }); // 400px early load buffer
+    lazyImgs.forEach(img => imgObs.observe(img));
+  } else {
+    // Fallback: load all immediately for older browsers
+    lazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); });
+  }
   function sendToWhatsApp() {
     const name    = document.getElementById('enq-name').value.trim();
     const contact = document.getElementById('enq-contact').value.trim();
@@ -1540,7 +1673,28 @@
     window.open(`https://wa.me/917078475379?text=${encoded}`, '_blank');
   }
 
-  // Hamburger menu
+  // Custom dropdown
+  function toggleDropdown() {
+    const dd = document.getElementById('enq-type-dropdown');
+    dd.classList.toggle('open');
+  }
+  function selectCategory(el) {
+    const val = el.dataset.value;
+    document.getElementById('enq-type').value = val;
+    const display = document.getElementById('enq-type-display');
+    display.textContent = val || 'Select category';
+    display.style.color = val ? 'var(--text)' : 'var(--muted)';
+    document.querySelectorAll('.custom-dropdown-item').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('enq-type-dropdown').classList.remove('open');
+  }
+  // Close dropdown when clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.form-select-wrap')) {
+      document.getElementById('enq-type-dropdown')?.classList.remove('open');
+    }
+  });
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
 
