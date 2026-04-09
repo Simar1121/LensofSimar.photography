@@ -55,6 +55,7 @@
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+91-96901-51550",
+    "email": "moodinpixels@gmail.com",
     "contactType": "customer service",
     "availableLanguage": ["English", "Hindi"]
   },
@@ -781,6 +782,21 @@
     transition: background 0.3s, transform 0.2s;
   }
   .form-submit:hover { background: var(--accent2); transform: translateY(-2px); }
+  .form-submit-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .form-submit-wa { background: var(--accent); color: var(--bg); }
+  .form-submit-wa:hover { background: var(--accent2); }
+  .form-submit-email {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--accent);
+    transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+  .form-submit-email:hover {
+    background: rgba(200,200,200,0.08);
+    border-color: var(--accent);
+    color: var(--text);
+    transform: translateY(-2px);
+  }
 
   /* FOOTER */
   footer {
@@ -1459,10 +1475,10 @@
           </div>
           <span class="contact-link-arrow">↗</span>
         </a>
-        <a href="/cdn-cgi/l/email-protection#264b4949424f48564f5e434a5566414b474f4a0845494b" class="contact-link">
+        <a href="mailto:moodinpixels@gmail.com" class="contact-link">
           <div>
             Email
-            <span class="contact-link-sub"><span class="__cf_email__" data-cfemail="b1dcdeded5d8dfc1d8c9d4ddc2f1d6dcd0d8dd9fd2dedc">[email&#160;protected]</span></span>
+            <span class="contact-link-sub">moodinpixels@gmail.com</span>
           </div>
           <span class="contact-link-arrow">↗</span>
         </a>
@@ -1506,7 +1522,10 @@
         <label class="form-label">Tell me about your project</label>
         <textarea id="enq-message" class="form-textarea" placeholder="Date, venue, requirements..."></textarea>
       </div>
-      <button class="form-submit" onclick="sendToWhatsApp()">Send Enquiry →</button>
+      <div class="form-submit-group">
+        <button class="form-submit form-submit-wa" onclick="sendToWhatsApp()">Send via WhatsApp →</button>
+        <button class="form-submit form-submit-email" onclick="sendToEmail()">Send via Email →</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1526,7 +1545,7 @@
   <button class="lb-nav lb-next" id="lbNext">›</button>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Nav scroll
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -1671,6 +1690,57 @@
 
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/917078475379?text=${encoded}`, '_blank');
+  }
+
+  function sendToEmail() {
+    const name    = document.getElementById('enq-name').value.trim();
+    const contact = document.getElementById('enq-contact').value.trim();
+    const type    = document.getElementById('enq-type').value.trim();
+    const message = document.getElementById('enq-message').value.trim();
+
+    if (!name || !contact) {
+      alert('Please fill in your name and contact details.');
+      return;
+    }
+
+    const subject = encodeURIComponent(
+      type ? `Booking Enquiry — ${type} | MoodinPixels` : 'Booking Enquiry | MoodinPixels'
+    );
+
+    const body = encodeURIComponent(
+      [
+        `Name: ${name}`,
+        `Contact: ${contact}`,
+        type    ? `Photography Type: ${type}` : '',
+        message ? `\nProject Details:\n${message}` : '',
+      ].filter(Boolean).join('\n')
+    );
+
+    window.location.href = `mailto:moodinpixels@gmail.com?subject=${subject}&body=${body}`;
+  }
+
+  function sendToEmail() {
+    const name    = document.getElementById('enq-name').value.trim();
+    const contact = document.getElementById('enq-contact').value.trim();
+    const type    = document.getElementById('enq-type').value.trim();
+    const message = document.getElementById('enq-message').value.trim();
+
+    if (!name || !contact) {
+      alert('Please fill in your name and contact details.');
+      return;
+    }
+
+    const subject = encodeURIComponent('New Booking Enquiry — MoodinPixels');
+    const body = encodeURIComponent(
+      [
+        `Name: ${name}`,
+        `Contact: ${contact}`,
+        type    ? `Photography Type: ${type}` : '',
+        message ? `Project Details:\n${message}` : '',
+      ].filter(Boolean).join('\n')
+    );
+
+    window.open(`mailto:moodinpixels@gmail.com?subject=${subject}&body=${body}`, '_blank');
   }
 
   // Custom dropdown
