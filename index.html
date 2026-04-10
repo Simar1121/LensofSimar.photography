@@ -1645,18 +1645,35 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           const img = e.target;
-          // Start loading early — swap src before fully in viewport
           img.src = img.dataset.lazy;
           img.removeAttribute('data-lazy');
           obs.unobserve(img);
         }
       });
-    }, { rootMargin: '400px 0px' }); // 400px early load buffer
+    }, { rootMargin: '1200px 0px' }); // load well ahead of viewport
     lazyImgs.forEach(img => imgObs.observe(img));
   } else {
-    // Fallback: load all immediately for older browsers
     lazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); });
   }
+
+  // ── BACKGROUND PREFETCH: load all remaining images during idle time ──
+  function prefetchRemaining() {
+    const remaining = [...document.querySelectorAll('img[data-lazy]')];
+    if (!remaining.length) return;
+    let i = 0;
+    const tick = 'requestIdleCallback' in window
+      ? cb => requestIdleCallback(cb, { timeout: 200 })
+      : cb => setTimeout(cb, 50);
+    function loadNext() {
+      if (i >= remaining.length) return;
+      const img = remaining[i++];
+      if (img.dataset.lazy) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }
+      tick(loadNext);
+    }
+    tick(loadNext);
+  }
+  // Start background prefetch 2s after load so hero + above-fold settle first
+  setTimeout(prefetchRemaining, 2000);
   function sendToWhatsApp() {
     const name    = document.getElementById('enq-name').value.trim();
     const contact = document.getElementById('enq-contact').value.trim();
