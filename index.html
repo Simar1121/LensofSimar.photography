@@ -1657,42 +1657,47 @@
     if (Math.abs(dx) > 50) dx < 0 ? lbNext.click() : lbPrev.click();
   }, { passive: true });
 
-  // ── LAZY LOAD images with IntersectionObserver ──
-  const lazyImgs = document.querySelectorAll('img[data-lazy]');
-  if ('IntersectionObserver' in window) {
-    const imgObs = new IntersectionObserver((entries, obs) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const img = e.target;
-          img.src = img.dataset.lazy;
-          img.removeAttribute('data-lazy');
-          obs.unobserve(img);
-        }
-      });
-    }, { rootMargin: '1200px 0px' }); // load well ahead of viewport
-    lazyImgs.forEach(img => imgObs.observe(img));
-  } else {
-    lazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); });
+  // ── IMAGE LOADING STRATEGY ──
+  // 1. Visible images (outside grid): observe with generous margin
+  // 2. Grid images: load ALL immediately in small batches — they're the core content
+  //    and must be ready before a filter tab is clicked
+
+  const gridImgs = [...document.querySelectorAll('#grid-all img[data-lazy]')];
+  const otherLazyImgs = [...document.querySelectorAll('img[data-lazy]')].filter(img => !img.closest('#grid-all'));
+
+  // Load non-grid lazy images with IntersectionObserver
+  if (otherLazyImgs.length) {
+    if ('IntersectionObserver' in window) {
+      const imgObs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const img = e.target;
+            img.src = img.dataset.lazy;
+            img.removeAttribute('data-lazy');
+            obs.unobserve(img);
+          }
+        });
+      }, { rootMargin: '800px 0px' });
+      otherLazyImgs.forEach(img => imgObs.observe(img));
+    } else {
+      otherLazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); });
+    }
   }
 
-  // ── BACKGROUND PREFETCH: load all remaining images during idle time ──
-  function prefetchRemaining() {
-    const remaining = [...document.querySelectorAll('img[data-lazy]')];
-    if (!remaining.length) return;
+  // Load ALL grid images in batches immediately — no waiting
+  (function loadGridImages() {
     let i = 0;
-    const tick = 'requestIdleCallback' in window
-      ? cb => requestIdleCallback(cb, { timeout: 200 })
-      : cb => setTimeout(cb, 50);
-    function loadNext() {
-      if (i >= remaining.length) return;
-      const img = remaining[i++];
-      if (img.dataset.lazy) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }
-      tick(loadNext);
+    const BATCH = 6; // load 6 at a time
+    function loadBatch() {
+      const end = Math.min(i + BATCH, gridImgs.length);
+      for (; i < end; i++) {
+        const img = gridImgs[i];
+        if (img.dataset.lazy) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }
+      }
+      if (i < gridImgs.length) setTimeout(loadBatch, 100);
     }
-    tick(loadNext);
-  }
-  // Start background prefetch 2s after load so hero + above-fold settle first
-  setTimeout(prefetchRemaining, 2000);
+    loadBatch();
+  })();
   function sendToWhatsApp() {
     const name    = document.getElementById('enq-name').value.trim();
     const contact = document.getElementById('enq-contact').value.trim();
