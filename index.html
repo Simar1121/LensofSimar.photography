@@ -607,6 +607,25 @@
   }
   .cat-card:hover::after { transform: scaleX(1); }
   a.cat-card { text-decoration: none; cursor: pointer; display: block; }
+  /* Skeleton shimmer while image loads */
+  .cat-card img {
+    background: var(--bg3);
+  }
+  .cat-card img:not([src]), .cat-card img[src=""] {
+    opacity: 0;
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .cat-card::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(90deg, var(--bg2) 25%, var(--bg3) 50%, var(--bg2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+  }
+  .cat-card img[src] { position: relative; z-index: 1; }
   a.cat-card .cat-card-content::after {
     content: '↗';
     position: absolute; top: 1rem; right: 0.9rem;
@@ -1349,7 +1368,7 @@
   </div>
   <div class="cat-showcase">
     <a class="cat-card" href="#portfolio" data-filter="concerts">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concerts/simar(1).jpg" decoding="async" alt="">
+      <img src="Concerts/simar(1).jpg" loading="eager" decoding="async" alt="Concert Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">01</div>
         <div class="cat-card-title">Concert<br>Photography</div>
@@ -1357,7 +1376,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dance">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_5197.jpeg" decoding="async" alt="">
+      <img src="Dance/DSC_5197.jpeg" loading="eager" decoding="async" alt="Dance Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">02</div>
         <div class="cat-card-title">Dance<br>Photography</div>
@@ -1365,7 +1384,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="sports">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/DSC_0959.jpeg" decoding="async" alt="">
+      <img src="Sports/DSC_0959.jpeg" loading="eager" decoding="async" alt="Sports Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">03</div>
         <div class="cat-card-title">Sports<br>Photography</div>
@@ -1373,7 +1392,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dj">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt="">
+      <img src="DJ/IMG_5126.jpeg" loading="eager" decoding="async" alt="DJ Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">04</div>
         <div class="cat-card-title">DJ<br>Photography</div>
@@ -1381,7 +1400,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="music">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/NU_09831.jpeg" decoding="async" alt="">
+      <img src="Music/NU_09831.jpeg" loading="eager" decoding="async" alt="Music Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">05</div>
         <div class="cat-card-title">Music<br>Photography</div>
@@ -1389,7 +1408,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="photoshoot">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/IMG_9004.jpeg" decoding="async" alt="">
+      <img src="Photoshoot/IMG_9004.jpeg" loading="eager" decoding="async" alt="Creative Photoshoots">
       <div class="cat-card-content">
         <div class="cat-card-num">06</div>
         <div class="cat-card-title">Creative<br>Photoshoots</div>
@@ -1397,7 +1416,7 @@
       </div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="wildlife">
-      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="wildlife/simar1.jpg" decoding="async" alt="">
+      <img src="wildlife/simar1.jpg" loading="eager" decoding="async" alt="Wildlife Photography">
       <div class="cat-card-content">
         <div class="cat-card-num">07</div>
         <div class="cat-card-title">Wildlife<br>Photography</div>
