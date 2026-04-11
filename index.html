@@ -571,25 +571,27 @@
     filter: brightness(0.45) grayscale(40%);
     transition: filter 0.5s ease, transform 0.5s ease;
     transform: scale(1.04);
+    position: relative; z-index: 1;
   }
   .cat-card:hover img {
     filter: brightness(0.65) grayscale(0%);
     transform: scale(1.10);
   }
   .cat-card-content {
-    position: absolute; inset: 0;
+    position: absolute; inset: 0; z-index: 2;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0.8rem;
     background: linear-gradient(to top, rgba(8,8,8,0.90) 0%, transparent 55%);
   }
   .cat-card-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; color: rgba(255,255,255,0.07);
+    font-size: 2rem; color: rgba(255,255,255,0.15);
     line-height: 1; margin-bottom: -0.2rem;
   }
   .cat-card-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem; color: var(--text); line-height: 1.05;
+    font-size: 1rem; color: #ffffff; line-height: 1.05;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   }
   .cat-card-sub {
     font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase;
@@ -607,25 +609,17 @@
   }
   .cat-card:hover::after { transform: scaleX(1); }
   a.cat-card { text-decoration: none; cursor: pointer; display: block; }
-  /* Skeleton shimmer while image loads */
-  .cat-card img {
-    background: var(--bg3);
-  }
-  .cat-card img:not([src]), .cat-card img[src=""] {
-    opacity: 0;
-  }
-  @keyframes shimmer {
-    0%   { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  .cat-card::before {
-    content: '';
-    position: absolute; inset: 0; z-index: 0;
+  /* Skeleton shimmer using inset shadow on the card itself, not ::before (which conflicts with content) */
+  .cat-card {
     background: linear-gradient(90deg, var(--bg2) 25%, var(--bg3) 50%, var(--bg2) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.6s infinite;
   }
-  .cat-card img[src] { position: relative; z-index: 1; }
+  /* Stop shimmer once image loads */
+  .cat-card:has(img[src]:not([src=""])) {
+    animation: none;
+    background: var(--bg2);
+  }
   a.cat-card .cat-card-content::after {
     content: '↗';
     position: absolute; top: 1rem; right: 0.9rem;
