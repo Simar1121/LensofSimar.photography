@@ -678,7 +678,46 @@
     font-size: 0.65rem; letter-spacing: 0.15em;
     color: var(--accent); margin-top: 0.2rem;
   }
-  .stars { color: var(--accent); font-size: 0.75rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  /* ── STAR RATING GLOW ANIMATION ── */
+  .stars {
+    display: flex; gap: 0.25rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+  }
+  .star {
+    display: inline-block;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateY(6px) scale(0.7);
+    transition: color 0.3s, text-shadow 0.3s;
+    /* entrance animation set via JS stagger */
+  }
+  .star.lit {
+    color: var(--accent);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: starEntrance 0.45s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes starEntrance {
+    0%   { opacity: 0; transform: translateY(8px) scale(0.5); filter: blur(2px); }
+    60%  { opacity: 1; transform: translateY(-2px) scale(1.25); filter: blur(0); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+
+  /* On hover — sequential glow sweep left to right */
+  .testi-card:hover .star {
+    animation: starGlow 0.5s ease both;
+  }
+  .testi-card:hover .star:nth-child(1) { animation-delay: 0.00s; }
+  .testi-card:hover .star:nth-child(2) { animation-delay: 0.07s; }
+  .testi-card:hover .star:nth-child(3) { animation-delay: 0.14s; }
+  .testi-card:hover .star:nth-child(4) { animation-delay: 0.21s; }
+  .testi-card:hover .star:nth-child(5) { animation-delay: 0.28s; }
+  @keyframes starGlow {
+    0%   { color: var(--accent);  text-shadow: none; transform: scale(1); }
+    40%  { color: #ffffff; text-shadow: 0 0 6px rgba(255,255,255,0.9), 0 0 14px rgba(200,200,200,0.6); transform: scale(1.35); }
+    100% { color: var(--accent);  text-shadow: 0 0 4px rgba(200,200,200,0.25); transform: scale(1); }
+  }
 
   /* CONTACT */
   .contact {
@@ -1430,19 +1469,19 @@
   </div>
   <div class="testi-grid reveal">
     <div class="testi-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">Simar captured the energy of our concert perfectly. Extremely professional and delivered the shots faster than expected.</p>
       <div class="testi-author">Event Organizer</div>
       <div class="testi-role">Concert Production</div>
     </div>
     <div class="testi-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">Amazing eye for moments. The dance photos were powerful and emotional — he understood the art form completely.</p>
       <div class="testi-author">Dance Crew Lead</div>
       <div class="testi-role">Contemporary Dance Group</div>
     </div>
     <div class="testi-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">One of the best photographers we've worked with for DJ events. He blends into the crowd and gets the real shots.</p>
       <div class="testi-author">Club Manager</div>
       <div class="testi-role">Nightlife & Events</div>
@@ -1821,6 +1860,24 @@
       heroBlocks[heroIdx].classList.add('active');
     }, 4000);
   }
+
+  // ── STAR ENTRANCE ANIMATION ──
+  // When a testimonial card scrolls into view, light up its stars one by one
+  const starObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const stars = entry.target.querySelectorAll('.star');
+      stars.forEach((star, i) => {
+        setTimeout(() => {
+          star.classList.add('lit');
+          star.style.animationDelay = '0s'; // already staggered via setTimeout
+        }, 120 + i * 110); // 120ms base delay, 110ms between each star
+      });
+      starObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.testi-card').forEach(card => starObs.observe(card));
 </script>
 </body>
 </html>
