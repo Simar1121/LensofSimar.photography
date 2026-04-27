@@ -1197,6 +1197,11 @@
     background: var(--accent);
     margin-left: 2px;
     vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  #filter-label .tl-cursor.typing {
+    opacity: 1;
     animation: blinkCursor 0.8s step-end infinite;
   }
   @keyframes blinkCursor {
@@ -1423,7 +1428,7 @@
     </div>
   </div>
 
-  <div id="filter-label"><span class="tl-text">Showing all 60+ photos</span><span class="tl-cursor"></span></div>
+  <div id="filter-label"><span class="tl-text">Showing all photos</span><span class="tl-cursor"></span></div>
   <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="concerts">Concerts</button>
@@ -2032,14 +2037,14 @@
     });
 
     const labels = {
-      all:        `Showing all ${counts.all}+ photos`,
-      concerts:   `Showing ${counts.concerts || 0} Concert photos`,
-      dance:      `Showing ${counts.dance || 0} Dance photos`,
-      dj:         `Showing ${counts.dj || 0} DJ photos`,
-      photoshoot: `Showing ${counts.photoshoot || 0} Photoshoot photos`,
-      music:      `Showing ${counts.music || 0} Music photos`,
-      sports:     `Showing ${counts.sports || 0} Sports photos`,
-      wildlife:   `Showing ${counts.wildlife || 0} Wildlife photos`,
+      all:        `Showing all photos`,
+      concerts:   `Showing Concert photos`,
+      dance:      `Showing Dance photos`,
+      dj:         `Showing DJ photos`,
+      photoshoot: `Showing Photoshoot photos`,
+      music:      `Showing Music photos`,
+      sports:     `Showing Sports photos`,
+      wildlife:   `Showing Wildlife photos`,
     };
 
     let typeTimer = null;
@@ -2047,13 +2052,18 @@
     function typewrite(text) {
       if (typeTimer) clearTimeout(typeTimer);
       const textSpan = labelEl.querySelector('.tl-text');
+      const cursorSpan = labelEl.querySelector('.tl-cursor');
       textSpan.textContent = '';
+      cursorSpan.classList.add('typing');
       let i = 0;
       function type() {
         if (i <= text.length) {
           textSpan.textContent = text.slice(0, i);
           i++;
           typeTimer = setTimeout(type, 28);
+        } else {
+          // typing done — hide cursor
+          cursorSpan.classList.remove('typing');
         }
       }
       type();
