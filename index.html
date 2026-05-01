@@ -287,8 +287,11 @@
     filter: grayscale(10%) brightness(0.72) contrast(1.05);
     transform: scale(1.05);
     transition: transform 8s ease;
+    image-orientation: from-image;
   }
   .hero-img-block.active img { transform: scale(1.0); }
+  /* Fix EXIF rotation on first two hero photos */
+  .hi1 img, .hi2 img { object-fit: cover; }
 
   .hi1 { top: 5%; right: 3%; width: 28vw; height: 55vh; }
   .hi2 { top: 30%; right: 33%; width: 20vw; height: 38vh; }
@@ -553,10 +556,10 @@
     color: var(--accent); margin-bottom: 0.3rem;
   }
 
-  /* CATEGORY SHOWCASE — compact 6-column grid */
+  /* CATEGORY SHOWCASE — 8-column grid with Fashion */
   .cat-showcase {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     border-top: 1px solid var(--glass-border);
     gap: 2px; padding: 2px;
     background: var(--glass-border);
@@ -633,7 +636,233 @@
   :root.light .cat-card img { filter: brightness(0.55) grayscale(40%); }
 
 
-  /* TESTIMONIALS */
+  /* ══════════════════════════════════════════
+     CATEGORY CARD — CINEMATIC REVEAL ANIMATION
+  ══════════════════════════════════════════ */
+  .cat-card {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94) rotateX(8deg);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    perspective: 800px;
+    transform-style: preserve-3d;
+  }
+  .cat-card.cat-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+  /* Stagger each card */
+  .cat-card:nth-child(1) { transition-delay: 0.05s; }
+  .cat-card:nth-child(2) { transition-delay: 0.12s; }
+  .cat-card:nth-child(3) { transition-delay: 0.19s; }
+  .cat-card:nth-child(4) { transition-delay: 0.26s; }
+  .cat-card:nth-child(5) { transition-delay: 0.33s; }
+  .cat-card:nth-child(6) { transition-delay: 0.40s; }
+  .cat-card:nth-child(7) { transition-delay: 0.47s; }
+  .cat-card:nth-child(8) { transition-delay: 0.54s; }
+
+  /* Hover: spotlight sweep + lift */
+  .cat-card::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 3;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .cat-card:hover::before { opacity: 1; }
+  .cat-card:hover {
+    transform: translateY(-6px) scale(1.025) !important;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+
+  /* Category number peel-in on hover */
+  .cat-card-num {
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), color 0.3s;
+  }
+  .cat-card:hover .cat-card-num {
+    transform: translateY(-4px);
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ══════════════════════════════════════════
+     RATING SECTION
+  ══════════════════════════════════════════ */
+  .rating-section {
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, rgba(200,200,200,0.03) 0%, rgba(8,8,8,0.98) 50%, rgba(150,150,150,0.02) 100%);
+    border-top: 1px solid var(--glass-border);
+  }
+  .rating-section .section-header {
+    padding: 0 0 3rem; border-bottom: none;
+  }
+  .rating-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--glass-border);
+    margin-top: 2rem;
+  }
+  @media (max-width: 900px) { .rating-grid { grid-template-columns: 1fr; } .rating-section { padding: 3.5rem 1.5rem; } }
+
+  .rating-left {
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(20px);
+    padding: 3rem;
+    display: flex; flex-direction: column; gap: 2.5rem;
+  }
+  .rating-right {
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(20px);
+    padding: 3rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+
+  /* Category selector in rating */
+  .rating-cat-select {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .rating-cat-btn {
+    background: none;
+    border: 1px solid var(--glass-border);
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .rating-cat-btn.active, .rating-cat-btn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: rgba(200,200,200,0.06);
+  }
+
+  /* Star rating widget */
+  .star-widget {
+    display: flex; gap: 0.5rem; align-items: center;
+  }
+  .star-widget .sw-star {
+    font-size: 2rem; cursor: pointer; color: var(--bg3);
+    transition: color 0.2s, transform 0.15s;
+    user-select: none;
+    filter: drop-shadow(0 0 6px transparent);
+  }
+  .star-widget .sw-star.lit {
+    color: #f0c040;
+    filter: drop-shadow(0 0 6px rgba(240,192,64,0.45));
+  }
+  .star-widget .sw-star:hover { transform: scale(1.25); }
+  .sw-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 0.1em;
+    color: var(--muted); margin-left: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  /* Rating textarea */
+  .rating-textarea {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    padding: 1rem 1.2rem; resize: none; height: 120px;
+    width: 100%;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .rating-textarea:focus { border-color: var(--accent); }
+  .rating-textarea::placeholder { color: var(--muted); }
+
+  .rating-submit {
+    background: var(--accent); color: var(--bg);
+    padding: 0.9rem 2.5rem;
+    font-family: 'Syne', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    width: fit-content;
+  }
+  .rating-submit:hover { background: var(--accent2); transform: translateY(-2px); }
+
+  /* Live ratings display */
+  .ratings-display {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .rating-entry {
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--glass-border);
+    border-left: 2px solid var(--accent);
+    animation: ratingSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes ratingSlideIn {
+    from { opacity:0; transform: translateX(-12px); }
+    to   { opacity:1; transform: translateX(0); }
+  }
+  .rating-entry-header {
+    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem;
+  }
+  .re-stars { font-size: 0.85rem; color: #f0c040; letter-spacing: 0.05em; }
+  .re-cat {
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); background: rgba(200,200,200,0.08);
+    padding: 0.15rem 0.6rem; border: 1px solid var(--glass-border);
+  }
+  .re-time {
+    font-size: 0.58rem; color: var(--muted); margin-left: auto;
+    font-family: 'Inter', sans-serif;
+  }
+  .re-text {
+    font-family: 'Inter', sans-serif; font-size: 0.85rem;
+    color: var(--muted); line-height: 1.6;
+  }
+
+  /* Avg rating display */
+  .avg-rating-box {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-shine);
+  }
+  .avg-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; line-height: 1; color: var(--accent);
+  }
+  .avg-stars { color: #f0c040; font-size: 1.1rem; letter-spacing: 0.1em; }
+  .avg-count { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+  .avg-label { font-family: 'Inter', sans-serif; }
+
+  /* Empty state */
+  .no-ratings {
+    text-align: center; padding: 3rem;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    border: 1px dashed var(--glass-border);
+  }
+  .no-ratings .nr-icon { font-size: 2.5rem; margin-bottom: 0.8rem; opacity: 0.5; }
+
+  /* Success toast */
+  #rating-toast {
+    position: fixed; bottom: 6rem; right: 2rem; z-index: 200;
+    background: rgba(16,16,16,0.95);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(110,232,122,0.3);
+    color: #6ee87a;
+    font-family: 'Syne', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.8rem 1.4rem;
+    transform: translateY(20px); opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+  }
+  #rating-toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Mobile cat-showcase */
+  @media (max-width: 900px) {
+    .cat-showcase { grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 2px; }
+  }
   .testimonials {
     padding: 6rem 3rem;
     background: linear-gradient(135deg, rgba(200,200,200,0.04) 0%, rgba(8,8,8,0.95) 50%, rgba(150,150,150,0.03) 100%);
@@ -1262,7 +1491,77 @@
 </head>
 <body>
 
-<!-- ANIMATED BACKGROUND LAYERS -->
+<!-- ═══ PAGE LOADER ═══ -->
+<div id="page-loader">
+  <div class="pl-inner">
+    <div class="pl-logo">Mood<span>in</span>Pixels</div>
+    <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+    <div class="pl-tagline">Loading the frame…</div>
+  </div>
+</div>
+
+<style>
+  #page-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #080808;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+  .pl-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+  .pl-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem; letter-spacing: 0.12em; color: #e8e8e8;
+  }
+  .pl-logo span { color: #c8c8c8; }
+  .pl-bar-wrap {
+    width: 180px; height: 1px; background: rgba(255,255,255,0.1);
+    position: relative; overflow: hidden;
+  }
+  .pl-bar {
+    position: absolute; inset: 0; width: 0%;
+    background: linear-gradient(90deg, #888 0%, #e8e8e8 60%, #888 100%);
+    background-size: 200% 100%;
+    animation: plShimmer 1.2s linear infinite;
+    transition: width 0.3s ease;
+  }
+  @keyframes plShimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+  .pl-tagline {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #555;
+    animation: plBlink 1.6s ease infinite;
+  }
+  @keyframes plBlink {
+    0%,100%{opacity:0.4} 50%{opacity:1}
+  }
+</style>
+<script>
+  // Drive loader progress bar then dismiss
+  (function() {
+    const bar = document.getElementById('plBar');
+    const loader = document.getElementById('page-loader');
+    let prog = 0;
+    const iv = setInterval(() => {
+      prog = Math.min(prog + Math.random() * 18 + 4, 90);
+      if (bar) bar.style.width = prog + '%';
+    }, 120);
+    function finishLoad() {
+      clearInterval(iv);
+      if (bar) bar.style.width = '100%';
+      setTimeout(() => { if (loader) loader.classList.add('done'); }, 300);
+    }
+    if (document.readyState === 'complete') finishLoad();
+    else window.addEventListener('load', finishLoad);
+    // Fallback: dismiss after 3s even if images stall
+    setTimeout(finishLoad, 3000);
+  })();
+</script>
+
+
 <div id="bg-orbs">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -1278,6 +1577,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Work</a></li>
+    <li><a href="#ratings">Ratings</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="avail-badge" id="nav-avail">
@@ -1298,6 +1598,7 @@
 <div id="mobile-menu">
   <a href="#about"     onclick="closeMobileMenu()">About</a>
   <a href="#portfolio" onclick="closeMobileMenu()">Work</a>
+  <a href="#ratings"   onclick="closeMobileMenu()">Ratings</a>
   <a href="#contact"   onclick="closeMobileMenu()">Contact</a>
   <a href="#contact"   onclick="closeMobileMenu()" class="mobile-book">Book Now</a>
 </div>
@@ -1328,7 +1629,7 @@
     <h1 class="hero-title">
       Simarpreet<br><em>Singh</em>
     </h1>
-    <p class="hero-sub">Concerts. Dance. DJ. Sports. Music. Wildlife. — Capturing raw energy and the moments that last forever.</p>
+    <p class="hero-sub">Concerts. Dance. DJ. Sports. Music. Wildlife. Fashion. — Capturing raw energy and the moments that last forever.</p>
     <div class="hero-ctas">
       <a href="#portfolio" class="btn-primary">View Work</a>
       <a href="#contact" class="btn-ghost">Book a Session</a>
@@ -1344,7 +1645,7 @@
 <!-- STATS -->
 <div class="stats-bar reveal">
   <div class="stat">
-    <div class="stat-num" data-count="7">0</div>
+    <div class="stat-num" data-count="8">0</div>
     <div class="stat-label">Photography Genres</div>
   </div>
   <div class="stat">
@@ -1367,6 +1668,7 @@
     <span class="marquee-item">Concerts <span class="marquee-dot"></span></span>
     <span class="marquee-item">Dance Photography <span class="marquee-dot"></span></span>
     <span class="marquee-item">DJ &amp; Nightlife <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fashion &amp; Style <span class="marquee-dot"></span></span>
     <span class="marquee-item">Sports Action <span class="marquee-dot"></span></span>
     <span class="marquee-item">Music Artists <span class="marquee-dot"></span></span>
     <span class="marquee-item">Creative Photoshoots <span class="marquee-dot"></span></span>
@@ -1374,6 +1676,7 @@
     <span class="marquee-item">Concerts <span class="marquee-dot"></span></span>
     <span class="marquee-item">Dance Photography <span class="marquee-dot"></span></span>
     <span class="marquee-item">DJ &amp; Nightlife <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fashion &amp; Style <span class="marquee-dot"></span></span>
     <span class="marquee-item">Sports Action <span class="marquee-dot"></span></span>
     <span class="marquee-item">Music Artists <span class="marquee-dot"></span></span>
     <span class="marquee-item">Creative Photoshoots <span class="marquee-dot"></span></span>
@@ -1603,6 +1906,85 @@
         <div class="cat-card-sub">Nature & Wild</div>
       </div>
     </a>
+    <a class="cat-card" href="#portfolio" data-filter="fashion">
+      <img src="Fashion/DSC_3512.jpg" loading="eager" decoding="async" alt="Fashion Photography">
+      <div class="cat-card-content">
+        <div class="cat-card-num">08</div>
+        <div class="cat-card-title">Fashion<br>Photography</div>
+        <div class="cat-card-sub">Style & Attitude</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- RATING SECTION -->
+<section id="ratings" class="rating-section">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-tag">04 / Ratings</p>
+      <h2 class="section-title">Rate my <em>work</em></h2>
+    </div>
+  </div>
+  <div class="rating-grid reveal">
+    <!-- Left: Submit a rating -->
+    <div class="rating-left">
+      <div>
+        <p style="font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Loved a shot? Hated one? Either way — let me know. Your feedback helps me get sharper with every session.</p>
+        <!-- Category picker -->
+        <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Choose a category</p>
+        <div class="rating-cat-select" id="ratingCatSelect">
+          <button class="rating-cat-btn active" data-cat="Overall">Overall</button>
+          <button class="rating-cat-btn" data-cat="Concerts">Concerts</button>
+          <button class="rating-cat-btn" data-cat="Fashion">Fashion</button>
+          <button class="rating-cat-btn" data-cat="Dance">Dance</button>
+          <button class="rating-cat-btn" data-cat="DJ">DJ</button>
+          <button class="rating-cat-btn" data-cat="Sports">Sports</button>
+          <button class="rating-cat-btn" data-cat="Music">Music</button>
+          <button class="rating-cat-btn" data-cat="Wildlife">Wildlife</button>
+          <button class="rating-cat-btn" data-cat="Photoshoot">Photoshoot</button>
+        </div>
+      </div>
+      <!-- Star selector -->
+      <div>
+        <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Your rating</p>
+        <div class="star-widget" id="starWidget">
+          <span class="sw-star" data-val="1">★</span>
+          <span class="sw-star" data-val="2">★</span>
+          <span class="sw-star" data-val="3">★</span>
+          <span class="sw-star" data-val="4">★</span>
+          <span class="sw-star" data-val="5">★</span>
+          <span class="sw-label" id="starLabel">—</span>
+        </div>
+      </div>
+      <!-- Comment -->
+      <div>
+        <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Leave a comment <span style="color:var(--muted);font-size:0.58rem;">(optional)</span></p>
+        <textarea class="rating-textarea" id="ratingComment" placeholder="What stood out? What could be better?"></textarea>
+      </div>
+      <button class="rating-submit" onclick="submitRating()">Submit Rating →</button>
+    </div>
+
+    <!-- Right: Live ratings display -->
+    <div class="rating-right">
+      <!-- Average score -->
+      <div class="avg-rating-box" id="avgBox" style="display:none;">
+        <div class="avg-big" id="avgScore">—</div>
+        <div class="avg-label">
+          <div class="avg-stars" id="avgStars">—</div>
+          <div class="avg-count" id="avgCount">— ratings</div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:0.3rem;font-family:'Syne',sans-serif;letter-spacing:0.12em;text-transform:uppercase;">Community Score</div>
+        </div>
+      </div>
+
+      <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Recent ratings</p>
+
+      <div class="ratings-display" id="ratingsDisplay">
+        <div class="no-ratings">
+          <div class="nr-icon">📷</div>
+          <p>No ratings yet — be the first to leave one.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1692,6 +2074,7 @@
           <div class="custom-dropdown" id="enq-type-dropdown">
             <div class="custom-dropdown-item placeholder" data-value="" onclick="selectCategory(this)">Select category</div>
             <div class="custom-dropdown-item" data-value="Concert / Live Event" onclick="selectCategory(this)">Concert / Live Event</div>
+            <div class="custom-dropdown-item" data-value="Fashion Photography" onclick="selectCategory(this)">Fashion Photography</div>
             <div class="custom-dropdown-item" data-value="Dance Performance" onclick="selectCategory(this)">Dance Performance</div>
             <div class="custom-dropdown-item" data-value="DJ / Nightlife" onclick="selectCategory(this)">DJ / Nightlife</div>
             <div class="custom-dropdown-item" data-value="Sports" onclick="selectCategory(this)">Sports</div>
@@ -2110,8 +2493,158 @@
     labelEl.appendChild(cursor);
   })();
 
+
   // ═══════════════════════════════════════════════════
-  // FEATURE 10 — AMBIENT SOUND (Web Audio API)
+  // CATEGORY CARD CINEMATIC REVEAL
+  // ═══════════════════════════════════════════════════
+  (function() {
+    const cards = document.querySelectorAll('.cat-card');
+    if (!cards.length) return;
+    const showcase = document.querySelector('.cat-showcase');
+    if (!showcase) return;
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Trigger all cards with staggered delay
+          cards.forEach(card => card.classList.add('cat-revealed'));
+          revealObs.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    revealObs.observe(showcase);
+  })();
+
+  // ═══════════════════════════════════════════════════
+  // RATING SYSTEM
+  // ═══════════════════════════════════════════════════
+  (function() {
+    const STORAGE_KEY = 'moodinpixels_ratings_v2';
+    const starLabels = ['','Dreadful','Mediocre','Decent','Great','Outstanding'];
+    let selectedRating = 0;
+    let selectedCat = 'Overall';
+    let ratings = [];
+
+    // Load stored ratings
+    try { ratings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { ratings = []; }
+
+    // Category buttons
+    document.querySelectorAll('.rating-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.rating-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedCat = btn.dataset.cat;
+      });
+    });
+
+    // Star interaction
+    const stars = document.querySelectorAll('#starWidget .sw-star');
+    const label = document.getElementById('starLabel');
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => {
+        const val = +star.dataset.val;
+        stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= val));
+        label.textContent = starLabels[val];
+      });
+      star.addEventListener('click', () => {
+        selectedRating = +star.dataset.val;
+        label.textContent = starLabels[selectedRating];
+      });
+    });
+    document.getElementById('starWidget').addEventListener('mouseleave', () => {
+      stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= selectedRating));
+      label.textContent = selectedRating ? starLabels[selectedRating] : '—';
+    });
+
+    // Submit
+    window.submitRating = function() {
+      if (!selectedRating) {
+        showToast('Please select a star rating first', true);
+        return;
+      }
+      const comment = document.getElementById('ratingComment').value.trim();
+      const entry = {
+        rating: selectedRating,
+        cat: selectedCat,
+        comment,
+        time: new Date().toISOString()
+      };
+      ratings.unshift(entry);
+      if (ratings.length > 50) ratings = ratings.slice(0, 50);
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ratings)); } catch(e) {}
+
+      // Reset
+      selectedRating = 0;
+      stars.forEach(s => s.classList.remove('lit'));
+      if (label) label.textContent = '—';
+      document.getElementById('ratingComment').value = '';
+
+      renderRatings();
+      showToast('Rating submitted — thank you! ✦');
+    };
+
+    function renderRatings() {
+      const display = document.getElementById('ratingsDisplay');
+      const avgBox  = document.getElementById('avgBox');
+      if (!display) return;
+
+      if (!ratings.length) {
+        display.innerHTML = '<div class="no-ratings"><div class="nr-icon">📷</div><p>No ratings yet — be the first to leave one.</p></div>';
+        if (avgBox) avgBox.style.display = 'none';
+        return;
+      }
+
+      // Compute average
+      const avg = (ratings.reduce((s, r) => s + r.rating, 0) / ratings.length).toFixed(1);
+      if (avgBox) {
+        avgBox.style.display = 'flex';
+        document.getElementById('avgScore').textContent = avg;
+        document.getElementById('avgStars').textContent = '★'.repeat(Math.round(+avg)) + '☆'.repeat(5 - Math.round(+avg));
+        document.getElementById('avgCount').textContent = `${ratings.length} rating${ratings.length !== 1 ? 's' : ''}`;
+      }
+
+      display.innerHTML = ratings.slice(0, 8).map(r => {
+        const timeAgo = timeSince(new Date(r.time));
+        return `<div class="rating-entry">
+          <div class="rating-entry-header">
+            <span class="re-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+            <span class="re-cat">${r.cat}</span>
+            <span class="re-time">${timeAgo}</span>
+          </div>
+          ${r.comment ? `<p class="re-text">${escHtml(r.comment)}</p>` : ''}
+        </div>`;
+      }).join('');
+    }
+
+    function timeSince(date) {
+      const s = Math.floor((new Date() - date) / 1000);
+      if (s < 60) return 'just now';
+      if (s < 3600) return Math.floor(s/60) + 'm ago';
+      if (s < 86400) return Math.floor(s/3600) + 'h ago';
+      return Math.floor(s/86400) + 'd ago';
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function showToast(msg, isError) {
+      let toast = document.getElementById('rating-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'rating-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.borderColor = isError ? 'rgba(240,80,80,0.4)' : 'rgba(110,232,122,0.3)';
+      toast.style.color = isError ? '#f08080' : '#6ee87a';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    renderRatings();
+  })();
+
   // ═══════════════════════════════════════════════════
   (function() {
     const btn = document.getElementById('sound-btn');
