@@ -2747,7 +2747,7 @@
   /* ── CUSTOM CURSOR ── */
   * { cursor: none !important; }
   #cursor-dot {
-    position: fixed; z-index: 99999; pointer-events: none;
+    position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
     width: 8px; height: 8px; border-radius: 50%;
     background: #fff; mix-blend-mode: difference;
     transform: translate(-50%, -50%);
@@ -2755,7 +2755,7 @@
     will-change: transform;
   }
   #cursor-ring {
-    position: fixed; z-index: 99998; pointer-events: none;
+    position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
     width: 36px; height: 36px; border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.5);
     transform: translate(-50%, -50%);
@@ -2775,7 +2775,7 @@
 
   /* ── CURSOR TRAIL PARTICLES ── */
   .cursor-trail {
-    position: fixed; z-index: 99997; pointer-events: none;
+    position: fixed; top: 0; left: 0; z-index: 99997; pointer-events: none;
     border-radius: 50%; background: rgba(255,255,255,0.6);
     mix-blend-mode: screen;
     transform: translate(-50%, -50%) scale(1);
