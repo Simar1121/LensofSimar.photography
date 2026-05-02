@@ -166,64 +166,6 @@
     --glass-shine: rgba(255,255,255,0.06);
   }
 
-  /* ── DARKROOM RED MODE ── */
-  :root.darkroom {
-    --bg: #0d0000;
-    --bg2: #160000;
-    --bg3: #200000;
-    --accent: #ff3a1a;
-    --accent2: #cc2200;
-    --text: #ffcaba;
-    --muted: #7a2a1a;
-    --border: rgba(255,60,30,0.18);
-    --glass-bg: rgba(255,40,10,0.05);
-    --glass-border: rgba(255,60,30,0.12);
-    --glass-shine: rgba(255,80,40,0.07);
-  }
-  :root.darkroom body {
-    background-image:
-      radial-gradient(ellipse 60% 40% at 15% 20%, rgba(255,40,10,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 85% 75%, rgba(200,20,0,0.05) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(180,10,0,0.04) 0%, transparent 70%);
-  }
-  :root.darkroom img {
-    filter: sepia(0.6) hue-rotate(-20deg) saturate(1.6) brightness(0.55) contrast(1.1) !important;
-  }
-  :root.darkroom .grid-item img, :root.darkroom .hero-img-block img, :root.darkroom .about-photo-item img {
-    filter: sepia(0.8) hue-rotate(-20deg) saturate(2) brightness(0.45) contrast(1.2) !important;
-  }
-  :root.darkroom #darkroom-safelight {
-    opacity: 1 !important;
-  }
-  /* Darkroom safelight overlay */
-  #darkroom-safelight {
-    position: fixed; inset: 0; z-index: 1;
-    pointer-events: none; opacity: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,20,0,0.06) 0%, transparent 60%);
-    transition: opacity 0.8s ease;
-    mix-blend-mode: screen;
-  }
-  /* Darkroom toggle button */
-  #darkroom-toggle {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--accent2);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.55rem 1.1rem;
-    cursor: pointer;
-    transition: color 0.3s, border-color 0.3s, background 0.3s;
-    display: flex; align-items: center; gap: 0.45rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: inset 0 1px 0 var(--glass-shine);
-  }
-  #darkroom-toggle:hover { color: var(--text); border-color: var(--border); }
-  :root.darkroom #darkroom-toggle { color: #ff3a1a; border-color: rgba(255,60,30,0.35); background: rgba(255,30,0,0.08); }
-  .dr-bulb { font-size: 0.9rem; line-height: 1; }
-
   /* ── LIGHT MODE ── */
   :root.light {
     --bg: #f0f0f0;
@@ -290,8 +232,6 @@
     height: 48px;
   }
 
-  /* Film roll removed */
-
   /* ── FILM SCAN LINE on grid items ── */
   .grid-item .film-scan {
     position: absolute; inset: 0; z-index: 5;
@@ -319,16 +259,7 @@
     0%   { top: -60px; }
     100% { top: calc(100% + 60px); }
   }
-  :root.darkroom .grid-item .film-scan::before {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(255,60,10,0.08) 25%,
-      rgba(255,60,10,0.25) 50%,
-      rgba(255,60,10,0.08) 75%,
-      transparent 100%
-    );
-  }
+
   #mode-toggle {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -362,8 +293,6 @@
   }
 
   /* ── ANIMATED BACKGROUND ── */
-
-  /* Animated grain overlay */
   body::before {
     content: '';
     position: fixed; inset: 0; z-index: 0;
@@ -439,6 +368,7 @@
     padding: 1.5rem 3rem;
     background: transparent;
     transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    gap: 0.8rem;
   }
   nav.scrolled {
     background: rgba(8,8,8,0.7);
@@ -451,6 +381,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.6rem; letter-spacing: 0.1em;
     color: var(--text); text-decoration: none;
+    flex-shrink: 0;
   }
   .logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -470,6 +401,7 @@
     transition: background 0.3s, color 0.3s, border-color 0.3s;
     font-family: 'Syne', sans-serif;
     box-shadow: inset 0 1px 0 var(--glass-shine);
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
@@ -505,7 +437,6 @@
     image-orientation: from-image;
   }
   .hero-img-block.active img { transform: scale(1.0); }
-  /* Fix EXIF rotation on first two hero photos */
   .hi1 img, .hi2 img { object-fit: cover; }
 
   .hi1 { top: 5%; right: 3%; width: 28vw; height: 55vh; }
@@ -627,7 +558,6 @@
     display: grid; grid-template-columns: 1fr 1fr;
     min-height: 80vh;
   }
-  /* multi-photo about panel */
   .about-visual-multi {
     position: relative; overflow: hidden;
     background: var(--bg2);
@@ -659,7 +589,6 @@
     filter: grayscale(0%) brightness(0.75) contrast(1.05);
     transform: scale(1.04);
   }
-  /* Main photo — zoom out more, show from top so full body is visible */
   .about-photo-main img {
     object-position: center 20%;
     transform: scale(0.92);
@@ -684,12 +613,10 @@
     background: linear-gradient(to right, transparent 65%, var(--bg) 100%);
     z-index: 1;
   }
-  /* In light mode, remove the white bleed overlay completely */
   :root.light .about-visual-overlay {
     background: linear-gradient(to right, transparent 80%, var(--bg) 100%);
     opacity: 0.4;
   }
-  /* Fix photo brightness in light mode — keep them dark and moody */
   :root.light .about-photo-item img {
     filter: grayscale(15%) brightness(0.72) contrast(1.08);
   }
@@ -720,7 +647,10 @@
     background: rgba(255,255,255,0.02);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .filter-bar::-webkit-scrollbar { display: none; }
   .filter-btn {
     background: none; border: none; border-bottom: 2px solid transparent;
     padding: 1.2rem 1.8rem;
@@ -729,6 +659,7 @@
     color: var(--muted);
     transition: color 0.3s, border-color 0.3s;
     white-space: nowrap;
+    min-height: 44px;
   }
   .filter-btn.active, .filter-btn:hover {
     color: var(--accent); border-bottom-color: var(--accent);
@@ -771,19 +702,46 @@
     color: var(--accent); margin-bottom: 0.3rem;
   }
 
-  /* CATEGORY SHOWCASE — 8-column grid with Fashion */
+  /* CATEGORY SHOWCASE */
   .cat-showcase {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    border-top: 1px solid var(--glass-border);
-    gap: 2px; padding: 2px;
+    display: flex !important;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+    scrollbar-width: none;
+    gap: 2px;
+    padding: 2px;
     background: var(--glass-border);
   }
+  .cat-showcase::-webkit-scrollbar { display: none; }
+  .cat-showcase.dragging { cursor: grabbing; scroll-snap-type: none; }
   .cat-card {
+    flex: 0 0 clamp(160px, 22vw, 280px) !important;
+    scroll-snap-align: start;
     position: relative; overflow: hidden;
     aspect-ratio: 2/3;
     background: var(--bg2);
+    opacity: 0;
+    transform: translateY(40px) scale(0.94) rotateX(8deg);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    perspective: 800px;
+    transform-style: preserve-3d;
   }
+  .cat-card.cat-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+  .cat-card:nth-child(1) { transition-delay: 0.05s; }
+  .cat-card:nth-child(2) { transition-delay: 0.12s; }
+  .cat-card:nth-child(3) { transition-delay: 0.19s; }
+  .cat-card:nth-child(4) { transition-delay: 0.26s; }
+  .cat-card:nth-child(5) { transition-delay: 0.33s; }
+  .cat-card:nth-child(6) { transition-delay: 0.40s; }
+  .cat-card:nth-child(7) { transition-delay: 0.47s; }
+  .cat-card:nth-child(8) { transition-delay: 0.54s; }
   .cat-card img {
     width: 100%; height: 100%; object-fit: cover;
     filter: brightness(0.45) grayscale(40%);
@@ -805,6 +763,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2rem; color: rgba(255,255,255,0.15);
     line-height: 1; margin-bottom: -0.2rem;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), color 0.3s;
   }
   .cat-card-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -826,56 +785,6 @@
     transition: transform 0.4s ease;
   }
   .cat-card:hover::after { transform: scaleX(1); }
-  a.cat-card { text-decoration: none; cursor: pointer; display: block; }
-  /* Skeleton shimmer using inset shadow on the card itself, not ::before (which conflicts with content) */
-  .cat-card {
-    background: linear-gradient(90deg, var(--bg2) 25%, var(--bg3) 50%, var(--bg2) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.6s infinite;
-  }
-  /* Stop shimmer once image loads */
-  .cat-card:has(img[src]:not([src=""])) {
-    animation: none;
-    background: var(--bg2);
-  }
-  a.cat-card .cat-card-content::after {
-    content: '↗';
-    position: absolute; top: 1rem; right: 0.9rem;
-    font-size: 0.85rem; color: var(--accent);
-    opacity: 0; transform: translate(-4px, 4px);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  a.cat-card:hover .cat-card-content::after { opacity: 1; transform: translate(0,0); }
-  :root.light .cat-card-content { background: linear-gradient(to top, rgba(240,240,240,0.90) 0%, transparent 55%); }
-  :root.light .cat-card-num { color: rgba(0,0,0,0.07); }
-  :root.light .cat-card img { filter: brightness(0.55) grayscale(40%); }
-
-
-  /* ══════════════════════════════════════════
-     CATEGORY CARD — CINEMATIC REVEAL ANIMATION
-  ══════════════════════════════════════════ */
-  .cat-card {
-    opacity: 0;
-    transform: translateY(40px) scale(0.94) rotateX(8deg);
-    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-    perspective: 800px;
-    transform-style: preserve-3d;
-  }
-  .cat-card.cat-revealed {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0deg);
-  }
-  /* Stagger each card */
-  .cat-card:nth-child(1) { transition-delay: 0.05s; }
-  .cat-card:nth-child(2) { transition-delay: 0.12s; }
-  .cat-card:nth-child(3) { transition-delay: 0.19s; }
-  .cat-card:nth-child(4) { transition-delay: 0.26s; }
-  .cat-card:nth-child(5) { transition-delay: 0.33s; }
-  .cat-card:nth-child(6) { transition-delay: 0.40s; }
-  .cat-card:nth-child(7) { transition-delay: 0.47s; }
-  .cat-card:nth-child(8) { transition-delay: 0.54s; }
-
-  /* Hover: spotlight sweep + lift */
   .cat-card::before {
     content: '';
     position: absolute; inset: 0; z-index: 3;
@@ -890,19 +799,40 @@
     box-shadow: 0 24px 48px rgba(0,0,0,0.5);
     z-index: 2;
   }
-
-  /* Category number peel-in on hover */
-  .cat-card-num {
-    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), color 0.3s;
-  }
   .cat-card:hover .cat-card-num {
     transform: translateY(-4px);
     color: rgba(255,255,255,0.35);
   }
+  a.cat-card { text-decoration: none; cursor: pointer; display: block; }
+  a.cat-card .cat-card-content::after {
+    content: '↗';
+    position: absolute; top: 1rem; right: 0.9rem;
+    font-size: 0.85rem; color: var(--accent);
+    opacity: 0; transform: translate(-4px, 4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  a.cat-card:hover .cat-card-content::after { opacity: 1; transform: translate(0,0); }
+  :root.light .cat-card-content { background: linear-gradient(to top, rgba(240,240,240,0.90) 0%, transparent 55%); }
+  :root.light .cat-card-num { color: rgba(0,0,0,0.07); }
+  :root.light .cat-card img { filter: brightness(0.55) grayscale(40%); }
 
-  /* ══════════════════════════════════════════
-     RATING SECTION
-  ══════════════════════════════════════════ */
+  /* drag hint */
+  .cat-drag-hint {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem 0;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); font-family: 'Inter', sans-serif;
+    opacity: 1; transition: opacity 0.4s;
+  }
+  .cat-drag-hint.hidden { opacity: 0; pointer-events: none; }
+  .cat-drag-hint svg { width: 14px; height: 14px; animation: nudge 1.8s ease infinite; }
+  @keyframes nudge {
+    0%, 100% { transform: translateX(0); }
+    50%       { transform: translateX(5px); }
+  }
+
+  /* RATING SECTION */
   .rating-section {
     padding: 6rem 3rem;
     background: linear-gradient(135deg, rgba(200,200,200,0.03) 0%, rgba(8,8,8,0.98) 50%, rgba(150,150,150,0.02) 100%);
@@ -918,8 +848,6 @@
     background: var(--glass-border);
     margin-top: 2rem;
   }
-  @media (max-width: 900px) { .rating-grid { grid-template-columns: 1fr; } .rating-section { padding: 3.5rem 1.5rem; } }
-
   .rating-left {
     background: rgba(255,255,255,0.02);
     backdrop-filter: blur(20px);
@@ -932,8 +860,6 @@
     padding: 3rem;
     display: flex; flex-direction: column; gap: 1.5rem;
   }
-
-  /* Category selector in rating */
   .rating-cat-select {
     display: flex; flex-wrap: wrap; gap: 0.6rem;
   }
@@ -946,14 +872,13 @@
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: color 0.25s, border-color 0.25s, background 0.25s;
+    min-height: 36px;
   }
   .rating-cat-btn.active, .rating-cat-btn:hover {
     color: var(--text);
     border-color: var(--accent);
     background: rgba(200,200,200,0.06);
   }
-
-  /* Star rating widget */
   .star-widget {
     display: flex; gap: 0.5rem; align-items: center;
   }
@@ -974,8 +899,6 @@
     color: var(--muted); margin-left: 0.5rem;
     transition: color 0.3s;
   }
-
-  /* Rating textarea */
   .rating-textarea {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -988,7 +911,6 @@
   }
   .rating-textarea:focus { border-color: var(--accent); }
   .rating-textarea::placeholder { color: var(--muted); }
-
   .rating-submit {
     background: var(--accent); color: var(--bg);
     padding: 0.9rem 2.5rem;
@@ -999,8 +921,6 @@
     width: fit-content;
   }
   .rating-submit:hover { background: var(--accent2); transform: translateY(-2px); }
-
-  /* Live ratings display */
   .ratings-display {
     display: flex; flex-direction: column; gap: 1.2rem;
   }
@@ -1017,6 +937,7 @@
   }
   .rating-entry-header {
     display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem;
+    flex-wrap: wrap;
   }
   .re-stars { font-size: 0.85rem; color: #f0c040; letter-spacing: 0.05em; }
   .re-cat {
@@ -1032,8 +953,6 @@
     font-family: 'Inter', sans-serif; font-size: 0.85rem;
     color: var(--muted); line-height: 1.6;
   }
-
-  /* Avg rating display */
   .avg-rating-box {
     display: flex; align-items: center; gap: 1.5rem;
     padding: 1.5rem 2rem;
@@ -1048,8 +967,6 @@
   .avg-stars { color: #f0c040; font-size: 1.1rem; letter-spacing: 0.1em; }
   .avg-count { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
   .avg-label { font-family: 'Inter', sans-serif; }
-
-  /* Empty state */
   .no-ratings {
     text-align: center; padding: 3rem;
     color: var(--muted);
@@ -1057,8 +974,6 @@
     border: 1px dashed var(--glass-border);
   }
   .no-ratings .nr-icon { font-size: 2.5rem; margin-bottom: 0.8rem; opacity: 0.5; }
-
-  /* Success toast */
   #rating-toast {
     position: fixed; bottom: 6rem; right: 2rem; z-index: 200;
     background: rgba(16,16,16,0.95);
@@ -1074,10 +989,7 @@
   }
   #rating-toast.show { transform: translateY(0); opacity: 1; }
 
-  /* Mobile cat-showcase */
-  @media (max-width: 900px) {
-    .cat-showcase { grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 2px; }
-  }
+  /* TESTIMONIALS */
   .testimonials {
     padding: 6rem 3rem;
     background: linear-gradient(135deg, rgba(200,200,200,0.04) 0%, rgba(8,8,8,0.95) 50%, rgba(150,150,150,0.03) 100%);
@@ -1153,11 +1065,14 @@
     font-family: 'Syne', sans-serif; font-weight: 700;
     font-size: 1rem; letter-spacing: 0.05em;
     transition: color 0.3s;
+    min-height: 48px;
   }
   .contact-link:hover { color: var(--accent); }
   .contact-link-arrow {
     font-size: 1.2rem; transform: rotate(-45deg);
     transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 1rem;
   }
   .contact-link:hover .contact-link-arrow { transform: rotate(0deg); }
   .contact-link-sub {
@@ -1192,7 +1107,6 @@
     box-shadow: inset 0 1px 0 rgba(200,200,200,0.1), 0 0 0 3px rgba(200,200,200,0.05);
   }
   .form-textarea { min-height: 120px; resize: vertical; }
-  /* Custom select dropdown */
   .form-select-wrap { position: relative; }
   .form-select-wrap .form-select {
     cursor: pointer;
@@ -1217,6 +1131,7 @@
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
     border-bottom: 1px solid rgba(255,255,255,0.04);
+    min-height: 44px; display: flex; align-items: center;
   }
   .custom-dropdown-item:last-child { border-bottom: none; }
   .custom-dropdown-item:hover, .custom-dropdown-item.selected {
@@ -1234,6 +1149,7 @@
     font-family: 'Syne', sans-serif; font-weight: 700;
     font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
     transition: background 0.3s, transform 0.2s;
+    min-height: 48px;
   }
   .form-submit:hover { background: var(--accent2); transform: translateY(-2px); }
   .form-submit-group { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -1292,20 +1208,20 @@
     font-size: 1.5rem; color: var(--muted);
     background: none; border: none;
     transition: color 0.3s;
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
   }
   .lb-close:hover { color: var(--text); }
   .lb-nav {
     position: absolute; top: 50%; transform: translateY(-50%);
     font-size: 2rem; color: var(--muted); background: none; border: none;
     transition: color 0.3s; padding: 1rem;
+    min-width: 48px; min-height: 48px;
+    display: flex; align-items: center; justify-content: center;
   }
   .lb-nav:hover { color: var(--accent); }
   .lb-prev { left: 1rem; }
   .lb-next { right: 1rem; }
-
-  /* ── HIDDEN CATEGORIES ──
-  .cat-section { display: none; }
-  .cat-section.visible { display: block; }
 
   /* SCROLL ANIMATIONS */
   .reveal {
@@ -1348,39 +1264,22 @@
       radial-gradient(ellipse 50% 50% at 85% 75%, rgba(60,60,60,0.04) 0%, transparent 55%),
       radial-gradient(ellipse 40% 30% at 50% 50%, rgba(40,40,40,0.03) 0%, transparent 70%);
   }
-  :root.light nav.scrolled {
-    background: rgba(240,240,240,0.88);
-  }
-  /* Logo always fully visible in light mode */
+  :root.light nav.scrolled { background: rgba(240,240,240,0.88); }
   :root.light .logo { color: #111111; }
   :root.light .logo span { color: #111111; }
-  /* Nav links visible in light mode */
   :root.light .nav-links a { color: #444444; }
   :root.light .nav-links a:hover { color: #111111; }
   :root.light .nav-cta { color: var(--text); border-color: var(--border); background: var(--glass-bg); }
   :root.light .nav-cta:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
   :root.light #mode-toggle { color: var(--accent2); border-color: var(--glass-border); background: var(--glass-bg); }
   :root.light #mode-toggle:hover { color: var(--text); border-color: var(--border); }
-  /* Hero text readable on light bg */
   :root.light .hero-title { color: #111111; text-shadow: none; }
   :root.light .hero-title em { color: #444444; }
   :root.light .hero-tag { color: #444444; }
-  :root.light .hero-tag::before { background: #444444; }
   :root.light .hero-sub { color: #555555; }
   :root.light .btn-ghost { color: #555555; }
   :root.light .btn-ghost:hover { color: #111111; }
-  :root.light .scroll-text { color: #666666; }
-  :root.light .scroll-line { background: linear-gradient(to bottom, #444444, transparent); }
-  /* Darker overlay on hero images in light mode so text stays readable */
-  :root.light .hero-bg {
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(80,80,80,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(60,60,60,0.04) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 40% at 50% 10%, rgba(50,50,50,0.03) 0%, transparent 60%);
-  }
   :root.light .portfolio-grid { background: rgba(220,220,220,0.8); }
-  :root.light .cat-card-content { background: linear-gradient(to top, rgba(240,240,240,0.85) 0%, transparent 60%); }
-  :root.light .cat-card-num { color: rgba(0,0,0,0.08); }
   :root.light .testimonials { background: linear-gradient(135deg, rgba(80,80,80,0.04) 0%, rgba(230,230,230,0.95) 50%, rgba(60,60,60,0.03) 100%); }
   :root.light .testi-card { background: rgba(255,255,255,0.7); }
   :root.light .testi-card:hover { background: rgba(0,0,0,0.04); }
@@ -1393,9 +1292,7 @@
   :root.light .marquee-wrap { background: rgba(0,0,0,0.02); }
   :root.light footer { background: rgba(0,0,0,0.03); }
   :root.light .hero-img-block img { filter: grayscale(20%) brightness(0.5) contrast(1.1); }
-  :root.light .section-tag::before { background: var(--accent); }
 
-  /* smooth transitions on mode switch */
   body, nav, footer, .testi-card, .form-input, .form-textarea,
   .form-select, .stats-bar, .marquee-wrap, .about-text, .contact-left {
     transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
@@ -1417,180 +1314,7 @@
     width: 20px; height: 1px; background: var(--accent); flex-shrink: 0;
   }
 
-  /* ── TABLET (max 900px) ── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.2rem; gap: 0.6rem; }
-    .nav-links { display: none; }
-    .nav-cta { padding: 0.45rem 0.9rem; font-size: 0.65rem; letter-spacing: 0.12em; }
-    #mode-toggle {
-      padding: 0.45rem; width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; font-size: 0;
-    }
-    #mode-toggle svg { width: 16px; height: 16px; }
-    #mode-label { display: none; }
-    #hamburger {
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; background: none; border: none;
-      padding: 0.4rem; cursor: pointer; margin-left: auto;
-    }
-    #hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text); transition: transform 0.3s, opacity 0.3s;
-    }
-    #hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    #hamburger.open span:nth-child(2) { opacity: 0; }
-    #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #mobile-menu {
-      display: flex; flex-direction: column;
-      position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(8,8,8,0.97);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      padding: 5rem 2rem 2.5rem; gap: 0;
-      transform: translateY(-100%);
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-      z-index: 99; border-bottom: 1px solid var(--glass-border);
-    }
-    :root.light #mobile-menu { background: rgba(240,240,240,0.97); }
-    #mobile-menu.open { transform: translateY(0); }
-    #mobile-menu a {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem; letter-spacing: 0.05em;
-      color: var(--text); text-decoration: none;
-      padding: 0.6rem 0; border-bottom: 1px solid var(--glass-border);
-      transition: color 0.2s;
-    }
-    #mobile-menu a:hover { color: var(--accent); }
-    #mobile-menu a.mobile-book {
-      margin-top: 1.5rem; font-family: 'Syne', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); border: 1px solid var(--glass-border);
-      padding: 0.9rem 1.5rem; text-align: center; border-bottom: 1px solid var(--glass-border);
-    }
-    /* Hero */
-    .hero { padding: 0 1.5rem 3rem; min-height: 100svh; }
-    .hi1, .hi2, .hi3 { display: none; }
-    .hero-title { font-size: clamp(3rem, 14vw, 6rem); }
-    .hero-sub { font-size: 0.85rem; max-width: 100%; }
-    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .btn-primary { width: 100%; text-align: center; padding: 1rem 2rem; }
-    .hero-scroll-indicator { display: none; }
-    /* Stats */
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .stat { padding: 1.4rem 1.5rem; }
-    .stat-num { font-size: 2.2rem; }
-    .stat-label { font-size: 0.62rem; letter-spacing: 0.15em; }
-    /* About */
-    .about { grid-template-columns: 1fr; }
-    .about-visual-multi { height: 65vw; min-height: 260px; }
-    .about-text { padding: 2.5rem 1.5rem; }
-    .about-text p { font-size: 0.92rem; line-height: 1.85; }
-    .about-text .signature { font-size: 2rem; }
-    .section-header { padding: 3rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    .section-count { font-size: 0.62rem; }
-    .section-title { font-size: clamp(2rem, 8vw, 3.5rem); }
-    /* Portfolio */
-    .filter-bar { padding: 0 0.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .filter-btn { padding: 1rem 1.1rem; font-size: 0.65rem; letter-spacing: 0.15em; white-space: nowrap; }
-    .portfolio-grid { columns: 2; column-gap: 2px; padding: 2px; }
-    /* Category */
-    .cat-showcase { grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 2px; }
-    .cat-card-title { font-size: 0.85rem; }
-    .cat-card-num { font-size: 1.5rem; }
-    /* Testimonials */
-    .testimonials { padding: 3.5rem 1.5rem; }
-    .testi-grid { grid-template-columns: 1fr; gap: 1px; }
-    .testi-card { padding: 2rem 1.5rem; }
-    .testi-card::before { font-size: 4rem; top: 0.2rem; left: 1rem; }
-    .testi-text { font-size: 0.88rem; margin-bottom: 1.2rem; }
-    .testimonials .section-header { padding: 0 0 2rem; }
-    /* Contact */
-    .contact { grid-template-columns: 1fr; }
-    .contact-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--glass-border); }
-    .contact-right { padding: 2.5rem 1.5rem; }
-    .contact-title { font-size: clamp(2.2rem, 10vw, 4rem); }
-    .contact-link { padding: 1.2rem 0; font-size: 0.9rem; }
-    .contact-link-sub { font-size: 0.6rem; }
-    .form-input, .form-textarea, .form-select { font-size: 1rem; padding: 0.85rem 1rem; }
-    .form-submit { font-size: 0.85rem; padding: 1.1rem; }
-    .form-group { margin-bottom: 1.2rem; }
-    /* Footer */
-    footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 1.5rem; }
-    .footer-copy { font-size: 0.6rem; }
-    /* Marquee */
-    .marquee-item { font-size: 1rem; padding: 0 1.2rem; gap: 1.2rem; }
-  }
-
-  /* ── SMALL MOBILE (max 500px) ── */
-  @media (max-width: 500px) {
-    .hero-title { font-size: clamp(2.8rem, 16vw, 5rem); }
-    .hero-tag { font-size: 0.58rem; letter-spacing: 0.2em; }
-    .hero-sub { font-size: 0.82rem; }
-    .cat-showcase { grid-template-columns: repeat(2, 1fr); }
-    .about-visual-multi { height: 75vw; }
-    .about-photo-strip { flex-direction: column; }
-    .about-photo-side { flex-direction: row; height: 38%; }
-    .about-photo-main { height: 62%; }
-    .portfolio-grid { columns: 1; }
-    .section-header { padding: 2.5rem 1.2rem 1.2rem; }
-    .about-text { padding: 2rem 1.2rem; }
-    .filter-btn { padding: 0.9rem 0.9rem; font-size: 0.6rem; }
-    .contact-left, .contact-right { padding: 2.5rem 1.2rem; }
-    .testi-card { padding: 1.8rem 1.2rem; }
-    .testimonials { padding: 3rem 1.2rem; }
-    footer { padding: 1.2rem; }
-    .lb-nav { font-size: 1.5rem; padding: 0.5rem; }
-  }
-
-  /* Hide hamburger on desktop */
-  @media (min-width: 901px) {
-    #hamburger { display: none; }
-    #mobile-menu { display: none !important; }
-  }
-
-  /* ══════════════════════════════════════════
-     FEATURE 3 — HORIZONTAL DRAG CAROUSEL
-  ══════════════════════════════════════════ */
-  .cat-showcase {
-    display: flex !important;
-    grid-template-columns: unset !important;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    cursor: grab;
-    user-select: none;
-    scrollbar-width: none;
-    gap: 2px;
-    padding: 2px;
-    background: var(--glass-border);
-  }
-  .cat-showcase::-webkit-scrollbar { display: none; }
-  .cat-showcase.dragging { cursor: grabbing; scroll-snap-type: none; }
-  .cat-card {
-    flex: 0 0 clamp(160px, 22vw, 280px) !important;
-    scroll-snap-align: start;
-  }
-  /* drag hint arrows */
-  .cat-drag-hint {
-    display: flex; align-items: center; justify-content: flex-end;
-    gap: 0.5rem;
-    padding: 0.6rem 1.5rem 0;
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); font-family: 'Inter', sans-serif;
-    opacity: 1; transition: opacity 0.4s;
-  }
-  .cat-drag-hint.hidden { opacity: 0; pointer-events: none; }
-  .cat-drag-hint svg { width: 14px; height: 14px; animation: nudge 1.8s ease infinite; }
-  @keyframes nudge {
-    0%, 100% { transform: translateX(0); }
-    50%       { transform: translateX(5px); }
-  }
-
-  /* ══════════════════════════════════════════
-     FEATURE 4 — "CURRENTLY AVAILABLE" BADGE
-  ══════════════════════════════════════════ */
+  /* ── AVAILABLE BADGE ── */
   .avail-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: 'Inter', sans-serif; font-size: 0.65rem;
@@ -1613,19 +1337,11 @@
     60%  { box-shadow: 0 0 0 6px rgba(110,232,122,0); }
     100% { box-shadow: 0 0 0 0 rgba(110,232,122,0); }
   }
-  /* badge in nav */
-  #nav-avail {
-    margin-left: auto;
-  }
+  #nav-avail { margin-left: auto; }
   @media (max-width: 900px) { #nav-avail { display: none; } }
-  /* badge in hero */
-  .hero-avail {
-    margin-bottom: 1.2rem;
-  }
+  .hero-avail { margin-bottom: 1.2rem; }
 
-  /* ══════════════════════════════════════════
-     FEATURE 8 — TYPEWRITER FILTER LABEL
-  ══════════════════════════════════════════ */
+  /* ── FILTER LABEL ── */
   #filter-label {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(1rem, 2.5vw, 1.3rem);
@@ -1654,12 +1370,295 @@
   }
   @media (max-width: 900px) { #filter-label { padding: 0 1.5rem; font-size: 1rem; } }
 
-  /* Ambient sound removed */
-</style>
-</head>
-<body>
+  /* ══════════════════════════════════════════
+     MOBILE RESPONSIVE IMPROVEMENTS
+  ══════════════════════════════════════════ */
 
-<!-- ═══ PAGE LOADER ═══ -->
+  /* ── TABLET (max 900px) ── */
+  @media (max-width: 900px) {
+    nav { padding: 0.9rem 1rem; gap: 0.5rem; }
+    .logo { font-size: 1.2rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    #mode-toggle {
+      padding: 0.4rem;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; font-size: 0; flex-shrink: 0;
+    }
+    #mode-toggle svg { width: 16px; height: 16px; }
+    #mode-label { display: none; }
+    #hamburger {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; background: none; border: none;
+      padding: 0.4rem; cursor: pointer; flex-shrink: 0;
+      min-width: 36px; min-height: 36px;
+    }
+    #hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); transition: transform 0.3s, opacity 0.3s;
+    }
+    #hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #hamburger.open span:nth-child(2) { opacity: 0; }
+    #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* Hero */
+    .hero { padding: 0 1.5rem 3rem; min-height: 100svh; }
+    .hi1, .hi2, .hi3 { display: none; }
+    .hero-title { font-size: clamp(3rem, 14vw, 6rem); }
+    .hero-sub { font-size: 0.85rem; max-width: 100%; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .btn-primary { width: 100%; text-align: center; padding: 1rem 2rem; }
+    /* Stats */
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 1.4rem 1.5rem; }
+    .stat-num { font-size: 2.2rem; }
+    .stat-label { font-size: 0.62rem; letter-spacing: 0.15em; }
+    /* About */
+    .about { grid-template-columns: 1fr; }
+    .about-visual-multi { height: 65vw; min-height: 260px; }
+    .about-text { padding: 2.5rem 1.5rem; }
+    .about-text p { font-size: 0.92rem; line-height: 1.85; }
+    .about-text .signature { font-size: 2rem; }
+    .section-header { padding: 3rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .section-count { font-size: 0.62rem; }
+    .section-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    /* Portfolio */
+    .filter-bar { padding: 0 0.5rem; }
+    .filter-btn { padding: 1rem 1.1rem; font-size: 0.65rem; letter-spacing: 0.15em; }
+    .portfolio-grid { columns: 2; column-gap: 2px; padding: 2px; }
+    /* Testimonials */
+    .testimonials { padding: 3.5rem 1.5rem; }
+    .testi-grid { grid-template-columns: 1fr; gap: 1px; }
+    .testi-card { padding: 2rem 1.5rem; }
+    .testi-card::before { font-size: 4rem; top: 0.2rem; left: 1rem; }
+    .testi-text { font-size: 0.88rem; margin-bottom: 1.2rem; }
+    .testimonials .section-header { padding: 0 0 2rem; }
+    /* Ratings */
+    .rating-section { padding: 3.5rem 1.5rem; }
+    .rating-grid { grid-template-columns: 1fr; }
+    .rating-left, .rating-right { padding: 2rem 1.5rem; }
+    .avg-rating-box { padding: 1rem 1.2rem; }
+    .avg-big { font-size: 3rem; }
+    .rating-cat-select { gap: 0.4rem; }
+    .rating-cat-btn { font-size: 0.6rem; padding: 0.4rem 0.8rem; min-height: 36px; }
+    /* Contact */
+    .contact { grid-template-columns: 1fr; }
+    .contact-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--glass-border); }
+    .contact-right { padding: 2.5rem 1.5rem; }
+    .contact-title { font-size: clamp(2.2rem, 10vw, 4rem); }
+    .contact-link { padding: 1.2rem 0; font-size: 0.9rem; }
+    .form-input, .form-textarea, .form-select { font-size: 1rem; padding: 0.85rem 1rem; }
+    .form-submit { font-size: 0.85rem; padding: 1.1rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    /* Footer */
+    footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 1.5rem; }
+    .footer-copy { font-size: 0.6rem; }
+    /* Marquee */
+    .marquee-item { font-size: 1rem; padding: 0 1.2rem; gap: 1.2rem; }
+  }
+
+  /* ── SMALL MOBILE (max 500px) ── */
+  @media (max-width: 500px) {
+    nav { padding: 0.8rem 0.9rem; }
+    .logo { font-size: 1.1rem; }
+    .hero-title { font-size: clamp(2.8rem, 16vw, 5rem); }
+    .hero-tag { font-size: 0.58rem; letter-spacing: 0.2em; }
+    .hero-sub { font-size: 0.82rem; }
+    .cat-showcase .cat-card { flex: 0 0 clamp(140px, 60vw, 220px) !important; }
+    .about-visual-multi { height: 75vw; }
+    .about-photo-strip { flex-direction: column; }
+    .about-photo-side { flex-direction: row; height: 200px; }
+    .about-photo-main { min-height: 280px; }
+    .about-photo-item img, .about-photo-main img { transform: scale(1) !important; }
+    .portfolio-grid { columns: 1; }
+    .section-header { padding: 2.5rem 1.2rem 1.2rem; }
+    .about-text { padding: 2rem 1.2rem; }
+    .filter-btn { padding: 0.9rem 0.75rem; font-size: 0.58rem; letter-spacing: 0.1em; }
+    .contact-left, .contact-right { padding: 2.5rem 1.2rem; }
+    .testi-card { padding: 1.8rem 1.2rem; }
+    .testimonials { padding: 3rem 1.2rem; }
+    footer { padding: 1.2rem; }
+    .lb-nav { font-size: 1.5rem; padding: 0.5rem; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 1.2rem 1rem; }
+    .stat-num { font-size: 2rem; }
+    #rating-toast { right: 1rem; left: 1rem; bottom: 1.5rem; text-align: center; }
+  }
+
+  /* ── TOUCH DEVICE: disable custom cursor ── */
+  @media (hover: none) and (pointer: coarse) {
+    * { cursor: auto !important; }
+    #cursor-dot, #cursor-ring { display: none !important; }
+    .cursor-trail { display: none !important; }
+  }
+
+  /* Hide hamburger on desktop */
+  @media (min-width: 901px) {
+    #hamburger { display: none; }
+    #mobile-menu { display: none !important; }
+  }
+</style>
+
+<style>
+  /* ── CUSTOM CURSOR ── */
+  * { cursor: none !important; }
+  #cursor-dot {
+    position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    will-change: transform;
+  }
+  #cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.35s cubic-bezier(0.22,1,0.36,1),
+                height 0.35s cubic-bezier(0.22,1,0.36,1),
+                border-color 0.3s, opacity 0.3s;
+    mix-blend-mode: difference;
+    will-change: transform;
+  }
+  body.cursor-hovering #cursor-dot { width: 14px; height: 14px; }
+  body.cursor-hovering #cursor-ring { width: 60px; height: 60px; border-color: rgba(255,255,255,0.9); }
+  body.cursor-clicking #cursor-dot { width: 4px; height: 4px; opacity: 0.6; }
+  body.cursor-clicking #cursor-ring { width: 28px; height: 28px; }
+
+  .cursor-trail {
+    position: fixed; top: 0; left: 0; z-index: 99997; pointer-events: none;
+    border-radius: 50%; background: rgba(255,255,255,0.6);
+    mix-blend-mode: screen;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: transform, opacity;
+  }
+
+  /* ── GLITCH TEXT EFFECT ── */
+  .glitch-text { position: relative; display: inline-block; }
+  .glitch-text::before, .glitch-text::after {
+    content: attr(data-text);
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; opacity: 0;
+  }
+  .glitch-text::before { color: #0ff; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+  .glitch-text::after { color: #f0f; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
+  .glitch-text.glitching::before { opacity: 0.8; animation: glitch-top 0.3s steps(2) forwards; }
+  .glitch-text.glitching::after { opacity: 0.8; animation: glitch-bottom 0.3s steps(2) forwards; }
+  @keyframes glitch-top {
+    0%   { transform: translate(-2px, -1px); }
+    25%  { transform: translate(2px, 1px); }
+    50%  { transform: translate(-3px, 0); clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%); }
+    75%  { transform: translate(1px, -2px); }
+    100% { transform: translate(0); opacity: 0; }
+  }
+  @keyframes glitch-bottom {
+    0%   { transform: translate(2px, 1px); }
+    25%  { transform: translate(-2px, -1px); }
+    50%  { transform: translate(3px, 0); clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
+    75%  { transform: translate(-1px, 2px); }
+    100% { transform: translate(0); opacity: 0; }
+  }
+
+  /* ── CINEMATIC PAGE INTRO ── */
+  #page-intro {
+    position: fixed; inset: 0; z-index: 999999;
+    display: flex; align-items: center; justify-content: center;
+    background: #080808;
+    flex-direction: column; gap: 1.5rem;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.77,0,0.175,1);
+  }
+  #page-intro.hide { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+  .intro-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    letter-spacing: 0.15em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+    position: relative; overflow: hidden;
+  }
+  .intro-logo-fill {
+    position: absolute; inset: 0;
+    color: #e8e8e8; -webkit-text-stroke: 0;
+    clip-path: inset(100% 0 0 0);
+    animation: logoReveal 1.2s cubic-bezier(0.77,0,0.175,1) 0.3s forwards;
+    white-space: nowrap;
+  }
+  @keyframes logoReveal { to { clip-path: inset(0% 0 0 0); } }
+  .intro-line {
+    width: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,200,200,0.6), transparent);
+    animation: introLine 0.8s ease 0.8s forwards;
+  }
+  @keyframes introLine { to { width: min(400px, 60vw); } }
+  .intro-sub {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(200,200,200,0.5); opacity: 0;
+    animation: fadeInSub 0.6s ease 1.1s forwards;
+  }
+  @keyframes fadeInSub { to { opacity: 1; } }
+  .intro-progress {
+    position: absolute; bottom: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(200,200,200,0.3), rgba(200,200,200,0.8));
+    width: 0; animation: introProgress 1.8s ease forwards;
+  }
+  @keyframes introProgress { to { width: 100%; } }
+
+  /* ── MAGNETIC BUTTON WRAPPER ── */
+  .mag-wrap { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+
+  /* ── SPOTLIGHT FOLLOW EFFECT on hero ── */
+  #hero-spotlight {
+    position: absolute; inset: 0; pointer-events: none; z-index: 3;
+    background: radial-gradient(circle 300px at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.5s;
+  }
+  .hero:hover #hero-spotlight { opacity: 1; }
+
+  /* ── NOISE FLASH on image hover ── */
+  .grid-item::after {
+    content: ''; position: absolute; inset: 0; z-index: 3;
+    opacity: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay; pointer-events: none; transition: opacity 0.3s;
+  }
+  .grid-item:hover::after { opacity: 0.15; }
+
+  /* ── SCANLINE EFFECT ── */
+  #scanlines {
+    position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    opacity: 0.4; mix-blend-mode: multiply;
+  }
+  :root.light #scanlines { opacity: 0.15; }
+
+  /* ── CORNER BRACKETS on hover for grid items ── */
+  .grid-item .corner-tl, .grid-item .corner-br {
+    position: absolute; z-index: 4;
+    width: 20px; height: 20px;
+    opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+  }
+  .grid-item .corner-tl {
+    top: 10px; left: 10px;
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-left: 1px solid rgba(255,255,255,0.7);
+    transform: translate(-4px, -4px);
+  }
+  .grid-item .corner-br {
+    bottom: 10px; right: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    border-right: 1px solid rgba(255,255,255,0.7);
+    transform: translate(4px, 4px);
+  }
+  .grid-item:hover .corner-tl, .grid-item:hover .corner-br {
+    opacity: 1; transform: translate(0, 0);
+  }
+</style>
+
+<!-- PAGE LOADER -->
 <div id="page-loader">
   <div class="pl-inner">
     <div class="pl-logo">Mood<span>in</span>Pixels</div>
@@ -1677,38 +1676,20 @@
   }
   #page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
   .pl-inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-  .pl-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.4rem; letter-spacing: 0.12em; color: #e8e8e8;
-  }
+  .pl-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 0.12em; color: #e8e8e8; }
   .pl-logo span { color: #c8c8c8; }
-  .pl-bar-wrap {
-    width: 180px; height: 1px; background: rgba(255,255,255,0.1);
-    position: relative; overflow: hidden;
-  }
+  .pl-bar-wrap { width: 180px; height: 1px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; }
   .pl-bar {
     position: absolute; inset: 0; width: 0%;
     background: linear-gradient(90deg, #888 0%, #e8e8e8 60%, #888 100%);
     background-size: 200% 100%;
-    animation: plShimmer 1.2s linear infinite;
-    transition: width 0.3s ease;
+    animation: plShimmer 1.2s linear infinite; transition: width 0.3s ease;
   }
-  @keyframes plShimmer {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
-  }
-  .pl-tagline {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: #555;
-    animation: plBlink 1.6s ease infinite;
-  }
-  @keyframes plBlink {
-    0%,100%{opacity:0.4} 50%{opacity:1}
-  }
+  @keyframes plShimmer { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+  .pl-tagline { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: #555; animation: plBlink 1.6s ease infinite; }
+  @keyframes plBlink { 0%,100%{opacity:0.4} 50%{opacity:1} }
 </style>
 <script>
-  // Drive loader progress bar then dismiss
   (function() {
     const bar = document.getElementById('plBar');
     const loader = document.getElementById('page-loader');
@@ -1724,18 +1705,13 @@
     }
     if (document.readyState === 'complete') finishLoad();
     else window.addEventListener('load', finishLoad);
-    // Fallback: dismiss after 3s even if images stall
     setTimeout(finishLoad, 3000);
   })();
 </script>
 
-
 <div id="bg-orbs">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
-  <div class="orb orb-5"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <div class="orb orb-4"></div><div class="orb orb-5"></div>
 </div>
 <div id="bg-grid"></div>
 
@@ -1757,9 +1733,6 @@
     <svg id="mode-icon-light" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span id="mode-label">Light</span>
   </button>
-  <button id="darkroom-toggle" aria-label="Toggle darkroom red-light mode">
-    <span class="dr-bulb">🔴</span>Darkroom
-  </button>
   <button id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -1774,12 +1747,41 @@
   <a href="#contact"   onclick="closeMobileMenu()" class="mobile-book">Book Now</a>
 </div>
 
+<style>
+  #mobile-menu {
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    padding: 5rem 2rem 2.5rem; gap: 0;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    z-index: 99; border-bottom: 1px solid var(--glass-border);
+  }
+  :root.light #mobile-menu { background: rgba(240,240,240,0.97); }
+  #mobile-menu.open { transform: translateY(0); }
+  #mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem; letter-spacing: 0.05em;
+    color: var(--text); text-decoration: none;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--glass-border);
+    transition: color 0.2s; min-height: 56px; display: flex; align-items: center;
+  }
+  #mobile-menu a:hover { color: var(--accent); }
+  #mobile-menu a.mobile-book {
+    margin-top: 1.5rem; font-family: 'Syne', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--glass-border);
+    padding: 0.9rem 1.5rem; text-align: center; border-bottom: 1px solid var(--glass-border);
+    justify-content: center;
+  }
+</style>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-noise"></div>
   <div class="hero-line"></div>
-
   <div class="hero-images">
     <div class="hero-img-block hi1 active">
       <img src="Concert/Simar(1).jpg" alt="" fetchpriority="high" decoding="async">
@@ -1791,15 +1793,12 @@
       <img src="Concert/Simar(3).jpeg" alt="" fetchpriority="high" decoding="async">
     </div>
   </div>
-
   <div class="hero-content">
     <div class="avail-badge hero-avail">
       <span class="avail-dot"></span>Currently Available — Jaipur &amp; Beyond
     </div>
     <p class="hero-tag">Photography Portfolio — Est. Jaipur</p>
-    <h1 class="hero-title">
-      Simarpreet<br><em>Singh</em>
-    </h1>
+    <h1 class="hero-title">Simarpreet<br><em>Singh</em></h1>
     <p class="hero-sub">Concerts. Dance. DJ. Sports. Music. Wildlife. Fashion. — Capturing raw energy and the moments that last forever.</p>
     <div class="hero-typewriter"><span class="hero-typewriter-text" id="hero-tw"></span></div>
     <div class="hero-ctas">
@@ -1807,31 +1806,14 @@
       <a href="#contact" class="btn-ghost">Book a Session</a>
     </div>
   </div>
-
-  <div class="hero-scroll-indicator">
-    <div class="scroll-line"></div>
-    <span class="scroll-text">Scroll</span>
-  </div>
 </section>
 
 <!-- STATS -->
 <div class="stats-bar reveal">
-  <div class="stat">
-    <div class="stat-num" data-count="8">0</div>
-    <div class="stat-label">Photography Genres</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-count="50">0</div>
-    <div class="stat-label">Events Captured</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-count="60">0</div>
-    <div class="stat-label">Shots in Portfolio</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num" data-count="3">0</div>
-    <div class="stat-label">Years of Experience</div>
-  </div>
+  <div class="stat"><div class="stat-num" data-count="8">0</div><div class="stat-label">Photography Genres</div></div>
+  <div class="stat"><div class="stat-num" data-count="50">0</div><div class="stat-label">Events Captured</div></div>
+  <div class="stat"><div class="stat-num" data-count="60">0</div><div class="stat-label">Shots in Portfolio</div></div>
+  <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">Years of Experience</div></div>
 </div>
 
 <!-- MARQUEE -->
@@ -1866,7 +1848,6 @@
     <span class="section-count">Jaipur, Rajasthan</span>
   </div>
   <div class="about">
-    <!-- Photo strip: 3 images stacked/side by side -->
     <div class="about-visual-multi reveal">
       <div class="about-photo-strip">
         <div class="about-photo-item about-photo-main">
@@ -1902,7 +1883,6 @@
       <h2 class="section-title">Selected <em>work</em></h2>
     </div>
   </div>
-
   <div id="filter-label"><span class="tl-text">Showing all photos</span><span class="tl-cursor"></span></div>
   <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">All</button>
@@ -1915,97 +1895,87 @@
     <button class="filter-btn" data-filter="sports">Sports</button>
     <button class="filter-btn" data-filter="wildlife">Wildlife</button>
   </div>
-
-  <!-- ALL GRID -->
   <div class="portfolio-grid" id="grid-all">
-
     <!-- Concerts: 9 -->
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(1).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(1).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(2).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(2).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(3).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(3).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(4).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(4).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(5).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(5).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(6).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(6).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(7).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(7).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(8).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(8).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(9).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Concert/Simar(9).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
-
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(1).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(1).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(2).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(2).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(3).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(3).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(4).jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(4).jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(5).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(5).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(6).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(6).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(7).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(7).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(8).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(8).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
+    <div class="grid-item" data-cat="concerts" data-src="Concert/Simar(9).jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Concert/Simar(9).jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Concerts</span></div></div>
     <!-- Dance: 15 -->
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC05520.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC05520.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_2988.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_2988.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_4503.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_4503.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5197.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_5197.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5222.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_5222.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5223.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_5223.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5344.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/DSC_5344.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5731.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/IMG_5731.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5831.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/IMG_5831.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5904.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/IMG_5904.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5981.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/IMG_5981.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_03480.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/NU_03480.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04650.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/NU_04650.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04478.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/NU_04478.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04962.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Dance/NU_04962.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
-
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC05520.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC05520.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_2988.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_2988.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_4503.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_4503.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5197.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5197.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5222.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5222.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5223.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5223.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/DSC_5344.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/DSC_5344.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5731.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5731.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5831.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5831.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5904.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5904.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/IMG_5981.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/IMG_5981.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_03480.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_03480.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04650.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_04650.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04478.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_04478.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
+    <div class="grid-item" data-cat="dance" data-src="Dance/NU_04962.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Dance/NU_04962.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Dance</span></div></div>
     <!-- DJ: 2 -->
-    <div class="grid-item" data-cat="dj" data-src="DJ/IMG_5126.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
-    <div class="grid-item" data-cat="dj" data-src="DJ/NU_02768.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="DJ/NU_02768.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
-
+    <div class="grid-item" data-cat="dj" data-src="DJ/IMG_5126.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="DJ/IMG_5126.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
+    <div class="grid-item" data-cat="dj" data-src="DJ/NU_02768.jpeg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="DJ/NU_02768.jpeg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">DJ</span></div></div>
     <!-- Fashion: 13 -->
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3179.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/DSC_3179.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3220.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/DSC_3220.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3512.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/DSC_3512.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3717.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/DSC_3717.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3858.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/DSC_3858.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01309.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01309.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01459.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01459.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01659.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01659.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01917.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01917.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01957.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01957.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01998.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_01998.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_02038.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_02038.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_02486.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Fashion/NU_02486.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
-
-    <!-- Photoshoot: 5 -->
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC_0198.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/DSC_0198.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9004.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/IMG_9004.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9167.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/IMG_9167.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9170.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/IMG_9170.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9964.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/IMG_9964.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC09029.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Photoshoot/DSC09029.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
-
-    <!-- Music: 13 -->
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0008.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0008.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0050.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0050.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0102.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0102.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0116.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0116.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0177.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0177.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0378.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0378.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0481.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0481.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/DSC_0808.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/DSC_0808.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09497.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/NU_09497.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09831.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/NU_09831.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09832.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/NU_09832.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/NU_09842.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/NU_09842.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0604.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/_DSC0604.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0627.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/_DSC0627.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-    <div class="grid-item" data-cat="music" data-src="Music/_DSC0767.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Music/_DSC0767.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
-
-    <!-- Sports: 7 -->
-    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0959.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/DSC_0959.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0996.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/DSC_0996.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0489.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/IMG_0489.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0491.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/IMG_0491.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0519.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/IMG_0519.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_2867.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"  data-lazy="Sports/IMG_2867.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
-
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3179.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/DSC_3179.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3220.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/DSC_3220.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3512.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/DSC_3512.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3717.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/DSC_3717.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/DSC_3858.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/DSC_3858.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01309.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01309.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01459.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01459.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01659.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01659.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01917.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01917.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01957.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01957.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_01998.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_01998.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_02038.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_02038.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <div class="grid-item" data-cat="fashion" data-src="Fashion/NU_02486.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Fashion/NU_02486.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Fashion</span></div></div>
+    <!-- Photoshoot: 6 -->
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC_0198.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/DSC_0198.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9004.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9004.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9167.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9167.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9170.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9170.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/IMG_9964.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/IMG_9964.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <div class="grid-item" data-cat="photoshoot" data-src="Photoshoot/DSC09029.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Photoshoot/DSC09029.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Photoshoot</span></div></div>
+    <!-- Music: 15 -->
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0008.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0008.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0050.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0050.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0102.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0102.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0116.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0116.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0177.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0177.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0378.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0378.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0481.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0481.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/DSC_0808.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/DSC_0808.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09497.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09497.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09831.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09831.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09832.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09832.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/NU_09842.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/NU_09842.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0604.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0604.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0627.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0627.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <div class="grid-item" data-cat="music" data-src="Music/_DSC0767.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Music/_DSC0767.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Music</span></div></div>
+    <!-- Sports: 6 -->
+    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0959.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/DSC_0959.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/DSC_0996.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/DSC_0996.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0489.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0489.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0491.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0491.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_0519.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_0519.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
+    <div class="grid-item" data-cat="sports" data-src="Sports/IMG_2867.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Sports/IMG_2867.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Sports</span></div></div>
     <!-- Wildlife: 6 -->
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/IMG_2246.PNG><img src= + lazy +   data-lazy=Wildlife/IMG_2246.PNG decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/IMG_9323.jpg><img src= + lazy +   data-lazy=Wildlife/IMG_9323.jpg decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/IMG_9340.jpg><img src= + lazy +   data-lazy=Wildlife/IMG_9340.jpg decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/IMG_9343.jpg><img src= + lazy +   data-lazy=Wildlife/IMG_9343.jpg decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/simar4.jpg><img src= + lazy +   data-lazy=Wildlife/simar4.jpg decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-    <div class=grid-item data-cat=wildlife data-src=Wildlife/simar6.jpg><img src= + lazy +   data-lazy=Wildlife/simar6.jpg decoding=async alt=><div class=grid-item-overlay><span class=grid-cat>Wildlife</span></div></div>
-
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/IMG_2246.PNG"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/IMG_2246.PNG" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/IMG_9323.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/IMG_9323.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/IMG_9340.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/IMG_9340.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/IMG_9343.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/IMG_9343.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/simar4.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/simar4.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
+    <div class="grid-item" data-cat="wildlife" data-src="Wildlife/simar6.jpg"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy="Wildlife/simar6.jpg" decoding="async" alt=""><div class="grid-item-overlay"><span class="grid-cat">Wildlife</span></div></div>
   </div>
 </section>
 
@@ -2024,67 +1994,35 @@
   <div class="cat-showcase" id="catShowcase">
     <a class="cat-card" href="#portfolio" data-filter="concerts">
       <img src="Concert/Simar(1).jpg" loading="eager" decoding="async" alt="Concert Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">01</div>
-        <div class="cat-card-title">Concert<br>Photography</div>
-        <div class="cat-card-sub">Live Energy</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">01</div><div class="cat-card-title">Concert<br>Photography</div><div class="cat-card-sub">Live Energy</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dance">
       <img src="Dance/DSC_5197.jpg" loading="eager" decoding="async" alt="Dance Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">02</div>
-        <div class="cat-card-title">Dance<br>Photography</div>
-        <div class="cat-card-sub">Movement & Expression</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">02</div><div class="cat-card-title">Dance<br>Photography</div><div class="cat-card-sub">Movement & Expression</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="sports">
       <img src="Sports/DSC_0959.jpg" loading="eager" decoding="async" alt="Sports Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">03</div>
-        <div class="cat-card-title">Sports<br>Photography</div>
-        <div class="cat-card-sub">Peak Action</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">03</div><div class="cat-card-title">Sports<br>Photography</div><div class="cat-card-sub">Peak Action</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dj">
       <img src="DJ/IMG_5126.jpeg" loading="eager" decoding="async" alt="DJ Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">04</div>
-        <div class="cat-card-title">DJ<br>Photography</div>
-        <div class="cat-card-sub">Nightlife</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">04</div><div class="cat-card-title">DJ<br>Photography</div><div class="cat-card-sub">Nightlife</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="music">
       <img src="Music/NU_09831.jpg" loading="eager" decoding="async" alt="Music Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">05</div>
-        <div class="cat-card-title">Music<br>Photography</div>
-        <div class="cat-card-sub">Artists & Soul</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">05</div><div class="cat-card-title">Music<br>Photography</div><div class="cat-card-sub">Artists & Soul</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="photoshoot">
       <img src="Photoshoot/IMG_9004.jpg" loading="eager" decoding="async" alt="Creative Photoshoots">
-      <div class="cat-card-content">
-        <div class="cat-card-num">06</div>
-        <div class="cat-card-title">Creative<br>Photoshoots</div>
-        <div class="cat-card-sub">Portraits & Concepts</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">06</div><div class="cat-card-title">Creative<br>Photoshoots</div><div class="cat-card-sub">Portraits & Concepts</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="wildlife">
       <img src="Wildlife/IMG_9323.jpg" loading="eager" decoding="async" alt="Wildlife Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">07</div>
-        <div class="cat-card-title">Wildlife<br>Photography</div>
-        <div class="cat-card-sub">Nature & Wild</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">07</div><div class="cat-card-title">Wildlife<br>Photography</div><div class="cat-card-sub">Nature & Wild</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="fashion">
       <img src="Fashion/DSC_3512.jpg" loading="eager" decoding="async" alt="Fashion Photography">
-      <div class="cat-card-content">
-        <div class="cat-card-num">08</div>
-        <div class="cat-card-title">Fashion<br>Photography</div>
-        <div class="cat-card-sub">Style & Attitude</div>
-      </div>
+      <div class="cat-card-content"><div class="cat-card-num">08</div><div class="cat-card-title">Fashion<br>Photography</div><div class="cat-card-sub">Style & Attitude</div></div>
     </a>
   </div>
 </section>
@@ -2098,11 +2036,9 @@
     </div>
   </div>
   <div class="rating-grid reveal">
-    <!-- Left: Submit a rating -->
     <div class="rating-left">
       <div>
         <p style="font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Loved a shot? Hated one? Either way — let me know. Your feedback helps me get sharper with every session.</p>
-        <!-- Category picker -->
         <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Choose a category</p>
         <div class="rating-cat-select" id="ratingCatSelect">
           <button class="rating-cat-btn active" data-cat="Overall">Overall</button>
@@ -2116,7 +2052,6 @@
           <button class="rating-cat-btn" data-cat="Photoshoot">Photoshoot</button>
         </div>
       </div>
-      <!-- Star selector -->
       <div>
         <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Your rating</p>
         <div class="star-widget" id="starWidget">
@@ -2128,17 +2063,13 @@
           <span class="sw-label" id="starLabel">—</span>
         </div>
       </div>
-      <!-- Comment -->
       <div>
         <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Leave a comment <span style="color:var(--muted);font-size:0.58rem;">(optional)</span></p>
         <textarea class="rating-textarea" id="ratingComment" placeholder="What stood out? What could be better?"></textarea>
       </div>
       <button class="rating-submit" onclick="submitRating()">Submit Rating →</button>
     </div>
-
-    <!-- Right: Live ratings display -->
     <div class="rating-right">
-      <!-- Average score -->
       <div class="avg-rating-box" id="avgBox" style="display:none;">
         <div class="avg-big" id="avgScore">—</div>
         <div class="avg-label">
@@ -2147,14 +2078,9 @@
           <div style="font-size:0.65rem;color:var(--muted);margin-top:0.3rem;font-family:'Syne',sans-serif;letter-spacing:0.12em;text-transform:uppercase;">Community Score</div>
         </div>
       </div>
-
       <p style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:0.5rem;"><span style="display:inline-block;width:20px;height:1px;background:var(--accent);"></span>Recent ratings</p>
-
       <div class="ratings-display" id="ratingsDisplay">
-        <div class="no-ratings">
-          <div class="nr-icon">📷</div>
-          <p>No ratings yet — be the first to leave one.</p>
-        </div>
+        <div class="no-ratings"><div class="nr-icon">📷</div><p>No ratings yet — be the first to leave one.</p></div>
       </div>
     </div>
   </div>
@@ -2206,24 +2132,20 @@
       </div>
       <div class="contact-links">
         <a href="https://instagram.com/moodinpixels__" target="_blank" class="contact-link">
-          <div>
-            Instagram
-            <span class="contact-link-sub">@moodinpixels__</span>
-          </div>
+          <div>Instagram<span class="contact-link-sub">@moodinpixels__</span></div>
           <span class="contact-link-arrow">↗</span>
         </a>
-        <a href="/cdn-cgi/l/email-protection#a6cbc9c9c2cfc8d6cfdec3cad5e6c1cbc7cfca88c5c9cb" class="contact-link">
-          <div>
-            Email
-            <span class="contact-link-sub"><span class="__cf_email__" data-cfemail="432e2c2c272a2d332a3b262f3003242e222a2f6d202c2e">[email&#160;protected]</span></span>
-          </div>
+        <!-- ── THREADS LINK (NEW) ── -->
+        <a href="https://www.threads.net/@lensofsimar_" target="_blank" class="contact-link">
+          <div>Threads<span class="contact-link-sub">@lensofsimar_</span></div>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a href="mailto:moodinpixels@gmail.com" class="contact-link">
+          <div>Email<span class="contact-link-sub">moodinpixels@gmail.com</span></div>
           <span class="contact-link-arrow">↗</span>
         </a>
         <a href="https://wa.me/919690151550" target="_blank" class="contact-link">
-          <div>
-            WhatsApp
-            <span class="contact-link-sub">+91 96901 51550</span>
-          </div>
+          <div>WhatsApp<span class="contact-link-sub">+91 96901 51550</span></div>
           <span class="contact-link-arrow">↗</span>
         </a>
       </div>
@@ -2283,7 +2205,44 @@
   <button class="lb-nav lb-next" id="lbNext">›</button>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- CINEMATIC INTRO OVERLAY -->
+<div id="page-intro">
+  <div class="intro-logo">MOODINPIXELS<div class="intro-logo-fill">MOODINPIXELS</div></div>
+  <div class="intro-line"></div>
+  <div class="intro-sub">Simarpreet Singh · Photographer</div>
+  <div class="intro-progress"></div>
+</div>
+
+<!-- SCANLINES -->
+<div id="scanlines"></div>
+
+<!-- LETTERBOX BARS -->
+<div id="letterbox-top"></div>
+<div id="letterbox-bottom"></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- HERO SPOTLIGHT -->
+<script>
+(function() {
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const spot = document.createElement('div');
+    spot.id = 'hero-spotlight';
+    hero.appendChild(spot);
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+      const y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
+      spot.style.background = `radial-gradient(circle 350px at ${x}% ${y}%, rgba(255,255,255,0.05) 0%, transparent 70%)`;
+    });
+  }
+})();
+</script>
+
+<script>
   // Nav scroll
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -2292,10 +2251,8 @@
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('in-view'), 100);
-      }
+    entries.forEach((e) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in-view'), 100); }
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => obs.observe(el));
@@ -2321,7 +2278,6 @@
   // Filter
   const filterBtns = document.querySelectorAll('.filter-btn');
   const gridItems = document.querySelectorAll('#grid-all .grid-item');
-
   function applyFilter(f) {
     filterBtns.forEach(b => b.classList.remove('active'));
     const target = [...filterBtns].find(b => b.dataset.filter === f);
@@ -2329,24 +2285,19 @@
     gridItems.forEach(item => {
       const show = f === 'all' || item.dataset.cat === f;
       item.style.display = show ? '' : 'none';
-      // Eagerly load images in newly visible items that haven't loaded yet
       if (show) {
         const img = item.querySelector('img[data-lazy]');
         if (img) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }
       }
     });
   }
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-  });
+  filterBtns.forEach(btn => { btn.addEventListener('click', () => applyFilter(btn.dataset.filter)); });
 
   // Category showcase cards → scroll to portfolio + activate filter
   document.querySelectorAll('a.cat-card[data-filter]').forEach(card => {
     card.addEventListener('click', e => {
       e.preventDefault();
-      const f = card.dataset.filter;
-      applyFilter(f);
+      applyFilter(card.dataset.filter);
       document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
     });
   });
@@ -2359,32 +2310,19 @@
   const lbNext = document.getElementById('lbNext');
   let currentIdx = 0;
   const allGridItems = [...document.querySelectorAll('.grid-item[data-src]')];
-
   allGridItems.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      currentIdx = i;
-      lbImg.src = item.dataset.src;
-      lb.classList.add('open');
-    });
+    item.addEventListener('click', () => { currentIdx = i; lbImg.src = item.dataset.src; lb.classList.add('open'); });
   });
   lbClose.addEventListener('click', () => lb.classList.remove('open'));
   lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
-  lbPrev.addEventListener('click', () => {
-    currentIdx = (currentIdx - 1 + allGridItems.length) % allGridItems.length;
-    lbImg.src = allGridItems[currentIdx].dataset.src;
-  });
-  lbNext.addEventListener('click', () => {
-    currentIdx = (currentIdx + 1) % allGridItems.length;
-    lbImg.src = allGridItems[currentIdx].dataset.src;
-  });
+  lbPrev.addEventListener('click', () => { currentIdx = (currentIdx - 1 + allGridItems.length) % allGridItems.length; lbImg.src = allGridItems[currentIdx].dataset.src; });
+  lbNext.addEventListener('click', () => { currentIdx = (currentIdx + 1) % allGridItems.length; lbImg.src = allGridItems[currentIdx].dataset.src; });
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape') lb.classList.remove('open');
     if (e.key === 'ArrowLeft') lbPrev.click();
     if (e.key === 'ArrowRight') lbNext.click();
   });
-
-  // Touch swipe for lightbox on mobile
   let _tsx = 0;
   lb.addEventListener('touchstart', e => { _tsx = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener('touchend', e => {
@@ -2392,100 +2330,47 @@
     if (Math.abs(dx) > 50) dx < 0 ? lbNext.click() : lbPrev.click();
   }, { passive: true });
 
-  // ── IMAGE LOADING STRATEGY ──
-  // 1. Visible images (outside grid): observe with generous margin
-  // 2. Grid images: load ALL immediately in small batches — they're the core content
-  //    and must be ready before a filter tab is clicked
-
+  // Image loading
   const gridImgs = [...document.querySelectorAll('#grid-all img[data-lazy]')];
   const otherLazyImgs = [...document.querySelectorAll('img[data-lazy]')].filter(img => !img.closest('#grid-all'));
-
-  // Load non-grid lazy images with IntersectionObserver
   if (otherLazyImgs.length) {
     if ('IntersectionObserver' in window) {
       const imgObs = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const img = e.target;
-            img.src = img.dataset.lazy;
-            img.removeAttribute('data-lazy');
-            obs.unobserve(img);
-          }
-        });
+        entries.forEach(e => { if (e.isIntersecting) { const img = e.target; img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); obs.unobserve(img); } });
       }, { rootMargin: '800px 0px' });
       otherLazyImgs.forEach(img => imgObs.observe(img));
-    } else {
-      otherLazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); });
-    }
+    } else { otherLazyImgs.forEach(img => { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }); }
   }
-
-  // Load ALL grid images in batches immediately — no waiting
   (function loadGridImages() {
-    let i = 0;
-    const BATCH = 6; // load 6 at a time
+    let i = 0; const BATCH = 6;
     function loadBatch() {
       const end = Math.min(i + BATCH, gridImgs.length);
-      for (; i < end; i++) {
-        const img = gridImgs[i];
-        if (img.dataset.lazy) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); }
-      }
+      for (; i < end; i++) { const img = gridImgs[i]; if (img.dataset.lazy) { img.src = img.dataset.lazy; img.removeAttribute('data-lazy'); } }
       if (i < gridImgs.length) setTimeout(loadBatch, 100);
     }
     loadBatch();
   })();
+
   function sendToWhatsApp() {
-    const name    = document.getElementById('enq-name').value.trim();
+    const name = document.getElementById('enq-name').value.trim();
     const contact = document.getElementById('enq-contact').value.trim();
-    const type    = document.getElementById('enq-type').value.trim();
+    const type = document.getElementById('enq-type').value.trim();
     const message = document.getElementById('enq-message').value.trim();
-
-    if (!name || !contact) {
-      alert('Please fill in your name and contact details.');
-      return;
-    }
-
-    const text = [
-      '📸 *New Booking Enquiry — MoodinPixels*',
-      '',
-      `👤 *Name:* ${name}`,
-      `📞 *Contact:* ${contact}`,
-      type    ? `📷 *Photography Type:* ${type}` : '',
-      message ? `📝 *Project Details:*\n${message}` : '',
-    ].filter(Boolean).join('\n');
-
-    const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/917078475379?text=${encoded}`, '_blank');
+    if (!name || !contact) { alert('Please fill in your name and contact details.'); return; }
+    const text = ['📸 *New Booking Enquiry — MoodinPixels*','',`👤 *Name:* ${name}`,`📞 *Contact:* ${contact}`,type ? `📷 *Photography Type:* ${type}` : '',message ? `📝 *Project Details:*\n${message}` : ''].filter(Boolean).join('\n');
+    window.open(`https://wa.me/917078475379?text=${encodeURIComponent(text)}`, '_blank');
   }
-
   function sendToEmail() {
-    const name    = document.getElementById('enq-name').value.trim();
+    const name = document.getElementById('enq-name').value.trim();
     const contact = document.getElementById('enq-contact').value.trim();
-    const type    = document.getElementById('enq-type').value.trim();
+    const type = document.getElementById('enq-type').value.trim();
     const message = document.getElementById('enq-message').value.trim();
-
-    if (!name || !contact) {
-      alert('Please fill in your name and contact details.');
-      return;
-    }
-
+    if (!name || !contact) { alert('Please fill in your name and contact details.'); return; }
     const subject = encodeURIComponent('New Booking Enquiry — MoodinPixels');
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Contact: ${contact}`,
-        type    ? `Photography Type: ${type}` : '',
-        message ? `Project Details:\n${message}` : '',
-      ].filter(Boolean).join('\n')
-    );
-
+    const body = encodeURIComponent([`Name: ${name}`,`Contact: ${contact}`,type ? `Photography Type: ${type}` : '',message ? `Project Details:\n${message}` : ''].filter(Boolean).join('\n'));
     window.open(`mailto:moodinpixels@gmail.com?subject=${subject}&body=${body}`, '_blank');
   }
-
-  // Custom dropdown
-  function toggleDropdown() {
-    const dd = document.getElementById('enq-type-dropdown');
-    dd.classList.toggle('open');
-  }
+  function toggleDropdown() { document.getElementById('enq-type-dropdown').classList.toggle('open'); }
   function selectCategory(el) {
     const val = el.dataset.value;
     document.getElementById('enq-type').value = val;
@@ -2496,29 +2381,16 @@
     el.classList.add('selected');
     document.getElementById('enq-type-dropdown').classList.remove('open');
   }
-  // Close dropdown when clicking outside
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.form-select-wrap')) {
-      document.getElementById('enq-type-dropdown')?.classList.remove('open');
-    }
-  });
+  document.addEventListener('click', e => { if (!e.target.closest('.form-select-wrap')) document.getElementById('enq-type-dropdown')?.classList.remove('open'); });
 
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-
-  function closeMobileMenu() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
+  function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
   hamburger.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-
-  // Close menu on scroll
   window.addEventListener('scroll', closeMobileMenu, { passive: true });
 
   // Dark / Light mode toggle
@@ -2527,841 +2399,227 @@
   const label = document.getElementById('mode-label');
   const iconDark = document.getElementById('mode-icon-dark');
   const iconLight = document.getElementById('mode-icon-light');
-
   function setMode(isLight) {
-    if (isLight) {
-      root.classList.add('light');
-      label.textContent = 'Dark';
-      iconDark.style.display = '';
-      iconLight.style.display = 'none';
-      localStorage.setItem('mip-mode', 'light');
-    } else {
-      root.classList.remove('light');
-      label.textContent = 'Light';
-      iconDark.style.display = 'none';
-      iconLight.style.display = '';
-      localStorage.setItem('mip-mode', 'dark');
-    }
+    if (isLight) { root.classList.add('light'); label.textContent = 'Dark'; iconDark.style.display = ''; iconLight.style.display = 'none'; localStorage.setItem('mip-mode', 'light'); }
+    else { root.classList.remove('light'); label.textContent = 'Light'; iconDark.style.display = 'none'; iconLight.style.display = ''; localStorage.setItem('mip-mode', 'dark'); }
   }
-
-  // Apply saved preference on load
-  const savedMode = localStorage.getItem('mip-mode');
-  setMode(savedMode === 'light');
-
-  toggle.addEventListener('click', () => {
-    setMode(!root.classList.contains('light'));
-  });
+  setMode(localStorage.getItem('mip-mode') === 'light');
+  toggle.addEventListener('click', () => setMode(!root.classList.contains('light')));
 
   // Hero image rotation
   const heroBlocks = document.querySelectorAll('.hero-img-block');
   let heroIdx = 0;
   if (heroBlocks.length > 1) {
-    setInterval(() => {
-      heroBlocks[heroIdx].classList.remove('active');
-      heroIdx = (heroIdx + 1) % heroBlocks.length;
-      heroBlocks[heroIdx].classList.add('active');
-    }, 4000);
+    setInterval(() => { heroBlocks[heroIdx].classList.remove('active'); heroIdx = (heroIdx + 1) % heroBlocks.length; heroBlocks[heroIdx].classList.add('active'); }, 4000);
   }
 
-  // ═══════════════════════════════════════════════════
-  // FEATURE 3 — HORIZONTAL DRAG CAROUSEL
-  // ═══════════════════════════════════════════════════
+  // Drag carousel
   (function() {
     const track = document.getElementById('catShowcase');
-    const hint  = document.getElementById('catDragHint');
+    const hint = document.getElementById('catDragHint');
     if (!track) return;
     let isDown = false, startX = 0, scrollLeft = 0;
-
-    track.addEventListener('mousedown', e => {
-      isDown = true; track.classList.add('dragging');
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
-    });
+    track.addEventListener('mousedown', e => { isDown = true; track.classList.add('dragging'); startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
     track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
-    track.addEventListener('mouseup',    () => { isDown = false; track.classList.remove('dragging'); });
-    track.addEventListener('mousemove',  e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollLeft - (x - startX) * 1.2;
-    });
-
-    // Hide drag hint once user has scrolled
-    track.addEventListener('scroll', () => {
-      if (track.scrollLeft > 20) hint.classList.add('hidden');
-    }, { passive: true });
-
-    // Prevent click-through after drag
-    track.addEventListener('click', e => {
-      if (Math.abs(track.scrollLeft - scrollLeft) > 5) e.preventDefault();
-    });
+    track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.2; });
+    track.addEventListener('scroll', () => { if (track.scrollLeft > 20) hint.classList.add('hidden'); }, { passive: true });
+    track.addEventListener('click', e => { if (Math.abs(track.scrollLeft - scrollLeft) > 5) e.preventDefault(); });
   })();
 
-  // ═══════════════════════════════════════════════════
-  // FEATURE 8 — TYPEWRITER FILTER LABEL
-  // ═══════════════════════════════════════════════════
+  // Typewriter filter label
   (function() {
     const labelEl = document.getElementById('filter-label');
     if (!labelEl) return;
-
-    // Count items per category
-    const allItems = [...document.querySelectorAll('#grid-all .grid-item')];
-    const counts = { all: allItems.length };
-    allItems.forEach(item => {
-      const cat = item.dataset.cat;
-      counts[cat] = (counts[cat] || 0) + 1;
-    });
-
-    const labels = {
-      all:        `Showing all photos`,
-      concerts:   `Showing Concert photos`,
-      dance:      `Showing Dance photos`,
-      dj:         `Showing DJ photos`,
-      photoshoot: `Showing Photoshoot photos`,
-      music:      `Showing Music photos`,
-      sports:     `Showing Sports photos`,
-      wildlife:   `Showing Wildlife photos`,
-      fashion:    `Showing Fashion photos`,
-    };
-
+    const labels = { all:'Showing all photos', concerts:'Showing Concert photos', dance:'Showing Dance photos', dj:'Showing DJ photos', photoshoot:'Showing Photoshoot photos', music:'Showing Music photos', sports:'Showing Sports photos', wildlife:'Showing Wildlife photos', fashion:'Showing Fashion photos' };
     let typeTimer = null;
-
     function typewrite(text) {
       if (typeTimer) clearTimeout(typeTimer);
       const textSpan = labelEl.querySelector('.tl-text');
       const cursorSpan = labelEl.querySelector('.tl-cursor');
-      textSpan.textContent = '';
-      cursorSpan.classList.add('typing');
+      textSpan.textContent = ''; cursorSpan.classList.add('typing');
       let i = 0;
-      function type() {
-        if (i <= text.length) {
-          textSpan.textContent = text.slice(0, i);
-          i++;
-          typeTimer = setTimeout(type, 28);
-        } else {
-          // typing done — hide cursor
-          cursorSpan.classList.remove('typing');
-        }
-      }
+      function type() { if (i <= text.length) { textSpan.textContent = text.slice(0, i); i++; typeTimer = setTimeout(type, 28); } else { cursorSpan.classList.remove('typing'); } }
       type();
     }
-
-    // Intercept filter clicks to update label
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const f = btn.dataset.filter;
-        typewrite(labels[f] || `Showing ${f} photos`);
-      });
-    });
-
-    // Ensure span exists
-    const ts = document.createElement('span');
-    ts.className = 'tl-text';
-    ts.textContent = labels.all;
-    const cursor = document.createElement('span');
-    cursor.className = 'tl-cursor';
-    labelEl.innerHTML = '';
-    labelEl.appendChild(ts);
-    labelEl.appendChild(cursor);
+    document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => typewrite(labels[btn.dataset.filter] || `Showing ${btn.dataset.filter} photos`)); });
+    const ts = document.createElement('span'); ts.className = 'tl-text'; ts.textContent = labels.all;
+    const cursor = document.createElement('span'); cursor.className = 'tl-cursor';
+    labelEl.innerHTML = ''; labelEl.appendChild(ts); labelEl.appendChild(cursor);
   })();
 
-
-  // ═══════════════════════════════════════════════════
-  // CATEGORY CARD CINEMATIC REVEAL
-  // ═══════════════════════════════════════════════════
+  // Category card reveal
   (function() {
     const cards = document.querySelectorAll('.cat-card');
-    if (!cards.length) return;
     const showcase = document.querySelector('.cat-showcase');
-    if (!showcase) return;
+    if (!cards.length || !showcase) return;
     const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Trigger all cards with staggered delay
-          cards.forEach(card => card.classList.add('cat-revealed'));
-          revealObs.disconnect();
-        }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) { cards.forEach(card => card.classList.add('cat-revealed')); revealObs.disconnect(); } });
     }, { threshold: 0.15 });
     revealObs.observe(showcase);
   })();
 
-  // ═══════════════════════════════════════════════════
-  // RATING SYSTEM
-  // ═══════════════════════════════════════════════════
+  // Rating system
   (function() {
     const STORAGE_KEY = 'moodinpixels_ratings_v2';
     const starLabels = ['','Dreadful','Mediocre','Decent','Great','Outstanding'];
-    let selectedRating = 0;
-    let selectedCat = 'Overall';
-    let ratings = [];
-
-    // Load stored ratings
+    let selectedRating = 0, selectedCat = 'Overall', ratings = [];
     try { ratings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { ratings = []; }
-
-    // Category buttons
-    document.querySelectorAll('.rating-cat-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.rating-cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedCat = btn.dataset.cat;
-      });
-    });
-
-    // Star interaction
+    document.querySelectorAll('.rating-cat-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.rating-cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); selectedCat = btn.dataset.cat; }); });
     const stars = document.querySelectorAll('#starWidget .sw-star');
     const label = document.getElementById('starLabel');
-
     stars.forEach(star => {
-      star.addEventListener('mouseover', () => {
-        const val = +star.dataset.val;
-        stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= val));
-        label.textContent = starLabels[val];
-      });
-      star.addEventListener('click', () => {
-        selectedRating = +star.dataset.val;
-        label.textContent = starLabels[selectedRating];
-      });
+      star.addEventListener('mouseover', () => { const val = +star.dataset.val; stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= val)); label.textContent = starLabels[val]; });
+      star.addEventListener('click', () => { selectedRating = +star.dataset.val; label.textContent = starLabels[selectedRating]; });
     });
-    document.getElementById('starWidget').addEventListener('mouseleave', () => {
-      stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= selectedRating));
-      label.textContent = selectedRating ? starLabels[selectedRating] : '—';
-    });
-
-    // Submit
+    document.getElementById('starWidget').addEventListener('mouseleave', () => { stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= selectedRating)); label.textContent = selectedRating ? starLabels[selectedRating] : '—'; });
     window.submitRating = function() {
-      if (!selectedRating) {
-        showToast('Please select a star rating first', true);
-        return;
-      }
+      if (!selectedRating) { showToast('Please select a star rating first', true); return; }
       const comment = document.getElementById('ratingComment').value.trim();
-      const entry = {
-        rating: selectedRating,
-        cat: selectedCat,
-        comment,
-        time: new Date().toISOString()
-      };
+      const entry = { rating: selectedRating, cat: selectedCat, comment, time: new Date().toISOString() };
       ratings.unshift(entry);
       if (ratings.length > 50) ratings = ratings.slice(0, 50);
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ratings)); } catch(e) {}
-
-      // Reset
-      selectedRating = 0;
-      stars.forEach(s => s.classList.remove('lit'));
-      if (label) label.textContent = '—';
+      selectedRating = 0; stars.forEach(s => s.classList.remove('lit')); if (label) label.textContent = '—';
       document.getElementById('ratingComment').value = '';
-
-      renderRatings();
-      showToast('Rating submitted — thank you! ✦');
+      renderRatings(); showToast('Rating submitted — thank you! ✦');
     };
-
     function renderRatings() {
       const display = document.getElementById('ratingsDisplay');
-      const avgBox  = document.getElementById('avgBox');
+      const avgBox = document.getElementById('avgBox');
       if (!display) return;
-
-      if (!ratings.length) {
-        display.innerHTML = '<div class="no-ratings"><div class="nr-icon">📷</div><p>No ratings yet — be the first to leave one.</p></div>';
-        if (avgBox) avgBox.style.display = 'none';
-        return;
-      }
-
-      // Compute average
+      if (!ratings.length) { display.innerHTML = '<div class="no-ratings"><div class="nr-icon">📷</div><p>No ratings yet — be the first to leave one.</p></div>'; if (avgBox) avgBox.style.display = 'none'; return; }
       const avg = (ratings.reduce((s, r) => s + r.rating, 0) / ratings.length).toFixed(1);
-      if (avgBox) {
-        avgBox.style.display = 'flex';
-        document.getElementById('avgScore').textContent = avg;
-        document.getElementById('avgStars').textContent = '★'.repeat(Math.round(+avg)) + '☆'.repeat(5 - Math.round(+avg));
-        document.getElementById('avgCount').textContent = `${ratings.length} rating${ratings.length !== 1 ? 's' : ''}`;
-      }
-
-      display.innerHTML = ratings.slice(0, 8).map(r => {
-        const timeAgo = timeSince(new Date(r.time));
-        return `<div class="rating-entry">
-          <div class="rating-entry-header">
-            <span class="re-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
-            <span class="re-cat">${r.cat}</span>
-            <span class="re-time">${timeAgo}</span>
-          </div>
-          ${r.comment ? `<p class="re-text">${escHtml(r.comment)}</p>` : ''}
-        </div>`;
-      }).join('');
+      if (avgBox) { avgBox.style.display = 'flex'; document.getElementById('avgScore').textContent = avg; document.getElementById('avgStars').textContent = '★'.repeat(Math.round(+avg)) + '☆'.repeat(5 - Math.round(+avg)); document.getElementById('avgCount').textContent = `${ratings.length} rating${ratings.length !== 1 ? 's' : ''}`; }
+      display.innerHTML = ratings.slice(0, 8).map(r => `<div class="rating-entry"><div class="rating-entry-header"><span class="re-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span><span class="re-cat">${r.cat}</span><span class="re-time">${timeSince(new Date(r.time))}</span></div>${r.comment ? `<p class="re-text">${escHtml(r.comment)}</p>` : ''}</div>`).join('');
     }
-
-    function timeSince(date) {
-      const s = Math.floor((new Date() - date) / 1000);
-      if (s < 60) return 'just now';
-      if (s < 3600) return Math.floor(s/60) + 'm ago';
-      if (s < 86400) return Math.floor(s/3600) + 'h ago';
-      return Math.floor(s/86400) + 'd ago';
-    }
-
-    function escHtml(s) {
-      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
+    function timeSince(date) { const s = Math.floor((new Date() - date) / 1000); if (s < 60) return 'just now'; if (s < 3600) return Math.floor(s/60) + 'm ago'; if (s < 86400) return Math.floor(s/3600) + 'h ago'; return Math.floor(s/86400) + 'd ago'; }
+    function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
     function showToast(msg, isError) {
       let toast = document.getElementById('rating-toast');
-      if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'rating-toast';
-        document.body.appendChild(toast);
-      }
-      toast.textContent = msg;
-      toast.style.borderColor = isError ? 'rgba(240,80,80,0.4)' : 'rgba(110,232,122,0.3)';
-      toast.style.color = isError ? '#f08080' : '#6ee87a';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2800);
+      if (!toast) { toast = document.createElement('div'); toast.id = 'rating-toast'; document.body.appendChild(toast); }
+      toast.textContent = msg; toast.style.borderColor = isError ? 'rgba(240,80,80,0.4)' : 'rgba(110,232,122,0.3)'; toast.style.color = isError ? '#f08080' : '#6ee87a';
+      toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2800);
     }
-
     renderRatings();
   })();
-
-  // Ambient sound JS removed
-</script>
-
-
-<!-- ════════════════════════════════════════════════
-     CRAZY ADDITIONS: Cursor Trail + Glitch + Magnetic + Intro
-════════════════════════════════════════════════ -->
-<style>
-  /* ── CUSTOM CURSOR ── */
-  * { cursor: none !important; }
-  #cursor-dot {
-    position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #fff; mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, opacity 0.2s;
-    will-change: transform;
-  }
-  #cursor-ring {
-    position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.5);
-    transform: translate(-50%, -50%);
-    transition: width 0.35s cubic-bezier(0.22,1,0.36,1),
-                height 0.35s cubic-bezier(0.22,1,0.36,1),
-                border-color 0.3s, opacity 0.3s;
-    mix-blend-mode: difference;
-    will-change: transform;
-  }
-  body.cursor-hovering #cursor-dot { width: 14px; height: 14px; }
-  body.cursor-hovering #cursor-ring {
-    width: 60px; height: 60px;
-    border-color: rgba(255,255,255,0.9);
-  }
-  body.cursor-clicking #cursor-dot { width: 4px; height: 4px; opacity: 0.6; }
-  body.cursor-clicking #cursor-ring { width: 28px; height: 28px; }
-
-  /* ── CURSOR TRAIL PARTICLES ── */
-  .cursor-trail {
-    position: fixed; top: 0; left: 0; z-index: 99997; pointer-events: none;
-    border-radius: 50%; background: rgba(255,255,255,0.6);
-    mix-blend-mode: screen;
-    transform: translate(-50%, -50%) scale(1);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    will-change: transform, opacity;
-  }
-
-  /* ── GLITCH TEXT EFFECT ── */
-  .glitch-text {
-    position: relative;
-    display: inline-block;
-  }
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    opacity: 0;
-  }
-  .glitch-text::before {
-    color: #0ff;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    animation: none;
-  }
-  .glitch-text::after {
-    color: #f0f;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    animation: none;
-  }
-  .glitch-text.glitching::before {
-    opacity: 0.8;
-    animation: glitch-top 0.3s steps(2) forwards;
-  }
-  .glitch-text.glitching::after {
-    opacity: 0.8;
-    animation: glitch-bottom 0.3s steps(2) forwards;
-  }
-  @keyframes glitch-top {
-    0%   { transform: translate(-2px, -1px); }
-    25%  { transform: translate(2px, 1px); }
-    50%  { transform: translate(-3px, 0); clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%); }
-    75%  { transform: translate(1px, -2px); }
-    100% { transform: translate(0); opacity: 0; }
-  }
-  @keyframes glitch-bottom {
-    0%   { transform: translate(2px, 1px); }
-    25%  { transform: translate(-2px, -1px); }
-    50%  { transform: translate(3px, 0); clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
-    75%  { transform: translate(-1px, 2px); }
-    100% { transform: translate(0); opacity: 0; }
-  }
-
-  /* ── CINEMATIC PAGE INTRO ── */
-  #page-intro {
-    position: fixed; inset: 0; z-index: 999999;
-    display: flex; align-items: center; justify-content: center;
-    background: #080808;
-    flex-direction: column; gap: 1.5rem;
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.77,0,0.175,1);
-  }
-  #page-intro.hide {
-    opacity: 0;
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
-  .intro-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: 0.15em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
-    position: relative;
-    overflow: hidden;
-  }
-  .intro-logo-fill {
-    position: absolute; inset: 0;
-    color: #e8e8e8;
-    -webkit-text-stroke: 0;
-    clip-path: inset(100% 0 0 0);
-    animation: logoReveal 1.2s cubic-bezier(0.77,0,0.175,1) 0.3s forwards;
-    white-space: nowrap;
-  }
-  @keyframes logoReveal {
-    to { clip-path: inset(0% 0 0 0); }
-  }
-  .intro-line {
-    width: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,200,200,0.6), transparent);
-    animation: introLine 0.8s ease 0.8s forwards;
-  }
-  @keyframes introLine { to { width: min(400px, 60vw); } }
-  .intro-sub {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(200,200,200,0.5);
-    opacity: 0;
-    animation: fadeInSub 0.6s ease 1.1s forwards;
-  }
-  @keyframes fadeInSub { to { opacity: 1; } }
-  .intro-progress {
-    position: absolute; bottom: 0; left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(200,200,200,0.3), rgba(200,200,200,0.8));
-    width: 0;
-    animation: introProgress 1.8s ease forwards;
-  }
-  @keyframes introProgress { to { width: 100%; } }
-
-  /* ── MAGNETIC BUTTON WRAPPER ── */
-  .mag-wrap {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
-  }
-
-  /* ── SCROLL VELOCITY TILT ── */
-  .hero-title {
-    transition: transform 0.1s linear;
-  }
-
-  /* ── SPOTLIGHT FOLLOW EFFECT on hero ── */
-  #hero-spotlight {
-    position: absolute; inset: 0; pointer-events: none; z-index: 3;
-    background: radial-gradient(circle 300px at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
-    transition: background 0.1s;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  .hero:hover #hero-spotlight { opacity: 1; }
-
-  /* ── NOISE FLASH on image hover ── */
-  .grid-item::after {
-    content: '';
-    position: absolute; inset: 0; z-index: 3;
-    opacity: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .grid-item:hover::after { opacity: 0.15; }
-
-  /* ── SCANLINE EFFECT (subtle) ── */
-  #scanlines {
-    position: fixed; inset: 0; z-index: 2; pointer-events: none;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 4px
-    );
-    opacity: 0.4;
-    mix-blend-mode: multiply;
-  }
-  :root.light #scanlines { opacity: 0.15; }
-
-  /* ── CORNER BRACKETS on hover for grid items ── */
-  .grid-item .corner-tl,
-  .grid-item .corner-br {
-    position: absolute; z-index: 4;
-    width: 20px; height: 20px;
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-    pointer-events: none;
-  }
-  .grid-item .corner-tl {
-    top: 10px; left: 10px;
-    border-top: 1px solid rgba(255,255,255,0.7);
-    border-left: 1px solid rgba(255,255,255,0.7);
-    transform: translate(-4px, -4px);
-  }
-  .grid-item .corner-br {
-    bottom: 10px; right: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.7);
-    border-right: 1px solid rgba(255,255,255,0.7);
-    transform: translate(4px, 4px);
-  }
-  .grid-item:hover .corner-tl,
-  .grid-item:hover .corner-br {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-</style>
-
-<!-- CINEMATIC INTRO OVERLAY -->
-<div id="page-intro">
-  <div class="intro-logo">
-    MOODINPIXELS
-    <div class="intro-logo-fill">MOODINPIXELS</div>
-  </div>
-  <div class="intro-line"></div>
-  <div class="intro-sub">Simarpreet Singh · Photographer</div>
-  <div class="intro-progress"></div>
-</div>
-
-<!-- SCANLINES -->
-<div id="scanlines"></div>
-
-<!-- LETTERBOX BARS -->
-<div id="letterbox-top"></div>
-<div id="letterbox-bottom"></div>
-
-
-
-<!-- DARKROOM SAFELIGHT -->
-<div id="darkroom-safelight"></div>
-
-<!-- CUSTOM CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-
-<!-- HERO SPOTLIGHT -->
-<script>
-(function() {
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const spot = document.createElement('div');
-    spot.id = 'hero-spotlight';
-    hero.appendChild(spot);
-    hero.addEventListener('mousemove', e => {
-      const r = hero.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
-      const y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
-      spot.style.background = `radial-gradient(circle 350px at ${x}% ${y}%, rgba(255,255,255,0.05) 0%, transparent 70%)`;
-    });
-  }
-})();
 </script>
 
 <script>
-// ════════════════════════════════════════════
-// 1. CINEMATIC PAGE INTRO
-// ════════════════════════════════════════════
+// Cinematic page intro
 (function() {
   const intro = document.getElementById('page-intro');
   if (!intro) return;
-  // Dismiss after 2.2s
   setTimeout(() => intro.classList.add('hide'), 2200);
-  // Also dismiss on click
   intro.addEventListener('click', () => intro.classList.add('hide'));
 })();
 
-// ════════════════════════════════════════════
-// 2. CUSTOM CURSOR + TRAIL
-// ════════════════════════════════════════════
+// Custom cursor + trail
 (function() {
-  const dot  = document.getElementById('cursor-dot');
+  const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
   if (!dot || !ring) return;
-
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-  let rx = mx, ry = my;
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
   const trail = [];
-  const TRAIL_COUNT = 12;
-
-  // Pre-create trail particles
-  for (let i = 0; i < TRAIL_COUNT; i++) {
-    const p = document.createElement('div');
-    p.className = 'cursor-trail';
-    const s = 4 - (i * 0.25);
-    p.style.cssText = `width:${s}px;height:${s}px;opacity:0;`;
-    document.body.appendChild(p);
-    trail.push({ el: p, x: mx, y: my, opacity: 0 });
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div'); p.className = 'cursor-trail';
+    const s = 4 - (i * 0.25); p.style.cssText = `width:${s}px;height:${s}px;opacity:0;`;
+    document.body.appendChild(p); trail.push({ el: p, x: mx, y: my });
   }
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-  });
-
-  // Lerp ring to cursor
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`; });
   function lerp(a, b, t) { return a + (b - a) * t; }
-
-  let frame;
-  function animate() {
-    rx = lerp(rx, mx, 0.12);
-    ry = lerp(ry, my, 0.12);
+  (function animate() {
+    rx = lerp(rx, mx, 0.12); ry = lerp(ry, my, 0.12);
     ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-
-    // Shift trail
-    for (let i = trail.length - 1; i > 0; i--) {
-      trail[i].x = lerp(trail[i].x, trail[i-1].x, 0.35);
-      trail[i].y = lerp(trail[i].y, trail[i-1].y, 0.35);
-    }
-    trail[0].x = lerp(trail[0].x, mx, 0.5);
-    trail[0].y = lerp(trail[0].y, my, 0.5);
-
-    trail.forEach((p, i) => {
-      const fade = 1 - (i / TRAIL_COUNT);
-      p.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%,-50%) scale(${fade})`;
-      p.el.style.opacity = (fade * 0.35).toFixed(3);
-    });
-
-    frame = requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Hover detection
-  document.addEventListener('mouseover', e => {
-    const t = e.target;
-    if (t.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) {
-      document.body.classList.add('cursor-hovering');
-    }
-  });
-  document.addEventListener('mouseout', e => {
-    const t = e.target;
-    if (t.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) {
-      document.body.classList.remove('cursor-hovering');
-    }
-  });
+    for (let i = trail.length - 1; i > 0; i--) { trail[i].x = lerp(trail[i].x, trail[i-1].x, 0.35); trail[i].y = lerp(trail[i].y, trail[i-1].y, 0.35); }
+    trail[0].x = lerp(trail[0].x, mx, 0.5); trail[0].y = lerp(trail[0].y, my, 0.5);
+    trail.forEach((p, i) => { const fade = 1 - (i / trail.length); p.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%,-50%) scale(${fade})`; p.el.style.opacity = (fade * 0.35).toFixed(3); });
+    requestAnimationFrame(animate);
+  })();
+  document.addEventListener('mouseover', e => { if (e.target.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) document.body.classList.add('cursor-hovering'); });
+  document.addEventListener('mouseout', e => { if (e.target.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) document.body.classList.remove('cursor-hovering'); });
   document.addEventListener('mousedown', () => document.body.classList.add('cursor-clicking'));
-  document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-clicking'));
+  document.addEventListener('mouseup', () => document.body.classList.remove('cursor-clicking'));
 })();
 
-// ════════════════════════════════════════════
-// 3. GLITCH TEXT ON HERO TITLE HOVER
-// ════════════════════════════════════════════
+// Glitch text on hero title hover
 (function() {
-  const titles = document.querySelectorAll('.hero-title, .contact-title');
-  titles.forEach(el => {
-    el.classList.add('glitch-text');
-    el.setAttribute('data-text', el.textContent);
-    el.addEventListener('mouseenter', () => {
-      el.classList.add('glitching');
-      setTimeout(() => el.classList.remove('glitching'), 350);
-    });
+  document.querySelectorAll('.hero-title, .contact-title').forEach(el => {
+    el.classList.add('glitch-text'); el.setAttribute('data-text', el.textContent);
+    el.addEventListener('mouseenter', () => { el.classList.add('glitching'); setTimeout(() => el.classList.remove('glitching'), 350); });
   });
 })();
 
-// ════════════════════════════════════════════
-// 4. MAGNETIC BUTTONS
-// ════════════════════════════════════════════
+// Magnetic buttons
 (function() {
-  const btns = document.querySelectorAll('.btn-primary, .nav-cta, .form-submit, .rating-submit');
-  btns.forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = (e.clientX - cx) * 0.28;
-      const dy = (e.clientY - cy) * 0.28;
-      btn.style.transform = `translate(${dx}px, ${dy}px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0,0)';
-    });
+  document.querySelectorAll('.btn-primary, .nav-cta, .form-submit, .rating-submit').forEach(btn => {
+    btn.addEventListener('mousemove', e => { const r = btn.getBoundingClientRect(); btn.style.transform = `translate(${(e.clientX - r.left - r.width/2) * 0.28}px, ${(e.clientY - r.top - r.height/2) * 0.28}px)`; });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
   });
 })();
 
-// ════════════════════════════════════════════
-// 5. CORNER BRACKETS on all grid items
-// ════════════════════════════════════════════
+// Corner brackets
 (function() {
   document.querySelectorAll('.grid-item').forEach(item => {
-    const tl = document.createElement('div');
-    tl.className = 'corner-tl';
-    const br = document.createElement('div');
-    br.className = 'corner-br';
-    item.appendChild(tl);
-    item.appendChild(br);
+    const tl = document.createElement('div'); tl.className = 'corner-tl';
+    const br = document.createElement('div'); br.className = 'corner-br';
+    item.appendChild(tl); item.appendChild(br);
   });
 })();
 
-// ════════════════════════════════════════════
-// 6. SCROLL VELOCITY TILT on hero title
-// ════════════════════════════════════════════
+// Scroll velocity tilt
 (function() {
   const title = document.querySelector('.hero-title');
   if (!title) return;
-  let lastY = window.scrollY, tilt = 0;
-  window.addEventListener('scroll', () => {
-    const dy = window.scrollY - lastY;
-    tilt = Math.max(-4, Math.min(4, dy * 0.15));
-    title.style.transform = `skewX(${tilt}deg)`;
-    lastY = window.scrollY;
-  }, { passive: true });
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => { const dy = window.scrollY - lastY; title.style.transform = `skewX(${Math.max(-4, Math.min(4, dy * 0.15))}deg)`; lastY = window.scrollY; }, { passive: true });
 })();
 
-// ════════════════════════════════════════════
-// 7. RANDOM GLITCH FLASH every ~8s
-// ════════════════════════════════════════════
+// Random glitch on logo
 (function() {
   const logo = document.querySelector('.logo');
   if (!logo) return;
-  logo.classList.add('glitch-text');
-  logo.setAttribute('data-text', logo.textContent);
-  setInterval(() => {
-    logo.classList.add('glitching');
-    setTimeout(() => logo.classList.remove('glitching'), 350);
-  }, 8000 + Math.random() * 4000);
+  logo.classList.add('glitch-text'); logo.setAttribute('data-text', logo.textContent);
+  setInterval(() => { logo.classList.add('glitching'); setTimeout(() => logo.classList.remove('glitching'), 350); }, 8000 + Math.random() * 4000);
 })();
-</script>
 
-<script>
-// ════════════════════════════════════════════
-// A. TYPEWRITER GLITCH HERO
-// ════════════════════════════════════════════
+// Typewriter hero subtitle
 (function() {
   const el = document.getElementById('hero-tw');
   if (!el) return;
-  const phrases = [
-    'Concert Photographer',
-    'Wildlife Photographer',
-    'Dance & Performance',
-    'DJ & Nightlife',
-    'Sports Action',
-    'Fashion & Creative',
-    'Music Artist Shoots',
-    'Raw Energy. Real Moments.',
-  ];
+  const phrases = ['Concert Photographer','Wildlife Photographer','Dance & Performance','DJ & Nightlife','Sports Action','Fashion & Creative','Music Artist Shoots','Raw Energy. Real Moments.'];
   let idx = 0, charIdx = 0, isDeleting = false, glitchFired = false;
   el.textContent = '';
-
   function run() {
     const current = phrases[idx];
     const glitchPoint = Math.floor(current.length * 0.55);
-
     if (!isDeleting) {
-      if (!glitchFired && charIdx === glitchPoint) {
-        glitchFired = true;
-        el.classList.add('glitch-flash');
-        el.textContent = current.slice(0, charIdx) + ['▓','▒','░','█','▌'][Math.floor(Math.random()*5)];
-        setTimeout(run, 200);
-        return;
-      }
-      charIdx++;
-      el.textContent = current.slice(0, charIdx);
-      if (charIdx >= current.length) {
-        setTimeout(() => { isDeleting = true; run(); }, 1800);
-        return;
-      }
+      if (!glitchFired && charIdx === glitchPoint) { glitchFired = true; el.classList.add('glitch-flash'); el.textContent = current.slice(0, charIdx) + ['▓','▒','░','█','▌'][Math.floor(Math.random()*5)]; setTimeout(run, 200); return; }
+      charIdx++; el.textContent = current.slice(0, charIdx);
+      if (charIdx >= current.length) { setTimeout(() => { isDeleting = true; run(); }, 1800); return; }
       setTimeout(run, 65 + Math.random() * 45);
     } else {
-      charIdx--;
-      el.textContent = current.slice(0, charIdx);
-      if (charIdx <= 0) {
-        isDeleting = false; glitchFired = false;
-        idx = (idx + 1) % phrases.length;
-        setTimeout(run, 300);
-        return;
-      }
+      charIdx--; el.textContent = current.slice(0, charIdx);
+      if (charIdx <= 0) { isDeleting = false; glitchFired = false; idx = (idx + 1) % phrases.length; setTimeout(run, 300); return; }
       setTimeout(run, 28 + Math.random() * 18);
     }
   }
   setTimeout(run, 1500);
 })();
 
-// ════════════════════════════════════════════
-// B. CINEMATIC LETTERBOX BARS (scroll-triggered)
-// ════════════════════════════════════════════
+// Cinematic letterbox
 (function() {
   let ticking = false;
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const scrolled = window.scrollY > 80;
-        document.body.classList.toggle('cinematic', scrolled);
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(() => { document.body.classList.toggle('cinematic', window.scrollY > 80); ticking = false; }); ticking = true; }
   }, { passive: true });
 })();
 
-// Film roll JS removed
-
-// ════════════════════════════════════════════
-// D. FILM SCAN LINE — inject .film-scan into grid items
-// ════════════════════════════════════════════
+// Film scan on grid items
 (function() {
   document.querySelectorAll('.grid-item').forEach(item => {
-    if (!item.querySelector('.film-scan')) {
-      const scan = document.createElement('div');
-      scan.className = 'film-scan';
-      item.appendChild(scan);
-    }
-  });
-  // Re-trigger scan on re-hover (reset animation)
-  document.querySelectorAll('.grid-item').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      const scan = item.querySelector('.film-scan');
-      if (!scan) return;
-      scan.style.display = 'none';
-      void scan.offsetWidth;
-      scan.style.display = '';
-    });
-  });
-})();
-
-// ════════════════════════════════════════════
-// E. DARKROOM RED-LIGHT MODE
-// ════════════════════════════════════════════
-(function() {
-  const btn = document.getElementById('darkroom-toggle');
-  if (!btn) return;
-  const root = document.documentElement;
-
-  // Persist preference
-  if (localStorage.getItem('darkroom') === '1') root.classList.add('darkroom');
-
-  btn.addEventListener('click', () => {
-    const on = root.classList.toggle('darkroom');
-    localStorage.setItem('darkroom', on ? '1' : '0');
-    // Remove light mode if darkroom on
-    if (on) root.classList.remove('light');
+    if (!item.querySelector('.film-scan')) { const scan = document.createElement('div'); scan.className = 'film-scan'; item.appendChild(scan); }
+    item.addEventListener('mouseenter', () => { const scan = item.querySelector('.film-scan'); if (!scan) return; scan.style.display = 'none'; void scan.offsetWidth; scan.style.display = ''; });
   });
 })();
 </script>
