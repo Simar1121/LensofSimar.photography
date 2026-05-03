@@ -21,7 +21,7 @@
 <meta name="rating" content="general">
 <meta name="category" content="Photography, Art, Events">
 
-<!-- ── OPEN GRAPH (Facebook / WhatsApp / LinkedIn) ── -->
+<!-- ── OPEN GRAPH ── -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lensofsimar.photography/">
 <meta property="og:title" content="Simarpreet Singh | MoodinPixels — Best Photographer in Jaipur">
@@ -43,7 +43,7 @@
 <meta name="twitter:image" content="https://lensofsimar.photography/Concert/Simar(1).jpg">
 <meta name="twitter:image:alt" content="Concert photography by Simarpreet Singh, MoodinPixels">
 
-<!-- ── STRUCTURED DATA (JSON-LD) ── -->
+<!-- ── STRUCTURED DATA ── -->
 <script type="application/ld+json">
 [
   {
@@ -92,64 +92,31 @@
       "@type": "OfferCatalog",
       "name": "Photography Services",
       "itemListElement": [
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Concert & Live Event Photography","description":"High-energy concert and live event photography capturing raw moments in Jaipur and across Rajasthan."}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dance & Performance Photography","description":"Professional dance photography for performers, studios and events."}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wildlife Photography","description":"Wildlife and nature photography across Rajasthan's forests and sanctuaries."}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fashion & Creative Photoshoots","description":"Fashion, portrait and creative photoshoots in Jaipur."}}
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Concert & Live Event Photography"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dance & Performance Photography"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Wildlife Photography"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fashion & Creative Photoshoots"}}
       ]
     }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How can I book Simarpreet Singh for an event in Jaipur?",
-        "acceptedAnswer": {"@type":"Answer","text":"You can book Simarpreet Singh by calling +91-96901-51550, emailing moodinpixels@gmail.com, or using the contact form on this website. He is available for concerts, events, dance shows, wildlife and fashion shoots across Jaipur and Rajasthan."}
-      },
-      {
-        "@type": "Question",
-        "name": "What types of photography does MoodinPixels specialise in?",
-        "acceptedAnswer": {"@type":"Answer","text":"MoodinPixels specialises in concert photography, dance photography, DJ and nightlife events, music artist shoots, wildlife photography, sports photography, fashion shoots, and creative portrait photoshoots."}
-      },
-      {
-        "@type": "Question",
-        "name": "Does Simarpreet Singh travel outside Jaipur for shoots?",
-        "acceptedAnswer": {"@type":"Answer","text":"Yes. While based in Jaipur, Simarpreet Singh is available for photography assignments across Rajasthan and other cities in India."}
-      }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://lensofsimar.photography/"},
-      {"@type":"ListItem","position":2,"name":"Portfolio","item":"https://lensofsimar.photography/#portfolio"},
-      {"@type":"ListItem","position":3,"name":"Contact","item":"https://lensofsimar.photography/#contact"}
-    ]
   }
 ]
 </script>
 
-<!-- ── PERFORMANCE: DNS prefetch & preconnect ── -->
+<!-- ── PERFORMANCE ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-
-<!-- ── FONTS: swap for faster render ── -->
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet"></noscript>
 
-<!-- ── PRELOAD above-the-fold hero images ── -->
 <link rel="preload" as="image" href="Concert/Simar(1).jpg" fetchpriority="high">
 <link rel="preload" as="image" href="Dance/DSC_5197.jpg">
 <link rel="preload" as="image" href="Music/NU_09831.jpg">
 
-<!-- ── MOBILE / BROWSER CHROME ── -->
 <meta name="theme-color" content="#080808">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <style>
   /* ── DARK MODE (default) ── */
   :root {
@@ -200,22 +167,8 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  .hero-typewriter-text.glitch-flash {
-    animation: typeGlitch 0.08s steps(1) 3;
-    color: #ff3a1a;
-    text-shadow: 2px 0 0 #0ff, -2px 0 0 #ff0;
-  }
-  @keyframes typeGlitch {
-    0%   { transform: translateX(0) skewX(0); }
-    33%  { transform: translateX(3px) skewX(-4deg); opacity: 0.4; }
-    66%  { transform: translateX(-3px) skewX(4deg); opacity: 0.7; }
-    100% { transform: translateX(0) skewX(0); opacity: 1; }
-  }
 </style>
 
-<!-- ════════════════════════════════════
-  LETTERBOX + FILM ROLL + SCAN LINE CSS
-════════════════════════════════════ -->
 <style>
   /* ── CINEMATIC LETTERBOX BARS ── */
   #letterbox-top, #letterbox-bottom {
@@ -232,7 +185,7 @@
     height: 48px;
   }
 
-  /* ── FILM SCAN LINE on grid items ── */
+  /* ── FILM SCAN on grid items ── */
   .grid-item .film-scan {
     position: absolute; inset: 0; z-index: 5;
     pointer-events: none;
@@ -278,6 +231,7 @@
   }
   #mode-toggle:hover { color: var(--text); border-color: var(--border); background: var(--glass-bg); }
   #mode-toggle svg { width: 14px; height: 14px; fill: currentColor; }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
@@ -290,6 +244,7 @@
     color: var(--text);
     font-family: 'Syne', sans-serif;
     overflow-x: hidden;
+    cursor: auto;
   }
 
   /* ── ANIMATED BACKGROUND ── */
@@ -339,7 +294,7 @@
     100% { opacity:0; transform:translate(-40px,60px) scale(0.95); }
   }
 
-  /* Subtle animated dot grid */
+  /* Dot grid */
   #bg-grid {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
@@ -358,7 +313,6 @@
     100% { transform: translate(0,0); }
   }
 
-  /* Ensure all content sits above bg layers */
   nav, section, footer, .stats-bar, .marquee-wrap { position: relative; z-index: 1; }
 
   /* NAV */
@@ -437,12 +391,9 @@
     image-orientation: from-image;
   }
   .hero-img-block.active img { transform: scale(1.0); }
-  .hi1 img, .hi2 img { object-fit: cover; }
-
   .hi1 { top: 5%; right: 3%; width: 28vw; height: 55vh; }
   .hi2 { top: 30%; right: 33%; width: 20vw; height: 38vh; }
   .hi3 { bottom: 10%; right: 2%; width: 18vw; height: 34vh; }
-
   .hi1::after, .hi2::after, .hi3::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, transparent 60%, rgba(8,8,8,0.2));
@@ -499,7 +450,6 @@
   }
   .btn-ghost::after { content: '↓'; font-size: 1.1rem; }
   .btn-ghost:hover { color: var(--text); }
-  .hero-scroll-indicator { display: none; }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -593,9 +543,7 @@
     object-position: center 20%;
     transform: scale(0.92);
   }
-  .about-photo-main:hover img {
-    transform: scale(0.96);
-  }
+  .about-photo-main:hover img { transform: scale(0.96); }
   .about-visual-tag {
     position: absolute; bottom: 1.2rem; left: 1.2rem;
     font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
@@ -660,6 +608,7 @@
     transition: color 0.3s, border-color 0.3s;
     white-space: nowrap;
     min-height: 44px;
+    cursor: pointer;
   }
   .filter-btn.active, .filter-btn:hover {
     color: var(--accent); border-bottom-color: var(--accent);
@@ -685,9 +634,7 @@
     transition: transform 0.5s ease;
     transform-origin: center center;
   }
-  .grid-item:hover img {
-    transform: scale(1.07);
-  }
+  .grid-item:hover img { transform: scale(1.07); }
   .grid-item-overlay {
     position: absolute; inset: 0;
     background: transparent;
@@ -725,14 +672,12 @@
     aspect-ratio: 2/3;
     background: var(--bg2);
     opacity: 0;
-    transform: translateY(40px) scale(0.94) rotateX(8deg);
+    transform: translateY(40px) scale(0.94);
     transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-    perspective: 800px;
-    transform-style: preserve-3d;
   }
   .cat-card.cat-revealed {
     opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0deg);
+    transform: translateY(0) scale(1);
   }
   .cat-card:nth-child(1) { transition-delay: 0.05s; }
   .cat-card:nth-child(2) { transition-delay: 0.12s; }
@@ -785,15 +730,6 @@
     transition: transform 0.4s ease;
   }
   .cat-card:hover::after { transform: scaleX(1); }
-  .cat-card::before {
-    content: '';
-    position: absolute; inset: 0; z-index: 3;
-    background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-  .cat-card:hover::before { opacity: 1; }
   .cat-card:hover {
     transform: translateY(-6px) scale(1.025) !important;
     box-shadow: 0 24px 48px rgba(0,0,0,0.5);
@@ -1150,6 +1086,7 @@
     font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
     transition: background 0.3s, transform 0.2s;
     min-height: 48px;
+    cursor: pointer;
   }
   .form-submit:hover { background: var(--accent2); transform: translateY(-2px); }
   .form-submit-group { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -1207,7 +1144,7 @@
     position: absolute; top: 2rem; right: 2.5rem;
     font-size: 1.5rem; color: var(--muted);
     background: none; border: none;
-    transition: color 0.3s;
+    transition: color 0.3s; cursor: pointer;
     min-width: 44px; min-height: 44px;
     display: flex; align-items: center; justify-content: center;
   }
@@ -1215,7 +1152,7 @@
   .lb-nav {
     position: absolute; top: 50%; transform: translateY(-50%);
     font-size: 2rem; color: var(--muted); background: none; border: none;
-    transition: color 0.3s; padding: 1rem;
+    transition: color 0.3s; padding: 1rem; cursor: pointer;
     min-width: 48px; min-height: 48px;
     display: flex; align-items: center; justify-content: center;
   }
@@ -1298,7 +1235,7 @@
     transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
 
-  /* ── TYPOGRAPHY POLISH (global) ── */
+  /* ── TYPOGRAPHY POLISH ── */
   .section-tag {
     font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 0.6rem;
@@ -1370,8 +1307,55 @@
   }
   @media (max-width: 900px) { #filter-label { padding: 0 1.5rem; font-size: 1rem; } }
 
+  /* ── NOISE FLASH on image hover ── */
+  .grid-item::after {
+    content: ''; position: absolute; inset: 0; z-index: 3;
+    opacity: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay; pointer-events: none; transition: opacity 0.3s;
+  }
+  .grid-item:hover::after { opacity: 0.15; }
+
+  /* ── SCANLINE EFFECT ── */
+  #scanlines {
+    position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    opacity: 0.4; mix-blend-mode: multiply;
+  }
+  :root.light #scanlines { opacity: 0.15; }
+
+  /* ── CORNER BRACKETS ── */
+  .grid-item .corner-tl, .grid-item .corner-br {
+    position: absolute; z-index: 4;
+    width: 20px; height: 20px;
+    opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+  }
+  .grid-item .corner-tl {
+    top: 10px; left: 10px;
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-left: 1px solid rgba(255,255,255,0.7);
+    transform: translate(-4px, -4px);
+  }
+  .grid-item .corner-br {
+    bottom: 10px; right: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    border-right: 1px solid rgba(255,255,255,0.7);
+    transform: translate(4px, 4px);
+  }
+  .grid-item:hover .corner-tl, .grid-item:hover .corner-br {
+    opacity: 1; transform: translate(0, 0);
+  }
+
+  /* ── HERO SPOTLIGHT ── */
+  #hero-spotlight {
+    position: absolute; inset: 0; pointer-events: none; z-index: 3;
+    background: radial-gradient(circle 300px at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.5s;
+  }
+  .hero:hover #hero-spotlight { opacity: 1; }
+
   /* ══════════════════════════════════════════
-     MOBILE RESPONSIVE IMPROVEMENTS
+     MOBILE RESPONSIVE
   ══════════════════════════════════════════ */
 
   /* ── TABLET (max 900px) ── */
@@ -1455,15 +1439,22 @@
     .footer-copy { font-size: 0.6rem; }
     /* Marquee */
     .marquee-item { font-size: 1rem; padding: 0 1.2rem; gap: 1.2rem; }
+    /* Letterbox off on mobile */
+    body.cinematic #letterbox-top,
+    body.cinematic #letterbox-bottom { height: 0; }
+    /* Rating toast */
+    #rating-toast { right: 1rem; left: 1rem; bottom: 1.5rem; text-align: center; }
   }
 
   /* ── SMALL MOBILE (max 500px) ── */
   @media (max-width: 500px) {
     nav { padding: 0.8rem 0.9rem; }
     .logo { font-size: 1.1rem; }
+    .hero { padding: 0 1.2rem 2.5rem; }
     .hero-title { font-size: clamp(2.8rem, 16vw, 5rem); }
     .hero-tag { font-size: 0.58rem; letter-spacing: 0.2em; }
     .hero-sub { font-size: 0.82rem; }
+    .hero-typewriter { font-size: 0.75rem; letter-spacing: 0.15em; }
     .cat-showcase .cat-card { flex: 0 0 clamp(140px, 60vw, 220px) !important; }
     .about-visual-multi { height: 75vw; }
     .about-photo-strip { flex-direction: column; }
@@ -1482,179 +1473,13 @@
     .stats-bar { grid-template-columns: 1fr 1fr; }
     .stat { padding: 1.2rem 1rem; }
     .stat-num { font-size: 2rem; }
-    #rating-toast { right: 1rem; left: 1rem; bottom: 1.5rem; text-align: center; }
-  }
-
-  /* ── TOUCH DEVICE: disable custom cursor ── */
-  @media (hover: none) and (pointer: coarse) {
-    * { cursor: auto !important; }
-    #cursor-dot, #cursor-ring { display: none !important; }
-    .cursor-trail { display: none !important; }
+    #filter-label { padding: 0 1.2rem; }
   }
 
   /* Hide hamburger on desktop */
   @media (min-width: 901px) {
     #hamburger { display: none; }
     #mobile-menu { display: none !important; }
-  }
-</style>
-
-<style>
-  /* ── CUSTOM CURSOR ── */
-  * { cursor: none !important; }
-  #cursor-dot {
-    position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #fff; mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, opacity 0.2s;
-    will-change: transform;
-  }
-  #cursor-ring {
-    position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.5);
-    transform: translate(-50%, -50%);
-    transition: width 0.35s cubic-bezier(0.22,1,0.36,1),
-                height 0.35s cubic-bezier(0.22,1,0.36,1),
-                border-color 0.3s, opacity 0.3s;
-    mix-blend-mode: difference;
-    will-change: transform;
-  }
-  body.cursor-hovering #cursor-dot { width: 14px; height: 14px; }
-  body.cursor-hovering #cursor-ring { width: 60px; height: 60px; border-color: rgba(255,255,255,0.9); }
-  body.cursor-clicking #cursor-dot { width: 4px; height: 4px; opacity: 0.6; }
-  body.cursor-clicking #cursor-ring { width: 28px; height: 28px; }
-
-  .cursor-trail {
-    position: fixed; top: 0; left: 0; z-index: 99997; pointer-events: none;
-    border-radius: 50%; background: rgba(255,255,255,0.6);
-    mix-blend-mode: screen;
-    transform: translate(-50%, -50%) scale(1);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    will-change: transform, opacity;
-  }
-
-  /* ── GLITCH TEXT EFFECT ── */
-  .glitch-text { position: relative; display: inline-block; }
-  .glitch-text::before, .glitch-text::after {
-    content: attr(data-text);
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; opacity: 0;
-  }
-  .glitch-text::before { color: #0ff; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
-  .glitch-text::after { color: #f0f; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
-  .glitch-text.glitching::before { opacity: 0.8; animation: glitch-top 0.3s steps(2) forwards; }
-  .glitch-text.glitching::after { opacity: 0.8; animation: glitch-bottom 0.3s steps(2) forwards; }
-  @keyframes glitch-top {
-    0%   { transform: translate(-2px, -1px); }
-    25%  { transform: translate(2px, 1px); }
-    50%  { transform: translate(-3px, 0); clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%); }
-    75%  { transform: translate(1px, -2px); }
-    100% { transform: translate(0); opacity: 0; }
-  }
-  @keyframes glitch-bottom {
-    0%   { transform: translate(2px, 1px); }
-    25%  { transform: translate(-2px, -1px); }
-    50%  { transform: translate(3px, 0); clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
-    75%  { transform: translate(-1px, 2px); }
-    100% { transform: translate(0); opacity: 0; }
-  }
-
-  /* ── CINEMATIC PAGE INTRO ── */
-  #page-intro {
-    position: fixed; inset: 0; z-index: 999999;
-    display: flex; align-items: center; justify-content: center;
-    background: #080808;
-    flex-direction: column; gap: 1.5rem;
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.77,0,0.175,1);
-  }
-  #page-intro.hide { opacity: 0; transform: translateY(-100%); pointer-events: none; }
-  .intro-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: 0.15em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
-    position: relative; overflow: hidden;
-  }
-  .intro-logo-fill {
-    position: absolute; inset: 0;
-    color: #e8e8e8; -webkit-text-stroke: 0;
-    clip-path: inset(100% 0 0 0);
-    animation: logoReveal 1.2s cubic-bezier(0.77,0,0.175,1) 0.3s forwards;
-    white-space: nowrap;
-  }
-  @keyframes logoReveal { to { clip-path: inset(0% 0 0 0); } }
-  .intro-line {
-    width: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,200,200,0.6), transparent);
-    animation: introLine 0.8s ease 0.8s forwards;
-  }
-  @keyframes introLine { to { width: min(400px, 60vw); } }
-  .intro-sub {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(200,200,200,0.5); opacity: 0;
-    animation: fadeInSub 0.6s ease 1.1s forwards;
-  }
-  @keyframes fadeInSub { to { opacity: 1; } }
-  .intro-progress {
-    position: absolute; bottom: 0; left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(200,200,200,0.3), rgba(200,200,200,0.8));
-    width: 0; animation: introProgress 1.8s ease forwards;
-  }
-  @keyframes introProgress { to { width: 100%; } }
-
-  /* ── MAGNETIC BUTTON WRAPPER ── */
-  .mag-wrap { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-
-  /* ── SPOTLIGHT FOLLOW EFFECT on hero ── */
-  #hero-spotlight {
-    position: absolute; inset: 0; pointer-events: none; z-index: 3;
-    background: radial-gradient(circle 300px at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
-    opacity: 0; transition: opacity 0.5s;
-  }
-  .hero:hover #hero-spotlight { opacity: 1; }
-
-  /* ── NOISE FLASH on image hover ── */
-  .grid-item::after {
-    content: ''; position: absolute; inset: 0; z-index: 3;
-    opacity: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay; pointer-events: none; transition: opacity 0.3s;
-  }
-  .grid-item:hover::after { opacity: 0.15; }
-
-  /* ── SCANLINE EFFECT ── */
-  #scanlines {
-    position: fixed; inset: 0; z-index: 2; pointer-events: none;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-    opacity: 0.4; mix-blend-mode: multiply;
-  }
-  :root.light #scanlines { opacity: 0.15; }
-
-  /* ── CORNER BRACKETS on hover for grid items ── */
-  .grid-item .corner-tl, .grid-item .corner-br {
-    position: absolute; z-index: 4;
-    width: 20px; height: 20px;
-    opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none;
-  }
-  .grid-item .corner-tl {
-    top: 10px; left: 10px;
-    border-top: 1px solid rgba(255,255,255,0.7);
-    border-left: 1px solid rgba(255,255,255,0.7);
-    transform: translate(-4px, -4px);
-  }
-  .grid-item .corner-br {
-    bottom: 10px; right: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.7);
-    border-right: 1px solid rgba(255,255,255,0.7);
-    transform: translate(4px, 4px);
-  }
-  .grid-item:hover .corner-tl, .grid-item:hover .corner-br {
-    opacity: 1; transform: translate(0, 0);
   }
 </style>
 
@@ -1793,6 +1618,7 @@
       <img src="Concert/Simar(3).jpeg" alt="" fetchpriority="high" decoding="async">
     </div>
   </div>
+  <div id="hero-spotlight"></div>
   <div class="hero-content">
     <div class="avail-badge hero-avail">
       <span class="avail-dot"></span>Currently Available — Jaipur &amp; Beyond
@@ -1998,7 +1824,7 @@
     </a>
     <a class="cat-card" href="#portfolio" data-filter="dance">
       <img src="Dance/DSC_5197.jpg" loading="eager" decoding="async" alt="Dance Photography">
-      <div class="cat-card-content"><div class="cat-card-num">02</div><div class="cat-card-title">Dance<br>Photography</div><div class="cat-card-sub">Movement & Expression</div></div>
+      <div class="cat-card-content"><div class="cat-card-num">02</div><div class="cat-card-title">Dance<br>Photography</div><div class="cat-card-sub">Movement &amp; Expression</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="sports">
       <img src="Sports/DSC_0959.jpg" loading="eager" decoding="async" alt="Sports Photography">
@@ -2010,19 +1836,19 @@
     </a>
     <a class="cat-card" href="#portfolio" data-filter="music">
       <img src="Music/NU_09831.jpg" loading="eager" decoding="async" alt="Music Photography">
-      <div class="cat-card-content"><div class="cat-card-num">05</div><div class="cat-card-title">Music<br>Photography</div><div class="cat-card-sub">Artists & Soul</div></div>
+      <div class="cat-card-content"><div class="cat-card-num">05</div><div class="cat-card-title">Music<br>Photography</div><div class="cat-card-sub">Artists &amp; Soul</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="photoshoot">
       <img src="Photoshoot/IMG_9004.jpg" loading="eager" decoding="async" alt="Creative Photoshoots">
-      <div class="cat-card-content"><div class="cat-card-num">06</div><div class="cat-card-title">Creative<br>Photoshoots</div><div class="cat-card-sub">Portraits & Concepts</div></div>
+      <div class="cat-card-content"><div class="cat-card-num">06</div><div class="cat-card-title">Creative<br>Photoshoots</div><div class="cat-card-sub">Portraits &amp; Concepts</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="wildlife">
       <img src="Wildlife/IMG_9323.jpg" loading="eager" decoding="async" alt="Wildlife Photography">
-      <div class="cat-card-content"><div class="cat-card-num">07</div><div class="cat-card-title">Wildlife<br>Photography</div><div class="cat-card-sub">Nature & Wild</div></div>
+      <div class="cat-card-content"><div class="cat-card-num">07</div><div class="cat-card-title">Wildlife<br>Photography</div><div class="cat-card-sub">Nature &amp; Wild</div></div>
     </a>
     <a class="cat-card" href="#portfolio" data-filter="fashion">
       <img src="Fashion/DSC_3512.jpg" loading="eager" decoding="async" alt="Fashion Photography">
-      <div class="cat-card-content"><div class="cat-card-num">08</div><div class="cat-card-title">Fashion<br>Photography</div><div class="cat-card-sub">Style & Attitude</div></div>
+      <div class="cat-card-content"><div class="cat-card-num">08</div><div class="cat-card-title">Fashion<br>Photography</div><div class="cat-card-sub">Style &amp; Attitude</div></div>
     </a>
   </div>
 </section>
@@ -2111,7 +1937,7 @@
       <div class="stars">★★★★★</div>
       <p class="testi-text">One of the best photographers we've worked with for DJ events. He blends into the crowd and gets the real shots.</p>
       <div class="testi-author">Club Manager</div>
-      <div class="testi-role">Nightlife & Events</div>
+      <div class="testi-role">Nightlife &amp; Events</div>
     </div>
   </div>
 </section>
@@ -2135,7 +1961,6 @@
           <div>Instagram<span class="contact-link-sub">@moodinpixels__</span></div>
           <span class="contact-link-arrow">↗</span>
         </a>
-        <!-- ── THREADS LINK (NEW) ── -->
         <a href="https://www.threads.net/@lensofsimar_" target="_blank" class="contact-link">
           <div>Threads<span class="contact-link-sub">@lensofsimar_</span></div>
           <span class="contact-link-arrow">↗</span>
@@ -2213,6 +2038,54 @@
   <div class="intro-progress"></div>
 </div>
 
+<style>
+  /* ── CINEMATIC PAGE INTRO ── */
+  #page-intro {
+    position: fixed; inset: 0; z-index: 999999;
+    display: flex; align-items: center; justify-content: center;
+    background: #080808;
+    flex-direction: column; gap: 1.5rem;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.77,0,0.175,1);
+  }
+  #page-intro.hide { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+  .intro-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    letter-spacing: 0.15em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+    position: relative; overflow: hidden;
+  }
+  .intro-logo-fill {
+    position: absolute; inset: 0;
+    color: #e8e8e8; -webkit-text-stroke: 0;
+    clip-path: inset(100% 0 0 0);
+    animation: logoReveal 1.2s cubic-bezier(0.77,0,0.175,1) 0.3s forwards;
+    white-space: nowrap;
+  }
+  @keyframes logoReveal { to { clip-path: inset(0% 0 0 0); } }
+  .intro-line {
+    width: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,200,200,0.6), transparent);
+    animation: introLine 0.8s ease 0.8s forwards;
+  }
+  @keyframes introLine { to { width: min(400px, 60vw); } }
+  .intro-sub {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(200,200,200,0.5); opacity: 0;
+    animation: fadeInSub 0.6s ease 1.1s forwards;
+  }
+  @keyframes fadeInSub { to { opacity: 1; } }
+  .intro-progress {
+    position: absolute; bottom: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(200,200,200,0.3), rgba(200,200,200,0.8));
+    width: 0; animation: introProgress 1.8s ease forwards;
+  }
+  @keyframes introProgress { to { width: 100%; } }
+</style>
+
 <!-- SCANLINES -->
 <div id="scanlines"></div>
 
@@ -2220,24 +2093,20 @@
 <div id="letterbox-top"></div>
 <div id="letterbox-bottom"></div>
 
-<!-- CUSTOM CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-
 <!-- HERO SPOTLIGHT -->
 <script>
 (function() {
   const hero = document.querySelector('.hero');
   if (hero) {
-    const spot = document.createElement('div');
-    spot.id = 'hero-spotlight';
-    hero.appendChild(spot);
-    hero.addEventListener('mousemove', e => {
-      const r = hero.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
-      const y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
-      spot.style.background = `radial-gradient(circle 350px at ${x}% ${y}%, rgba(255,255,255,0.05) 0%, transparent 70%)`;
-    });
+    const spot = document.getElementById('hero-spotlight');
+    if (spot) {
+      hero.addEventListener('mousemove', e => {
+        const r = hero.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+        const y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
+        spot.style.background = `radial-gradient(circle 350px at ${x}% ${y}%, rgba(255,255,255,0.05) 0%, transparent 70%)`;
+      });
+    }
   }
 })();
 </script>
@@ -2467,12 +2336,12 @@
     try { ratings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { ratings = []; }
     document.querySelectorAll('.rating-cat-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.rating-cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); selectedCat = btn.dataset.cat; }); });
     const stars = document.querySelectorAll('#starWidget .sw-star');
-    const label = document.getElementById('starLabel');
+    const lbl = document.getElementById('starLabel');
     stars.forEach(star => {
-      star.addEventListener('mouseover', () => { const val = +star.dataset.val; stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= val)); label.textContent = starLabels[val]; });
-      star.addEventListener('click', () => { selectedRating = +star.dataset.val; label.textContent = starLabels[selectedRating]; });
+      star.addEventListener('mouseover', () => { const val = +star.dataset.val; stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= val)); lbl.textContent = starLabels[val]; });
+      star.addEventListener('click', () => { selectedRating = +star.dataset.val; lbl.textContent = starLabels[selectedRating]; });
     });
-    document.getElementById('starWidget').addEventListener('mouseleave', () => { stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= selectedRating)); label.textContent = selectedRating ? starLabels[selectedRating] : '—'; });
+    document.getElementById('starWidget').addEventListener('mouseleave', () => { stars.forEach(s => s.classList.toggle('lit', +s.dataset.val <= selectedRating)); lbl.textContent = selectedRating ? starLabels[selectedRating] : '—'; });
     window.submitRating = function() {
       if (!selectedRating) { showToast('Please select a star rating first', true); return; }
       const comment = document.getElementById('ratingComment').value.trim();
@@ -2480,7 +2349,7 @@
       ratings.unshift(entry);
       if (ratings.length > 50) ratings = ratings.slice(0, 50);
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ratings)); } catch(e) {}
-      selectedRating = 0; stars.forEach(s => s.classList.remove('lit')); if (label) label.textContent = '—';
+      selectedRating = 0; stars.forEach(s => s.classList.remove('lit')); if (lbl) lbl.textContent = '—';
       document.getElementById('ratingComment').value = '';
       renderRatings(); showToast('Rating submitted — thank you! ✦');
     };
@@ -2514,51 +2383,7 @@
   intro.addEventListener('click', () => intro.classList.add('hide'));
 })();
 
-// Custom cursor + trail
-(function() {
-  const dot = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
-  const trail = [];
-  for (let i = 0; i < 12; i++) {
-    const p = document.createElement('div'); p.className = 'cursor-trail';
-    const s = 4 - (i * 0.25); p.style.cssText = `width:${s}px;height:${s}px;opacity:0;`;
-    document.body.appendChild(p); trail.push({ el: p, x: mx, y: my });
-  }
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`; });
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  (function animate() {
-    rx = lerp(rx, mx, 0.12); ry = lerp(ry, my, 0.12);
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-    for (let i = trail.length - 1; i > 0; i--) { trail[i].x = lerp(trail[i].x, trail[i-1].x, 0.35); trail[i].y = lerp(trail[i].y, trail[i-1].y, 0.35); }
-    trail[0].x = lerp(trail[0].x, mx, 0.5); trail[0].y = lerp(trail[0].y, my, 0.5);
-    trail.forEach((p, i) => { const fade = 1 - (i / trail.length); p.el.style.transform = `translate(${p.x}px, ${p.y}px) translate(-50%,-50%) scale(${fade})`; p.el.style.opacity = (fade * 0.35).toFixed(3); });
-    requestAnimationFrame(animate);
-  })();
-  document.addEventListener('mouseover', e => { if (e.target.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) document.body.classList.add('cursor-hovering'); });
-  document.addEventListener('mouseout', e => { if (e.target.matches('a, button, .grid-item, .cat-card, .filter-btn, .nav-cta, .btn-primary, .btn-ghost, .contact-link')) document.body.classList.remove('cursor-hovering'); });
-  document.addEventListener('mousedown', () => document.body.classList.add('cursor-clicking'));
-  document.addEventListener('mouseup', () => document.body.classList.remove('cursor-clicking'));
-})();
-
-// Glitch text on hero title hover
-(function() {
-  document.querySelectorAll('.hero-title, .contact-title').forEach(el => {
-    el.classList.add('glitch-text'); el.setAttribute('data-text', el.textContent);
-    el.addEventListener('mouseenter', () => { el.classList.add('glitching'); setTimeout(() => el.classList.remove('glitching'), 350); });
-  });
-})();
-
-// Magnetic buttons
-(function() {
-  document.querySelectorAll('.btn-primary, .nav-cta, .form-submit, .rating-submit').forEach(btn => {
-    btn.addEventListener('mousemove', e => { const r = btn.getBoundingClientRect(); btn.style.transform = `translate(${(e.clientX - r.left - r.width/2) * 0.28}px, ${(e.clientY - r.top - r.height/2) * 0.28}px)`; });
-    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
-  });
-})();
-
-// Corner brackets
+// Corner brackets on grid items
 (function() {
   document.querySelectorAll('.grid-item').forEach(item => {
     const tl = document.createElement('div'); tl.className = 'corner-tl';
@@ -2567,44 +2392,20 @@
   });
 })();
 
-// Scroll velocity tilt
+// Film scan on grid items
+(function() {
+  document.querySelectorAll('.grid-item').forEach(item => {
+    if (!item.querySelector('.film-scan')) { const scan = document.createElement('div'); scan.className = 'film-scan'; item.appendChild(scan); }
+    item.addEventListener('mouseenter', () => { const scan = item.querySelector('.film-scan'); if (!scan) return; scan.style.display = 'none'; void scan.offsetWidth; scan.style.display = ''; });
+  });
+})();
+
+// Scroll velocity tilt on hero title
 (function() {
   const title = document.querySelector('.hero-title');
   if (!title) return;
   let lastY = window.scrollY;
   window.addEventListener('scroll', () => { const dy = window.scrollY - lastY; title.style.transform = `skewX(${Math.max(-4, Math.min(4, dy * 0.15))}deg)`; lastY = window.scrollY; }, { passive: true });
-})();
-
-// Random glitch on logo
-(function() {
-  const logo = document.querySelector('.logo');
-  if (!logo) return;
-  logo.classList.add('glitch-text'); logo.setAttribute('data-text', logo.textContent);
-  setInterval(() => { logo.classList.add('glitching'); setTimeout(() => logo.classList.remove('glitching'), 350); }, 8000 + Math.random() * 4000);
-})();
-
-// Typewriter hero subtitle
-(function() {
-  const el = document.getElementById('hero-tw');
-  if (!el) return;
-  const phrases = ['Concert Photographer','Wildlife Photographer','Dance & Performance','DJ & Nightlife','Sports Action','Fashion & Creative','Music Artist Shoots','Raw Energy. Real Moments.'];
-  let idx = 0, charIdx = 0, isDeleting = false, glitchFired = false;
-  el.textContent = '';
-  function run() {
-    const current = phrases[idx];
-    const glitchPoint = Math.floor(current.length * 0.55);
-    if (!isDeleting) {
-      if (!glitchFired && charIdx === glitchPoint) { glitchFired = true; el.classList.add('glitch-flash'); el.textContent = current.slice(0, charIdx) + ['▓','▒','░','█','▌'][Math.floor(Math.random()*5)]; setTimeout(run, 200); return; }
-      charIdx++; el.textContent = current.slice(0, charIdx);
-      if (charIdx >= current.length) { setTimeout(() => { isDeleting = true; run(); }, 1800); return; }
-      setTimeout(run, 65 + Math.random() * 45);
-    } else {
-      charIdx--; el.textContent = current.slice(0, charIdx);
-      if (charIdx <= 0) { isDeleting = false; glitchFired = false; idx = (idx + 1) % phrases.length; setTimeout(run, 300); return; }
-      setTimeout(run, 28 + Math.random() * 18);
-    }
-  }
-  setTimeout(run, 1500);
 })();
 
 // Cinematic letterbox
@@ -2615,12 +2416,36 @@
   }, { passive: true });
 })();
 
-// Film scan on grid items
+// Typewriter hero subtitle — clean version, no glitch effect
 (function() {
-  document.querySelectorAll('.grid-item').forEach(item => {
-    if (!item.querySelector('.film-scan')) { const scan = document.createElement('div'); scan.className = 'film-scan'; item.appendChild(scan); }
-    item.addEventListener('mouseenter', () => { const scan = item.querySelector('.film-scan'); if (!scan) return; scan.style.display = 'none'; void scan.offsetWidth; scan.style.display = ''; });
-  });
+  const el = document.getElementById('hero-tw');
+  if (!el) return;
+  const phrases = ['Concert Photographer','Wildlife Photographer','Dance & Performance','DJ & Nightlife','Sports Action','Fashion & Creative','Music Artist Shoots','Raw Energy. Real Moments.'];
+  let idx = 0, charIdx = 0, isDeleting = false;
+  el.textContent = '';
+  function run() {
+    const current = phrases[idx];
+    if (!isDeleting) {
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx >= current.length) {
+        setTimeout(() => { isDeleting = true; run(); }, 1800);
+        return;
+      }
+      setTimeout(run, 65 + Math.random() * 45);
+    } else {
+      charIdx--;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx <= 0) {
+        isDeleting = false;
+        idx = (idx + 1) % phrases.length;
+        setTimeout(run, 300);
+        return;
+      }
+      setTimeout(run, 28 + Math.random() * 18);
+    }
+  }
+  setTimeout(run, 1500);
 })();
 </script>
 </body>
